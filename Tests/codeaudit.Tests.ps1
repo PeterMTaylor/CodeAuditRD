@@ -2,7 +2,7 @@ $here = Split-Path -Parent $MyInvocation.MyCommand.Path
 $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
 . "$here\$sut"
 
-Describe "CodeAudit" {
+Describe "codeaudit" {
     It "CodeAudit displays CodeAudit" {
         CodeAudit | Should Be 'CodeAudit'
     }
