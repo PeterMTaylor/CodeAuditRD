@@ -5,5 +5,8 @@ $sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
 Describe "codeaudit" {
     It "CodeAudit displays CodeAudit" {
         CodeAudit | Should Be 'CodeAudit'
-    }
+        }
+    It "CODEAUDIT DOES REPORT SOMETHING-" {
+        codeaudit | SHOULD BE 'SOMETHING'
+  }
 }
