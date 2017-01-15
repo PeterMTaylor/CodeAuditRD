@@ -1,9 +1,9 @@
 $here = Split-Path -Parent $MyInvocation.MyCommand.Path
-$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '\.Tests\.', '.'
+$sut = (Split-Path -Leaf $MyInvocation.MyCommand.Path) -replace '.Tests.', '.'
 . "$here\$sut"
 
-Describe "codeaudit" {
-    It "CodeAudit displays CodeAudit" {
-        CodeAudit | Should Be 'CodeAudit'
+Describe "CodeAudit" {
+    It "CodeAudit displays HelloWorld {
+        CodeAudit | Should Be 'HelloWorld'
     }
 }
