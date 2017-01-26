@@ -15,9 +15,11 @@ Write-Host "Installed NuGet version '$($pkg.version)'"
 #---------------------------------# 
 Write-Host 'Installing Pester'
 Install-Module -Name Pester -Repository PSGallery -Force
+Get-Module -ListAvailable -Name Pester | Format-List Name,Version,ModuleBase
 
 #---------------------------------# 
 # Install PSScriptAnalyzer        # 
 #---------------------------------# 
 Write-Host 'Installing PSScriptAnalyzer'
 Install-Module PSScriptAnalyzer -Repository PSGallery -force
+Get-Module -ListAvailable -Name PSScriptAnalyzer | Format-List Name,Version,ModuleBase
