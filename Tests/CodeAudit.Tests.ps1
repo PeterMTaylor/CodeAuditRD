@@ -39,7 +39,7 @@ if ($Scripts.count -gt 0) {
 #---------------------------------# 
 
 $PSVersion    = $PSVersionTable.PSVersion.Major
-$AppVeyorDemo = "$PSScriptRoot\..\AppVeyorDemo.psm1"
+$AppVeyorDemo = "$PSScriptRoot\..\CodeAuditDemo.psm1"
 
 Describe "CodeAudit PS$PSVersion" {
     Copy-Item $AppVeyorDemo TestDrive:\script.ps1 -Force
