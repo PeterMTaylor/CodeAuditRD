@@ -7,7 +7,7 @@ RootModule = 'CodeAuditDemo.psm1'
 ModuleVersion = '1.0.0'
 
 # ID used to uniquely identify this module ([guid]::NewGuid())
-GUID = 'f24cb574-934a-4829-abf0-eb6043fc5bf0'
+GUID = 'NOT YET ALLOCATED'
 
 # Author of this module
 Author = 'Peter M TAYLOR'
