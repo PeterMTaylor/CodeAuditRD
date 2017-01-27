@@ -10,7 +10,7 @@ environment:
   MySecureVar:
     secure: 2miEAGV72ED32TvZbXUbQA== #This is secured
   MyNonSecureVar: NonSecure
-  ModuleName: appVeyorDemo
+  ModuleName: CodeAuditDemo
 #---------------------------------# 
 #      build configuration        # 
 #---------------------------------# 
