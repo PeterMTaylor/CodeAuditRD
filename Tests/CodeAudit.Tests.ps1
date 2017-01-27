@@ -53,11 +53,11 @@ Describe "CodeAudit PS$PSVersion" {
           Get-SomeInt | Should BeOfType System.Int32
         }     
     }
-}
 
-Describe "CodeAudit" {
+    Context "CodeAudit" {
     It "CodeAudit displays HelloWorld" {
         CodeAudit | Should Be 'Hello World!'
 
+        }
     }
 }
