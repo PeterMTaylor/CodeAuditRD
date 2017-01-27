@@ -5,5 +5,5 @@ function Get-SomeInt
 
 function CodeAudit
 {
-     write-output 'Hello World' 
+     write-output 'Hello World!' 
 }
