@@ -7,7 +7,7 @@ RootModule = 'CodeAudit.psm1'
 ModuleVersion = '1.0.0'
 
 # ID used to uniquely identify this module ([guid]::NewGuid())
-GUID = 'NOT YET ALLOCATED'
+GUID = 'a68b72b8-5322-47fe-b444-65c3e8042bdc'
 
 # Author of this module
 Author = 'Peter M TAYLOR'
@@ -19,7 +19,7 @@ CompanyName =  'not yet allocated'
 Copyright = '(c) 2017 not yet allocated. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'Code Audit usng GitHub files against https:/ selected domains for vertification of licenses.'
+Description = 'Code Audit usng GitHub release file with source code to audit selected domains for license verification.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 PowerShellVersion = '5.0'
