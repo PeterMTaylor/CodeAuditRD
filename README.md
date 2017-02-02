@@ -19,7 +19,7 @@ See our Contributing file to find the steps needed to contribute to this project
 
 # Attributions
 
-The following list attributes the developers for their time I found and their code in making CodeAudit.
+The following list attributes the developers for their time I found in making CodeAudit.
 
 Javy de Koning. Not licensed. Allow Powershell modules with AppVeyor https://github.com/javydekoning/AppVeyorDemo
 Iain Brighton. MiT License. PScribo documentation framework for Powershell https://github.com/iainbrighton/PScribo
