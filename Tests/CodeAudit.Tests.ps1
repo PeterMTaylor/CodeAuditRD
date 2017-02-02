@@ -39,10 +39,10 @@ if ($Scripts.count -gt 0) {
 #---------------------------------# 
 
 $PSVersion    = $PSVersionTable.PSVersion.Major
-$AppVeyorDemo = "$PSScriptRoot\..\CodeAuditDemo.psm1"
+$CodeAuditDemo = "$PSScriptRoot\..\CodeAudit.psm1"
 
 Describe "CodeAudit PS$PSVersion" {
-    Copy-Item $AppVeyorDemo TestDrive:\script.ps1 -Force
+    Copy-Item $CodeAuditDemo TestDrive:\script.ps1 -Force
     Mock Export-ModuleMember {return $true}
     . 'TestDrive:\script.ps1'
     

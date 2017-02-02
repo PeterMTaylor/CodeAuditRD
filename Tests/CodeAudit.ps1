@@ -1,5 +1,0 @@
-function CodeAudit {
-
-'Hello World!'
-
-}

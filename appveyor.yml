@@ -7,9 +7,6 @@ install:
   - ps: . .\AppVeyor\AppVeyorInstall.ps1
 
 environment:
-  MySecureVar:
-    secure: 2miEAGV72ED32TvZbXUbQA== #This is secured
-  MyNonSecureVar: NonSecure
   ModuleName: CodeAuditDemo
 #---------------------------------# 
 #      build configuration        # 
@@ -26,5 +23,5 @@ test_script:
 #---------------------------------# 
 #      deployment configuration   # 
 #---------------------------------# 
-deploy_script: 
-  - ps: . .\AppVeyor\AppveyorDeploy.ps1
+# deploy_script: 
+#  - ps: . .\AppVeyor\AppveyorDeploy.ps1
