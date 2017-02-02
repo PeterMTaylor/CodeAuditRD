@@ -13,10 +13,6 @@ Query execution - execute the query to return results for further analysis and r
 Query results - process the output from query execution
 Reporting audit outcomes
 
-See our Licensing file for which software in this repro is currently licensed.
-
-See our Contributing file to find the steps needed to contribute to this project.
-
 # Attributions
 
 The following list attributes the developers for their time I found in making CodeAudit.
