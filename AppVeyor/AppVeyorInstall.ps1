@@ -21,7 +21,7 @@ Get-Module -ListAvailable -Name Pester | Format-List Name,Version,ModuleBase
 #  Install Format-Pester          #
 #---------------------------------#
 Write-Host 'Installing Format-Pester'
-Install-Module -Name Format-Pester -Respository PSGallery -Force
+Install-Module -Name Format-Pester -Force
 Get-Module -ListAvailble -Name Format-Pester | Format-List Name,Version,ModuleBase
 
 #---------------------------------# 
