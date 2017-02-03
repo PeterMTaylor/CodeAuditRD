@@ -22,7 +22,7 @@ Get-Module -ListAvailable -Name Pester | Format-List Name,Version,ModuleBase
 #---------------------------------#
 Write-Host 'Installing Format-Pester'
 Install-Module -Name Format-Pester -Force
-Get-Module -ListAvailble -Name Format-Pester | Format-List Name,Version,ModuleBase
+Get-Module -ListAvailable -Name Format-Pester | Format-List Name,Version,ModuleBase
 
 #---------------------------------# 
 # Install PSScriptAnalyzer        # 
