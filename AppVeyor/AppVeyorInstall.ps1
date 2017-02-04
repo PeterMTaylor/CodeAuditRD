@@ -21,7 +21,7 @@ Get-Module -ListAvailable -Name Pester | Format-List Name,Version,ModuleBase
 #  Install Pscribo                #
 #---------------------------------#
 Write-Host 'Installing PScribo'
-Install-Module -Name PScribo -Repository PSGallery -Force
+Install-Module -Name PScribo -Repository PSGallery -Force -SkipPublisherCheck
 Get-Module -ListAvailable -Name PScribo | Format-List Name,Version,ModuleBase
 
 #---------------------------------#
