@@ -24,6 +24,13 @@ Write-Host 'Installing Format-Pester'
 Install-Module -Name Format-Pester -Force
 Get-Module -ListAvailable -Name Format-Pester | Format-List Name,Version,ModuleBase
 
+#---------------------------------#
+#  Install Pscribo                #
+#---------------------------------#
+Write-Host 'Installing PScribo'
+Install-Module -Name PScribo -Force
+Get-Module -ListAvailable -Name PScribo | Format-List Name,Version,ModuleBase
+
 #---------------------------------# 
 # Install PSScriptAnalyzer        # 
 #---------------------------------# 
