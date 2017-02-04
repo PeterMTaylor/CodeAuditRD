@@ -7,7 +7,7 @@ install:
   - ps: . .\AppVeyor\AppVeyorInstall.ps1
 
 environment:
-  ModuleName: CodeAuditDemo
+  ModuleName: CodeAudit
 #---------------------------------# 
 #      build configuration        # 
 #---------------------------------# 
