@@ -3,6 +3,11 @@
 #---------------------------------# 
 Write-Host 'Running AppVeyor install script' -ForegroundColor Yellow
 
+#---------------------------------#
+# Powershell status               #
+#---------------------------------#
+Write-Host "Installed Powershell '$PSVersionTable'"
+
 #---------------------------------# 
 # Install NuGet                   # 
 #---------------------------------# 
