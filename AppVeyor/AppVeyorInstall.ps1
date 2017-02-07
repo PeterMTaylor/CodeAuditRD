@@ -30,7 +30,7 @@ Install-Module -Name PScribo -Repository PSGallery -Force -SkipPublisherCheck
 Get-Module -ListAvailable -Name PScribo | Format-List Name,Version,ModuleBase
 
 #---------------------------------#
-#  Install Format-Pester          #
+#  Install Format-Pester         #
 #---------------------------------#
 Write-Host 'Installing Format-Pester'
 Install-Module -Name Format-Pester -Force
