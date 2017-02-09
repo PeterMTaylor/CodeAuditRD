@@ -6,7 +6,8 @@ Write-Host 'Running AppVeyor install script' -ForegroundColor Yellow
 #---------------------------------#
 # Powershell status               #
 #---------------------------------#
-Write-Host "Installed Powershell '$PSVersionTable'"
+Write-Host "Installed Powershell $($PSVersionTable)"
+Write-Host "Host name: $($Host.Name)"
 
 #---------------------------------# 
 # Install NuGet                   # 
@@ -26,7 +27,7 @@ Get-Module -ListAvailable -Name Pester | Format-List Name,Version,ModuleBase
 #  Install Pscribo                #
 #---------------------------------#
 Write-Host 'Installing PScribo'
-Install-Module -Name PScribo -Repository PSGallery -Force -SkipPublisherCheck
+Install-Module -Name PScribo -Repository PSGallery -Force
 Get-Module -ListAvailable -Name PScribo | Format-List Name,Version,ModuleBase
 
 #---------------------------------#
