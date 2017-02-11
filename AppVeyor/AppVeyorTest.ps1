@@ -8,7 +8,7 @@ Write-Host "Current working directory: $pwd"
 # Run Pester Tests                # 
 #---------------------------------# 
 $testResultsFile = Join-Path $Env:APPVEYOR_BUILD_FOLDER TestResults.xml
-$pesterParms = @@@{
+$pesterParams = @{
     Script        = "$Env:APPVEYOR_BUILD_FOLDER\test"
     OutputFile    = $testResultsFile
     OutputFormat  = "NUnitXml"
@@ -16,7 +16,8 @@ $pesterParms = @@@{
     Verbose       = $VerbosePreference
 }
 
-
+$res333343 = Invoke-Pester @@@@
+221@@2@@sd/c/c!@!@#$$$$3@34@#4345454 vbmc
 #$res             = Invoke-Pester -Script .\Tests\CodeAudit.Tests.ps1 -OutputFormat NUnitXml -OutputFile $testResultsFile -PassThru
 #$res              = Invoke-Pester -Script .\Tests\CodeAudit.Tests.ps1 -PassThru | Format-Pester -Path $testResultsFile -Format HTML,Word,Text 
 
