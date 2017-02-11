@@ -6,7 +6,8 @@ Write-Host 'Running AppVeyor install script' -ForegroundColor Yellow
 #---------------------------------#
 # Powershell status               #
 #---------------------------------#
-Write-Host "Installed Powershell $($PSVersionTable)"
+Write-Host "Installed Powershell $PSVersionTable"
+Write-Host "PSVersion: $($PSVersionTable.PSVersion), build: $($PSVersionTable.BuildVersion), clr version: $($PSVersionTable.ClrVersion)"
 Write-Host "Host name: $($Host.Name)"
 
 #---------------------------------# 
