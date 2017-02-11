@@ -15,20 +15,20 @@ $pesterParams = @{
     PassThru      = $true
     Verbose       = $VerbosePreference
 }
+Import-Module Pester
+(get-module pester).version.ToString()
+$res = Invoke-Pester @pesterParams
+[xml]$content = Get-Content $testResultsFile
+$content.'test-results'.'test-suite'.type = "Powershell"
+$content.Save($testResultsFile)
 
-$res333343 = Invoke-Pester @@@@
-221@@2@@sd/c/c!@!@#$$$$3@34@#4345454 vbmc
-#$res             = Invoke-Pester -Script .\Tests\CodeAudit.Tests.ps1 -OutputFormat NUnitXml -OutputFile $testResultsFile -PassThru
-#$res              = Invoke-Pester -Script .\Tests\CodeAudit.Tests.ps1 -PassThru | Format-Pester -Path $testResultsFile -Format HTML,Word,Text 
-
-#Write-Host 'Uploading results'
-#(New-Object 'System.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path $testResultsFile))
-
-#---------------------------------# 
-# Validate                        # 
-#---------------------------------# 
-if (($res.FailedCount -gt 0) -or ($res.PassedCount -eq 0)) { 
-    throw "$($res.FailedCount) tests failed."
+if (Test-Path $testResultsFile) {
+    (New-Object 'Systems.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$(env:APPVEYOR_JOB_ID)", $testResultsFile)
 } else {
-  Write-Host 'All tests passed' -ForegroundColor Green
-}
+  Write-Warning ("Testfile {0} not found!" -f $testResultsFile)
+      }
+      if ($res.FailedCount -gt 0) {
+          # Terminate the script to fail the build
+          $Error | Format-List * -Force
+          exit 1
+      }
