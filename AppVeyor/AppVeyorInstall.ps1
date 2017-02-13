@@ -23,20 +23,6 @@ Write-Host 'Installing Pester'
 Install-Module -Name Pester -Repository PSGallery -Force
 Get-Module -ListAvailable -Name Pester | Format-List Name,Version,ModuleBase
 
-#---------------------------------#
-#  Install Pscribo                #
-#---------------------------------#
-Write-Host 'Installing PScribo'
-Install-Module -Name PScribo -Repository PSGallery -Force
-Get-Module -ListAvailable -Name PScribo | Format-List Name,Version,ModuleBase
-
-#---------------------------------#
-#  Install Format-Pester         #
-#---------------------------------#
-Write-Host 'Installing Format-Pester'
-Install-Module -Name Format-Pester -Force
-Get-Module -ListAvailable -Name Format-Pester | Format-List Name,Version,ModuleBase
-
 #---------------------------------# 
 # Install PSScriptAnalyzer        # 
 #---------------------------------# 
