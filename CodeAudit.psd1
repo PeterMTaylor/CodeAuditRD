@@ -24,4 +24,5 @@ Description = 'Code Audit usng GitHub release file with source code to audit sel
 # Minimum version of the Windows PowerShell engine required by this module
 PowerShellVersion = '5.0'
 
+
 }
