@@ -39,7 +39,7 @@ if ($Scripts.count -gt 0) {
 #---------------------------------# 
 
 $PSVersion    = $PSVersionTable.PSVersion.Major
-$CodeAudit    = $PSScriptRoot\CodeAudit.psm1
+$CodeAudit    = $PSScriptRoot\..\CodeAudit.psm1
 
 Describe "CodeAudit PS$PSVersion" {
     Copy-Item $CodeAudit TestDrive:\script.ps1 -Force
