@@ -34,18 +34,19 @@ if ($Scripts.count -gt 0) {
   }
 }
 
-#---------------------------------# 
-# Custom Pester tests (replace)   # 
-#---------------------------------# 
+#-------------------------# 
+# CodeAudit Pester tests  # 
+#-------------------------# 
 
-$PSVersion    = $PSVersionTable.PSVersion.Major
-$CodeAudit    = "$PSScriptRoot\..\CodeAudit.psm1"
+$moduleName = 'CodeAudit';
+if (!$PSScriptRoot) { # $PSScriptRoot is not defined in 2.0
+    $PSScriptRoot = [System.IO.Path]::GetDirectoryName($MyInvocation.MyCommand.Path)
+}
+$repoRoot = (Resolve-Path $PSScriptRoot).Path;
 
-Describe "CodeAudit PS$PSVersion" {
-    Copy-Item $CodeAudit TestDrive:\script.ps1 -Force
-    Mock Export-ModuleMember {return $true}
-    . 'TestDrive:\script.ps1'
-    
+Import-Module (Join-Path -Path $RepoRoot -ChildPath "$moduleName.psm1") -Force;
+
+Describe $moduleName {   
     Context 'Strict mode' { 
         Set-StrictMode -Version latest
 
