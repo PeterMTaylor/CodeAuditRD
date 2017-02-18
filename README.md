@@ -2,7 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/p0i9fefb7u4jix9a/branch/master?svg=true)](https://ci.appveyor.com/project/PeterMTaylor/codeaudit/branch/master)
 
-CodeAudit is a Powershell script (under MiT license) to support developers in validating their Github codebase (C# at the moment) against CodeProject domains using browser search queries triggered by Powershell https requests.
+CodeAudit is a Powershell script (under MiT license) to support developers in validating their Github codebase against CodeProject domains using browser search queries triggered by Powershell https requests.
 
 # ToDO:
  
