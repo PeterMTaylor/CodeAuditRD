@@ -47,6 +47,26 @@ $repoRoot = (Resolve-Path $PSScriptRoot).Path;
 Import-Module (Join-Path -Path $RepoRoot -ChildPath "$moduleName.psm1") -Force;
 
 Describe $moduleName {   
+    Context 'Always have functions documented'
+    {#Need code to read the script to check 
+    }
+    
+    Context 'Prove that this change works on the desktop as I do here testing in Appveyor'
+    { #Show that what happens here in appveyor works on PC
+    }
+    
+    Context 'Obtain the Github release location via localpassed variable'
+    { #Learn more about local data and accessing them during test 
+    }
+    
+    Context 'Fetch the file from Github release location into Testdrive'
+    { #Learn how Testdrive works
+    }
+    
+    Context 'Start processing the release file opening up the zip file'
+    {
+    }
+    
     Context 'Strict mode' { 
         Set-StrictMode -Version latest
 
