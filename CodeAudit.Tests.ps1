@@ -47,24 +47,30 @@ $repoRoot = (Resolve-Path $PSScriptRoot).Path;
 Import-Module (Join-Path -Path $RepoRoot -ChildPath "$moduleName.psm1") -Force;
 
 Describe $moduleName {   
-    Context 'Always have functions documented'
-    {#Need code to read the script to check 
+    #Need code to read the script to check 
+    It 'Always have functions documented' -Pending {
+       CodeAudit | Should Be 'Hello World!'
+    }
+    #Show that what happens here in appveyor works on PC
+    It 'Prove that this change works on the desktop as I do here testing in Appveyor' -Pending
+    { 
+        CodeAudit | Should Be 'Hello World!'
     }
     
-    Context 'Prove that this change works on the desktop as I do here testing in Appveyor'
-    { #Show that what happens here in appveyor works on PC
+    #Learn more about local data and accessing them during test 
+    It 'Obtain the Github release location via localpassed variable' -Pending
+    { 
+        CodeAudit | Should Be 'Hello World!'
     }
     
-    Context 'Obtain the Github release location via localpassed variable'
-    { #Learn more about local data and accessing them during test 
+    #Learn how Testdrive works
+    It 'Fetch the file from Github release location into Testdrive' -Pending
+    { 
+        CodeAudit | Should Be 'Hello World!'
     }
     
-    Context 'Fetch the file from Github release location into Testdrive'
-    { #Learn how Testdrive works
-    }
-    
-    Context 'Start processing the release file opening up the zip file'
-    {
+    #check if the zip file algorithm from IainRobertson works.
+    It 'Start processing the release file opening up the zip file' {    
     }
     
     Context 'Strict mode' { 
@@ -80,5 +86,5 @@ Describe $moduleName {
         CodeAudit | Should Be 'Hello World!'
 
         }
-    }
-}
+    }  
+} #End Describe
