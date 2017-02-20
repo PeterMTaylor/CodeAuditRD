@@ -57,24 +57,6 @@ Describe $moduleName {
         $Notes = ($Help.alertSet.alert.text -split '\n')
         # Parse the function using AST
         $AST = [System.Management.Automation.Language.Parser]::ParseInput((Get-Content function:$Function), [ref]$null, [ref]$null)    
-  
-Describe "AdsiPS Module" -Tags "Module" {
-    
-    # Import Module
-    #import-module C:\Test\AdsiPS\AdsiPS.psd1
-    
-    #$FunctionsList = (get-command -Module ADSIPS).Name
-    $FunctionsList = (get-command -Module ADSIPS | Where-Object -FilterScript { $_.CommandType -eq 'Function' }).Name
-    
-    FOREACH ($Function in $FunctionsList)
-    {
-        # Retrieve the Help of the function
-        $Help = Get-Help -Name $Function -Full
-        
-        $Notes = ($Help.alertSet.alert.text -split '\n')
-        
-        # Parse the function using AST
-        $AST = [System.Management.Automation.Language.Parser]::ParseInput((Get-Content function:$Function), [ref]$null, [ref]$null)
         
         Context "$Function - Help"{
             
@@ -92,10 +74,7 @@ Describe "AdsiPS Module" -Tags "Module" {
             # Get the parameters declared in the AST PARAM() Block
             $ASTParameters = $ast.ParamBlock.Parameters.Name.variablepath.userpath
             
-            $FunctionsList = (get-command -Module $ModuleName | Where-Object -FilterScript { $_.CommandType -eq 'Function' }).Name
-            
-            
-            
+            $FunctionsList = (get-command -Module $ModuleName | Where-Object -FilterScript { $_.CommandType -eq 'Function' }).Name 
             
             It "Parameter - Compare Count Help/AST" {
                 $HelpParameters.name.count -eq $ASTParameters.count | Should Be $true
@@ -108,9 +87,9 @@ Describe "AdsiPS Module" -Tags "Module" {
                     It "Parameter $($_.Name) - Should contains description"{
                         $_.description | Should not BeNullOrEmpty
                     }
-                }
+                }  # End helpParameters
                 
-            }
+            } # end parameter
             
             # Examples
             it "Example - Count should be greater than 0"{
@@ -123,10 +102,9 @@ Describe "AdsiPS Module" -Tags "Module" {
                 it "Example - Remarks on $($Example.Title)"{
                     $Example.remarks | Should not BeNullOrEmpty
                 }
-            }
-        }
-    }
-}
+            } # END REMARKS
+        } # end context function help
+    } # end for each function
   
   #Need code to read the script to check 
     It 'Always have functions documented' -Pending {
