@@ -58,14 +58,14 @@ Describe $moduleName {
         # Parse the function using AST
         $AST = [System.Management.Automation.Language.Parser]::ParseInput((Get-Content function:$Function), [ref]$null, [ref]$null)    
         
-        Context "$Function - Help"{
+        Context "$Function - Help" {
             
-            It "Synopsis"{ $help.Synopsis | Should not BeNullOrEmpty }
-            It "Description"{ $help.Description | Should not BeNullOrEmpty }
-            It "Notes - Author" { $Notes[0].trim() | Should Be "Francois-Xavier Cat" }
-            It "Notes - Site" { $Notes[1].trim() | Should Be "Lazywinadmin.com" }
-            It "Notes - Twitter" { $Notes[2].trim() | Should Be "@lazywinadm" }
-            It "Notes - Github" { $Notes[3].trim() | Should Be "github.com/lazywinadmin" }
+            It "Synopsis" { $help.Synopsis | Should not BeNullOrEmpty }
+            It "Description" { $help.Description | Should not BeNullOrEmpty }
+            It "Notes - Author" { $Notes[0].trim() | Should Be "Peter M Taylor" }
+            It "Notes - Site" { $Notes[1].trim() | Should Be "Peter M Taylor on Github" }
+            It "Notes - Twitter" { $Notes[2].trim() | Should Be "@peterlearning24" }
+            It "Notes - Github" { $Notes[3].trim() | Should Be "github.com/PeterMTaylor" }
             
             # Get the parameters declared in the Comment Based Help
             $RiskMitigationParameters = 'Whatif', 'Confirm'
@@ -78,33 +78,33 @@ Describe $moduleName {
             
             It "Parameter - Compare Count Help/AST" {
                 $HelpParameters.name.count -eq $ASTParameters.count | Should Be $true
-            }
+            } # end parameter
             
             # Parameter Description
             If (-not [String]::IsNullOrEmpty($ASTParameters)) # IF ASTParameters are found
             {
                 $HelpParameters | ForEach-Object {
-                    It "Parameter $($_.Name) - Should contains description"{
+                    It "Parameter $($_.Name) - Should contains description" {
                         $_.description | Should not BeNullOrEmpty
-                    }
+                    } # end foreach-object
                 }  # End helpParameters
                 
-            } # end parameter
+            } # end IsNullOrEmpty $ASTParameters
             
             # Examples
-            it "Example - Count should be greater than 0"{
+            it "Example - Count should be greater than 0" {
                 $Help.examples.example.code.count | Should BeGreaterthan 0
             }
             
             # Examples - Remarks (small description that comes with the example)
-            foreach ($Example in $Help.examples.example)
-            {
-                it "Example - Remarks on $($Example.Title)"{
+            foreach ($Example in $Help.examples.example) {
+                it "Example - Remarks on $($Example.Title)" {
                     $Example.remarks | Should not BeNullOrEmpty
-                }
-            } # END REMARKS
-        } # end context function help
-    } # end for each function
+                } # End Example Remarks
+            } # End foreach
+          } # end context function help
+        } # end for each function
+    } # end describe $modulename
   
   #Need code to read the script to check 
     It 'Always have functions documented' -Pending {
