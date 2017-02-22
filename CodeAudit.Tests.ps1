@@ -104,7 +104,6 @@ Describe $moduleName {
             } # End foreach
           } # end context function help
         } # end for each function
-    } # end describe $modulename
   
   #Need code to read the script to check 
     It 'Always have functions documented' -Pending {
