@@ -131,14 +131,6 @@ Describe $moduleName {
     It 'Start processing the release file opening up the zip file' {    
     }
     
-    Context 'Strict mode' { 
-        Set-StrictMode -Version latest
-
-        It 'Get-SomeInt should return int' {
-          Get-SomeInt | Should BeOfType System.Int32
-        }     
-    }
-
     Context "CodeAudit" {
     It "CodeAudit displays HelloWorld" {
         CodeAudit | Should Be 'Hello World!'
