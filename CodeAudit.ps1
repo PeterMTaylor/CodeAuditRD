@@ -1,15 +1,25 @@
 function CodeAudit
+{
 <#
     .SYNOPSIS
-        CodeAudit is a Powershell script to check the Github respository against specified domain using Https requests for 
-        auditing purposes of software code to validate software licence.
-    .Description
-         need to describe the entire process in step form here.
-   .NOTES
-      Author Peter M Taylor. 
-      Located at Peter M Taylor on Github, github.com/PeterMTaylor
-      Twitter @peterlearning24
+		Function to copy Github repository into a temp directory to find code syntax and validate this on the internet.
+	
+	.DESCRIPTION
+		Function to copy the Github respository into Powershell tempdir object, find code syntax relevant to construct queries.
+	
+	.PARAMETER ??.
+		Specifies the PowerShell Object
+	
+	.PARAMETER Property
+		Specifies the property to remove
+	
+	.EXAMPLE
+		PS C:\> Remove-PSObjectProperty -PSObject $UserInfo -Property Info
+	
+	.NOTES
+		Peter M Taylor
+		Peter M Taylor on Github
+        @peterlearning24
 #>
-{
      Return write-output 'Hello World!' 
 }
