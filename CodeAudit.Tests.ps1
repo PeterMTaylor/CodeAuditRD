@@ -63,7 +63,7 @@ Describe $moduleName {
             It "Synopsis" { $help.Synopsis | Should not BeNullOrEmpty }
             It "Description" { $help.Description | Should not BeNullOrEmpty }
             It "Notes - Author" { $Notes[0].trim() | Should Be "Peter M Taylor" }
-            It "Notes - Site" { $Notes[1].trim() | Should Be "Peter M Taylor on Github" }
+            It "Notes - Site" { $Notes[1].trim() | Should Be "https://petermtaylor.github.io/" }
             It "Notes - Twitter" { $Notes[2].trim() | Should Be "@peterlearning24" }
             It "Notes - Github" { $Notes[3].trim() | Should Be "github.com/PeterMTaylor" }
             
