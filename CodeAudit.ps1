@@ -7,11 +7,11 @@ function CodeAudit
 	.DESCRIPTION
 		Function to copy the Github respository into Powershell tempdir object, find code syntax relevant to construct queries.
 	
-	.PARAMETER ??.
+	.PARAMETER Unknown
 		Specifies the PowerShell Object
 	
 	.PARAMETER Property
-		Specifies the property to remove
+		Specifies the property to copy. Needs detail later.
 	
 	.EXAMPLE
 		PS C:\> Remove-PSObjectProperty -PSObject $UserInfo -Property Info
@@ -19,7 +19,7 @@ function CodeAudit
 	.NOTES
 		Peter M Taylor
 		Peter M Taylor on Github
-        @peterlearning24
+                @peterlearning24
 #>
      Return write-output 'Hello World!' 
 }
