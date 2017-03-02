@@ -18,7 +18,8 @@ function CodeAudit
 	
 	.NOTES
 		Peter M Taylor
-		Peter M Taylor on Github
+		https://petermtaylor.github.io/
+		github/PeterMTaylor
                 @peterlearning24
 #>
      Return write-output 'Hello World!' 
