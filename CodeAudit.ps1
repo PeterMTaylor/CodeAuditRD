@@ -20,7 +20,7 @@ function CodeAudit
 		Peter M Taylor
 		https://petermtaylor.github.io/
 		@peterlearning24
-		github/PeterMTaylor
+		github.com/PeterMTaylor
 #>
      Return write-output 'Hello World!' 
 }
