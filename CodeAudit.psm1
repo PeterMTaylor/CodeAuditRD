@@ -1,11 +1,3 @@
-function Get-SomeInt
-{
-    Return Get-Random -Minimum 1 -Maximum 99
-}
-
-function CodeAudit
-{
-     Return write-output 'Hello World!' 
-}
-
-# TODO: LIST ALL FUNCTIONS THAT MAKES UP STAGES 1 TO STAGE 7. REFACTOR AND REUSE FREQUENTLY.
+## Import the CodeAudit.ps1 file. This permits loading of the module's
+## functions for unit testing, without having to unload/load the whole module.
+. (Join-Path -Path (Split-Path -Path $PSCommandPath) -ChildPath CodeAudit.ps1);

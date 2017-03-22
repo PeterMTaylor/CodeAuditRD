@@ -2,12 +2,12 @@
 #      environment configuration  # 
 #---------------------------------# 
 version: 1.0.{build}
-os: WMF 5
+os: Visual Studio 2017
 install:
   - ps: . .\AppVeyor\AppVeyorInstall.ps1
 
 environment:
-  ModuleName: CodeAuditDemo
+  ModuleName: CodeAudit
 #---------------------------------# 
 #      build configuration        # 
 #---------------------------------# 
