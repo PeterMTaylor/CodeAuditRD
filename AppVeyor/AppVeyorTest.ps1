@@ -13,11 +13,13 @@ $res             = Invoke-Pester -Script .\CodeAudit.Tests.ps1 -OutputFormat NUn
 Write-Host 'Uploading results'
 (New-Object 'System.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path $testResultsFile))
 
-#---------------------------------# 
-# Validate                        # 
-#---------------------------------# 
-if (($res.FailedCount -gt 0) -or ($res.PassedCount -eq 0)) { 
-    throw "$($res.FailedCount) tests failed."
+if (Test-Path $testResultsFile) {
+    (New-Object 'Systems.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$(env:APPVEYOR_JOB_ID)", $testResultsFile)
 } else {
-  Write-Host 'All tests passed' -ForegroundColor Green
-}
+  Write-Warning ("Testfile {0} not found!" -f $testResultsFile)
+      }
+      if ($res.FailedCount -gt 0) {
+          # Terminate the script to fail the build
+          $Error | Format-List * -Force
+          exit 1
+      }

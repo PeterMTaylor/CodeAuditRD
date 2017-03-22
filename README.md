@@ -20,4 +20,3 @@ The following list attributes the developers for their time and their code in ma
 * Javy de Koning. Not licensed. Allow Powershell modules with AppVeyor https://github.com/javydekoning/AppVeyorDemo
 * Iain Brighton. MiT licensed. Powershell script to copy Respositories. https://github.com/iainbrighton/GitHubRepository 
 * Francois-Xavier Cat. MIT licensed. Powershell script ideas and tips. https://github.com/lazywinadmin
-
