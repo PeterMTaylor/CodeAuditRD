@@ -7,20 +7,11 @@ Write-Host "Current working directory: $pwd"
 #---------------------------------# 
 # Run Pester Tests                # 
 #---------------------------------# 
-$testResultsFile = Join-Path $Env:APPVEYOR_BUILD_FOLDER TestResults.xml
-$pesterParams = @{
-    Script        = "$Env:APPVEYOR_BUILD_FOLDER\test"
-    OutputFile    = $testResultsFile
-    OutputFormat  = "NUnitXml"
-    PassThru      = $true
-    Verbose       = $VerbosePreference
-}
-Import-Module Pester
-(get-module pester).version.ToString()
-$res = Invoke-Pester @pesterParams
-[xml]$content = Get-Content $testResultsFile
-$content.'test-results'.'test-suite'.type = "Powershell"
-$content.Save($testResultsFile)
+$testResultsFile = '.\TestsResults.xml'
+$res             = Invoke-Pester -Script .\CodeAudit.Tests.ps1 -OutputFormat NUnitXml -OutputFile $testResultsFile -PassThru
+
+Write-Host 'Uploading results'
+(New-Object 'System.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path $testResultsFile))
 
 if (Test-Path $testResultsFile) {
     (New-Object 'Systems.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$(env:APPVEYOR_JOB_ID)", $testResultsFile)
