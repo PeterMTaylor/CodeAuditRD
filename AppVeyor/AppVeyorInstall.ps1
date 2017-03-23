@@ -20,21 +20,25 @@ Write-Host "Installed NuGet version '$($pkg.version)'"
 # Install Pester                  # 
 #---------------------------------# 
 Write-Host 'Installing Pester'
-Install-Module -Name Pester -Repository PSGallery -Force
+#Install-Module -Name Pester -Repository PSGallery -Force
+#Install-Module -Name Pester -SkipPublisherCheck
+Install-Module -Name Pester
 Get-Module -ListAvailable -Name Pester | Format-List Name,Version,ModuleBase
 
 #---------------------------------#
 #  Install Pscribo                #
 #---------------------------------#
 Write-Host 'Installing PScribo'
-Install-Module -Name PScribo -Repository PSGallery -Force
+#Install-Module -Name PScribo -Repository PSGallery -Force
+Install-Module -Name PScribo
 Get-Module -ListAvailable -Name PScribo | Format-List Name,Version,ModuleBase
 
 #---------------------------------#
 #  Install Format-Pester         #
 #---------------------------------#
 Write-Host 'Installing Format-Pester'
-Install-Module -Name Format-Pester -Force
+#Install-Module -Name Format-Pester -Force
+Install-Module -Name Format-Pester
 Get-Module -ListAvailable -Name Format-Pester | Format-List Name,Version,ModuleBase
 
 #---------------------------------# 
