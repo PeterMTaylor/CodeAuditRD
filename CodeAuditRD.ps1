@@ -22,7 +22,7 @@ function CodeAuditRD($SourceLocation="https://github.com/rubberduck-vba/Rubberdu
     		Script adapted from https://github.com/stadub/PowershellScripts/DownloadGithub.ps1
 		Author Webpage https://petermtaylor.github.io/
 		Author Twitter @peterlearning24
-		Author Github github.com/PeterMTaylor
+		Author Github https://github.com/PeterMTaylor
 #>
      return "Hello from $SourceLocation"
 }
