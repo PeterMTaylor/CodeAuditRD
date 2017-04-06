@@ -20,4 +20,4 @@ The following list attributes the developers for their time and their code in ma
 * Javy de Koning. Not licensed. Allow Powershell modules with AppVeyor. https://github.com/javydekoning/AppVeyorDemo
 * Iain Brighton. MiT licensed. Powershell script to polish up documentation. https://github.com/iainbrighton/PScribo 
 * Francois-Xavier Cat. MIT licensed. Powershell script ideas and tips. https://github.com/lazywinadmin
-* Dima Stadub. Not licensed. Download Github release files and unpack libraries. https://github.com/stadub/PowershellScripts
+* Dima Stadub. Not licensed. Download Github release files using Powershell and unpack zip file. https://github.com/stadub/PowershellScripts
