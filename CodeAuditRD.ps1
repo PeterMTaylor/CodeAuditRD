@@ -1,4 +1,4 @@
-function CodeAudit
+function CodeAuditRD($SourceLocation="https://github.com/rubberduck-vba/Rubberduck/archive/v2.0.13.zip")
 {
 <#
     .SYNOPSIS
@@ -17,10 +17,12 @@ function CodeAudit
 		PS C:\> Remove-PSObjectProperty -PSObject $UserInfo -Property Info
 	
 	.NOTES
-		Peter M Taylor
-		https://petermtaylor.github.io/
-		@peterlearning24
-		github.com/PeterMTaylor
+		Written by Peter M Taylor for Rubberduck VBA Project
+		Rubberduck VBA Project https://github.com/rubberduck-vba/Rubberduck
+    		Script adapted from https://github.com/stadub/PowershellScripts/DownloadGithub.ps1
+		Personal Webpage https://petermtaylor.github.io/
+		Twitter @peterlearning24
+		Github github.com/PeterMTaylor
 #>
-     Return write-output 'Hello World!' 
+     return "Hello from $SourceLocation"
 }
