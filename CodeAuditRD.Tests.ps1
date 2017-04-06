@@ -12,12 +12,13 @@ if ($Modules.count -gt 0) {
         foreach ($rule in $rules) {
           It "passes the PSScriptAnalyzer Rule $rule" {
             (Invoke-ScriptAnalyzer -Path $module.FullName -IncludeRule $rule.RuleName ).Count | Should Be 0
-          }
-        }
-      }
-    }
-  }
-}
+          } #End It Passes?
+        } #End For Each Rule
+      } #End Context Test Module
+    } #End For each Modules
+  } #End Describe
+} #End if Modules
+
 if ($Scripts.count -gt 0) {
   Describe 'Testing all Script against default PSScriptAnalyzer rule-set' {
     foreach ($Script in $scripts) {
@@ -26,19 +27,18 @@ if ($Scripts.count -gt 0) {
           It "passes the PSScriptAnalyzer Rule $rule" {
             if (-not ($module.BaseName -match 'AppVeyor') -and -not ($rule.Rulename -eq 'PSAvoidUsingWriteHost') ) {
               (Invoke-ScriptAnalyzer -Path $script.FullName -IncludeRule $rule.RuleName ).Count | Should Be 0
-            }
-          }
+            } #End if Passes?
+          } #End For Each Rule
         }
-      }
-    }
-  }
-}
+      } #End Context Test Script
+    } #End For each Script
+  } #End Describe
+} #End if Scripts
 
-#-------------------------# 
-# CodeAudit Pester tests  # 
-#-------------------------# 
-
-$moduleName = 'CodeAudit';
+#---------------------------# 
+# CodeAuditRD Pester tests  # 
+#---------------------------# 
+$moduleName = 'CodeAuditRD';
 if (!$PSScriptRoot) { # $PSScriptRoot is not defined in 2.0
     $PSScriptRoot = [System.IO.Path]::GetDirectoryName($MyInvocation.MyCommand.Path)
 }
