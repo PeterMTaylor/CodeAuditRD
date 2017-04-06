@@ -18,6 +18,6 @@ CodeAudit is a Powershell script (under MiT license) to support developers in va
 
 The following list attributes the developers for their time and their code in making CodeAudit to where we are at today. 
 * Javy de Koning. Not licensed. Allow Powershell modules with AppVeyor. https://github.com/javydekoning/AppVeyorDemo
-* Iain Brighton. MiT licensed. Powershell script to polish up documentation. https://github.com/iainbrighton/PScribo 
+* Iain Brighton. MiT licensed. Powershell script to polish up Output documentation as text, HTML, XML and/or Microsoft Word format https://github.com/iainbrighton/PScribo 
 * Francois-Xavier Cat. MIT licensed. Powershell script ideas and tips. https://github.com/lazywinadmin
 * Dima Stadub. Not licensed. Download Github release files using Powershell and unpack zip file. https://github.com/stadub/PowershellScripts
