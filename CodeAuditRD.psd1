@@ -98,7 +98,7 @@ PrivateData = @{
         LicenseUri = 'https://raw.githubusercontent.com/PeterMTaylor/CodeAudit/master/LICENSE'
 
         # A URL to the main website for this project.
-        ProjectUri = 'https://github.com/PeterMTaylor/CodeAudit'
+        ProjectUri = 'https://github.com/PeterMTaylor/CodeAuditRD'
 
         # A URL to an icon representing this module.
         # IconUri = ''
