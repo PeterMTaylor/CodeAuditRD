@@ -66,7 +66,7 @@ Describe $moduleName {
             It "Notes - Script Adapted" { $Notes[2].trim() | Should Be "Script adapted from https://github.com/stadub/PowershellScripts/DownloadGithub.ps1" }
             It "Notes - Personal Website" { $Notes[3].trim() | Should Be "Author Webpage https://petermtaylor.github.io/" }
             It "Notes - Personal Twitter" { $Notes[4].trim() | Should Be "Author Twitter @peterlearning24" }
-            It "Notes - Personal Github" { $Notes[5].trim() | Should Be "Author Github http://github.com/PeterMTaylor" }
+            It "Notes - Personal Github" { $Notes[5].trim() | Should Be "Author Github https://github.com/PeterMTaylor" }
             
             # Get the parameters declared in the Comment Based Help
             $RiskMitigationParameters = 'Whatif', 'Confirm'
@@ -102,75 +102,46 @@ Describe $moduleName {
                 it "Example - Remarks on $($Example.Title)" {
                     $Example.remarks | Should not BeNullOrEmpty
                 } # End Example Remarks
-            } # End foreach
+            } # End foreach remarks
           } # end context function help
-        } # end for each function
-  
-  #Need code to read the script to check 
-    It 'Always have functions documented' -Pending {
-       CodeAudit | Should Be 'Hello World!'
-    }
-    #Show that what happens here in appveyor works on PC
-    It 'Prove that this change works on the desktop as I do here testing in Appveyor' -Pending
-    { 
-        CodeAudit | Should Be 'Hello World!'
-    }
-    
-    #Learn more about local data and accessing them during test 
-    It 'Obtain the Github release location via localpassed variable' -Pending
-    { 
-        CodeAudit | Should Be 'Hello World!'
-    }
-    
-    #Learn how Testdrive works
-    It 'Fetch the file from Github release location into Testdrive' -Pending
-    { 
-        CodeAudit | Should Be 'Hello World!'
-    }
-    
-    #check if the zip file algorithm from IainRobertson works.
-    It 'Start processing the release file opening up the zip file' {    
-    }
-    
-    Context "CodeAudit" {
-    It "CodeAudit displays HelloWorld" {
-        CodeAudit | Should Be 'Hello World!'
-
-        }
-    }  
-} #End Describe
-
-
-Describe "General CodeAuditRD" {
-   It "does something useful with just CodeAuditRD function name" {
-        $true | Should Be $true
-    }
-    It "with no input returns latest release currently v2.0.13" {
-        CodeAuditRD | Should Be "Hello from https://github.com/rubberduck-vba/Rubberduck/archive/v2.0.13.zip"
-    }
-    
-    It "with a name returns the standard phrase with that name" {
-        CodeAuditRD "Venus" | Should Be "Hello from Venus"
-    }
-    It "with a name returns something that ends with name" {
-        CodeAuditRD "Mars" | Should Match ".*Mars"
-    }
-}
-
-Describe "CodeAuditRD Zip file" {
-    It "received zipped file" {
-        }
-    It "extracted zip file into Testdir successfully" {
-        }
-    It "cleaned up  zip file after use" {
-        }
-}
+        } # end for each function within Describe block
         
-Describe "codeauditrd by defaults always uses rd" {
-    it "how can i find the latest verison" {
+      Context "$Function - Returns a result " {
+          It "does something useful with just $Function function name" {
+            $true | Should Be $true
+          }
+      }
+
+      Context "$Function - Returns with no input " {
+        It "with no input returns latest release currently v2.0.13" {
+           CodeAuditRD | Should Be "Hello from https://github.com/rubberduck-vba/Rubberduck/archive/v2.0.13.zip"
+        }
+      }
+      
+      Context "$Function - Returns some output" {
+          It "with a name returns the standard phrase with that name" {
+              CodeAuditRD "Venus" | Should Be "Hello from Venus"
+          }
+          It "with a name returns something that ends with name" {
+              CodeAuditRD "Mars" | Should Match ".*Mars"
+          }
+      }
+
+    Context "$Function - Zip file functionality" {
+          It "received zipped file" {
+          }
+          It "extracted zip file into Testdir successfully" {
+          }
+          It "cleaned up  zip file after use" {
+          }
     }
-    it "applies tags " {
+
+    Context "$Function - Version control detection" {
+          it "how can i find the latest verison" {
+          }
+          it "applies tags " {
+          }
+          it "applies all or some mixed tags that i recognise" {
+          }
     }
-    it "applies all or some mixed tags that i recognise" {
-    }
-}
+} #End Describe
