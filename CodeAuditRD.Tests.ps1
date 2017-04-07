@@ -140,3 +140,37 @@ Describe $moduleName {
         }
     }  
 } #End Describe
+
+
+Describe "General CodeAuditRD" {
+   It "does something useful with just CodeAuditRD function name" {
+        $true | Should Be $true
+    }
+    It "with no input returns latest release currently v2.0.13" {
+        CodeAuditRD | Should Be "Hello from https://github.com/rubberduck-vba/Rubberduck/archive/v2.0.13.zip"
+    }
+    
+    It "with a name returns the standard phrase with that name" {
+        CodeAuditRD "Venus" | Should Be "Hello from Venus"
+    }
+    It "with a name returns something that ends with name" {
+        CodeAuditRD "Mars" | Should Match ".*Mars"
+    }
+}
+
+Describe "CodeAuditRD Zip file" {
+    It "received zipped file" {
+        }
+    It "extracted zip file into Testdir successfully" {
+        }
+    It "cleaned up  zip file after use" {
+        }
+}
+        
+Describe "codeauditrd by defaults always uses rd" {
+    it "how can i find the latest verison" {
+    }
+    it "applies tags " {
+    }
+    it "applies all or some mixed tags that i recognise" {
+    }
