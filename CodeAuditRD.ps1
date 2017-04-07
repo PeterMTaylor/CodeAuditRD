@@ -20,9 +20,9 @@ function CodeAuditRD($SourceLocation="https://github.com/rubberduck-vba/Rubberdu
 		Written by Peter M Taylor for Rubberduck VBA Project
 		Rubberduck VBA Project https://github.com/rubberduck-vba/Rubberduck
     		Script adapted from https://github.com/stadub/PowershellScripts/DownloadGithub.ps1
-		Personal Webpage https://petermtaylor.github.io/
-		Twitter @peterlearning24
-		Github github.com/PeterMTaylor
+		Author Webpage https://petermtaylor.github.io/
+		Author Twitter @peterlearning24
+		Author Github https://github.com/PeterMTaylor
 #>
      return "Hello from $SourceLocation"
 }
