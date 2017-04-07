@@ -173,3 +173,4 @@ Describe "codeauditrd by defaults always uses rd" {
     }
     it "applies all or some mixed tags that i recognise" {
     }
+}
