@@ -59,7 +59,6 @@ Describe $moduleName {
         $AST = [System.Management.Automation.Language.Parser]::ParseInput((Get-Content function:$Function), [ref]$null, [ref]$null)    
         
         Context "$Function - Help" {
-            
             It "Synopsis" { $help.Synopsis | Should not BeNullOrEmpty }
             It "Description" { $help.Description | Should not BeNullOrEmpty }
             It "Notes - Author" { $Notes[0].trim() | Should Be "Written by Peter M Taylor for Rubberduck VBA Project" }
