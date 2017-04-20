@@ -28,8 +28,8 @@ if ($Scripts.count -gt 0) {
             if (-not ($module.BaseName -match 'AppVeyor') -and -not ($rule.Rulename -eq 'PSAvoidUsingWriteHost') ) {
               (Invoke-ScriptAnalyzer -Path $script.FullName -IncludeRule $rule.RuleName ).Count | Should Be 0
             } #End if Passes?
-          } #End For Each Rule
-        }
+          } #End it passes PSScriptAnalyser
+        } #End For each rule
       } #End Context Test Script
     } #End For each Script
   } #End Describe
