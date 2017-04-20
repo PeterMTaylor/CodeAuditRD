@@ -7,7 +7,7 @@ function CodeAuditRD($SourceLocation="https://github.com/rubberduck-vba/Rubberdu
 	.DESCRIPTION
 		Function to copy the Github respository into Powershell tempdir object, find code syntax relevant to construct queries.
 	
-	.PARAMETER $SourceLocatuon
+	.PARAMETER SourceLocatuon
 		By default always use this location for testing purposes. this comment will be changed later.
 	
 	.PARAMETER Property
