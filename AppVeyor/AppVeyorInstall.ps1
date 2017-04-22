@@ -26,7 +26,7 @@ Write-Host 'Installing Pester'
 #attempt to get verison greater than 3.4.0
 #Install-Module -Name Pester -Force
 #use chocoleaty installtion
-choco install Pester
+choco upgrade Pester
 Get-Module -ListAvailable -Name Pester | Format-List Name,Version,ModuleBase
 
 #---------------------------------#
