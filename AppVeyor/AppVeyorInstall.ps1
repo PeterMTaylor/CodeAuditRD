@@ -13,8 +13,10 @@ Write-Host "Host name: $($Host.Name)"
 # Install NuGet                   # 
 #---------------------------------# 
 Write-Host 'Installing NuGet PackageProvide'
-$pkg = Install-PackageProvider -Name NuGet -Force
-Write-Host "Installed NuGet version '$($pkg.version)'" 
+#$pkg = Install-PackageProvider -Name NuGet -Force
+#Write-Host "Installed NuGet version '$($pkg.version)'" 
+choco upgrade NuGet
+Get-Module -ListAvailable -Name NuGet | Format-List Name,Version,ModuleBase
 
 #---------------------------------# 
 # Install Pester                  # 
