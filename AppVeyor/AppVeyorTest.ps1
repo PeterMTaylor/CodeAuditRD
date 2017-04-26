@@ -8,8 +8,7 @@ Write-Host "Current working directory: $pwd"
 # Run Pester Tests                # 
 #---------------------------------# 
 $testResultsFile = '.\TestsResults.xml'
-$res             = Invoke-Pester -Script .\CodeAuditRD.Tests.ps1 -OutputFormat NUnitXml -OutputFile $testResultsFile -PassThru | 
-      Export-Clixml $testResultsFile
+$res             = Invoke-Pester -Script .\CodeAuditRD.Tests.ps1 -OutputFile $testResultsFile -OutputFormat NUnitXml
 
 Write-Host 'Completed Invoke-Pester. Saving results.'
     [xml]$content = Get-Content $testResultsFile
