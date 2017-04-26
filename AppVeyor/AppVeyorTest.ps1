@@ -18,7 +18,7 @@ Write-Host 'Completed Invoke-Pester. Saving results.'
 Write-Host 'Working with Format-Pester'
 if (Test-Path $testResultsFile) {
    # (New-Object 'Systems.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$(env:APPVEYOR_JOB_ID)", $testResultsFile)
-  Import-Clixml -Path $testResultFile | Format-Pester -Format .\ -BaseFileName Test-Result -Format HTML -FailedOnly
+  Import-Clixml $testResultFile | Format-Pester -Format .\ -BaseFileName Test-Result -Format HTML -FailedOnly
 } else {
   Write-Warning ("Testfile {0} not found!" -f $testResultsFile)
       }
