@@ -18,8 +18,7 @@ Write-Host 'Completed Invoke-Pester. Saving results.'
 Write-Host 'Working with Format-Pester'
 
 if (Test-Path $testResultsFile) {
-   # (New-Object 'Systems.Net.W
-  Format-Pester -Format HTML,Word -BaseFileName $testResultFile
+  Import-Clixml -Path .\Test-Result.xml | Format-Pester -Format .\ -BaseFileName Test-Result -Format HTML -FailedOnly
 } else {
   Write-Warning ("Testfile {0} not found!" -f $testResultsFile)
       }
