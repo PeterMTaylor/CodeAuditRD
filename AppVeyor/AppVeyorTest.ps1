@@ -16,7 +16,7 @@ Write-Host 'Completed Invoke-Pester. Saving results.'
     $content.Save($testResultsFile)
 
 Write-Host 'Working with Format-Pester'
-Write-Host 'Test path is' Test-Path
+Write-Host 'Test path is $Test-Path'
 
 if (Test-Path $testResultsFile) {
    # (New-Object 'Systems.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$(env:APPVEYOR_JOB_ID)", $testResultsFile)
