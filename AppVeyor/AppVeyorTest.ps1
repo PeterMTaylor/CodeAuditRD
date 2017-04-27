@@ -18,7 +18,8 @@ Write-Host 'Completed Invoke-Pester. Saving results.'
 Write-Host 'Working with Format-Pester'
 
 if (Test-Path $testResultsFile) {
-  Import-Clixml -Path .\TestsResults.xml | Format-Pester -BaseFileName TestsResults -Format HTML,Word
+#  Import-Clixml -Path .\TestsResults.xml | Format-Pester -BaseFileName TestsResults -Format HTML,Word
+Format-Pester -BaseFileName TestsResults -Format HTML,Word
 } else {
   Write-Warning ("Testfile {0} not found!" -f $testResultsFile)
       }
