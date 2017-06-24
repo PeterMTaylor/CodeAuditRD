@@ -12,7 +12,7 @@ CodeAudit is a Powershell script (under MiT license) to support developers in va
 - [ ] Stage 4 Query construction - construct api like queries for execution using some syntax discovered. 
 - [ ] Stage 5 Query execution - execute the query to return results for further analysis and reporting 
 - [ ] Stage 6 Query results - process the output from query execution. 
-- [ ] Stage 7 Reporting audit outcomes. 
+- [ ] Stage 7 Reporting audit outcomes and define some metrics to verify usefulness of data.
 
 # Attributions
 
