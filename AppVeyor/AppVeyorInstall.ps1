@@ -38,6 +38,10 @@ Write-Host 'Installing Format-Pester'
 Install-Module -Name Format-Pester -Repository PSGallery -Force
 Get-Module -ListAvailable -Name Format-Pester | Format-List Name,Version,ModuleBase
 
+Write-Host 'Installing Mircosoft Powershell Archive'
+Install-Module -Name Microsoft.PowerShell.Archive -Repository PSGallery -Force
+Get-Module -ListAvailable -Name Microsoft.Powershell.Archive | Format-List Name,Verison,ModuleBase
+
 #---------------------------------# 
 # Install PSScriptAnalyzer        # 
 #---------------------------------# 
