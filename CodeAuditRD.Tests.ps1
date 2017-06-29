@@ -113,8 +113,8 @@ Describe $moduleName {
       }
 
       Context "$Function - Returns with no input " {
-        It "with no input returns latest release currently v2.0.13" {
-           CodeAuditRD | Should Be "Hello from https://github.com/rubberduck-vba/Rubberduck/archive/v2.0.13.zip"
+        It "with no input returns Mandatory value expected" {
+           CodeAuditRD | Should not BeNullOrEmpty
         }
       }
       
