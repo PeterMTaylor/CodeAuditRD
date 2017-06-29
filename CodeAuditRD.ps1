@@ -1,4 +1,4 @@
-function CodeAuditRD($SourceLocation="https://github.com/rubberduck-vba/Rubberduck/archive/v2.0.13.zip")
+function CodeAuditRD()
 {
 <#
     .SYNOPSIS
@@ -23,15 +23,15 @@ function CodeAuditRD($SourceLocation="https://github.com/rubberduck-vba/Rubberdu
 		Author Webpage https://petermtaylor.github.io/
 		Author Twitter @peterlearning24
 		Author Github https://github.com/PeterMTaylor
-#>
-     return "Hello from $SourceLocation"
-}
-#param(
-#  [parameter(Mandatory=$true)]
+#>     
+param(
+  [parameter(Mandatory=$true)]
+  [string]$SourceLocation)
 #  [string]$githubRepo,
 #  [parameter(Mandatory=$true)]
 #  [string]$destDir,
 #  [string]$installScrip=""
+#$SourceLocation="https://github.com/rubberduck-vba/Rubberduck/archive/v2.0.13.zip"
 #)
 #$githubUriRegex="(?<Scheme>https://)(?<Host>github.com)/(?<User>\w*)/(?<Repo>\w*)(/archive/(?<Branch>master).zip)?"
 #
@@ -86,3 +86,5 @@ function CodeAuditRD($SourceLocation="https://github.com/rubberduck-vba/Rubberdu
 #		Write-Warning "Installer script is not found."
 #	}
 #}
+return "Hello from $SourceLocation"
+}
