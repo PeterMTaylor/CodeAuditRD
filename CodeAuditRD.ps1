@@ -6,8 +6,7 @@ function CodeAuditRD()
     .DESCRIPTION
 		Function to copy the Github release files into Powershell tempdir object, find code syntax relevant to construct queries.	
     .PARAMETER Tags
-		Tags allows which Github Release file of interest are we to extract and report upon.
-    .DESCRIPTION Tags	
+		Tags allows which Github Release file of interest are we to extract and report upon.	
 		The version number can only be between the range of 1.4 to 2.1 at present.
     .EXAMPLE
 		PS C:\> CodeAuditRD -Tags "v1.4"
