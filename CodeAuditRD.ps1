@@ -3,17 +3,15 @@ function CodeAuditRD()
 <#
     .SYNOPSIS
 		Function to copy Rubberduck Github release files into a temp directory to find code syntax and validate using search queries.
-	
-	.DESCRIPTION
-		Function to copy the Github release files into Powershell tempdir object, find code syntax relevant to construct queries.
-	
-	.PARAMETER Tag
+    .DESCRIPTION
+		Function to copy the Github release files into Powershell tempdir object, find code syntax relevant to construct queries.	
+    .PARAMETER Tag
 		Tag allows which Github Release file of interest are we to extract and report upon.
-	
-	.EXAMPLE
+    .PARAMETER Description
+		The version number can only be between the range of 1.4 to 2.1 at present.
+    .EXAMPLE
 		PS C:\> CodeAuditRD -Tags "v1.4"
-	
-	.NOTES
+    .NOTES
 		Written by Peter M Taylor for Rubberduck VBA Project
 		Rubberduck VBA Project https://github.com/rubberduck-vba/Rubberduck
     		Script adapted from https://github.com/stadub/PowershellScripts/DownloadGithub.ps1
