@@ -27,6 +27,7 @@ function CodeAuditRD()
 param(
   [parameter(Mandatory=$true)]
   [string]$SourceLocation)
+# Use only Tags which is allows me to select which release number for processing.
 #  [string]$githubRepo,
 #  [parameter(Mandatory=$true)]
 #  [string]$destDir,
