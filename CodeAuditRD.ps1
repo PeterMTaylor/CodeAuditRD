@@ -2,19 +2,16 @@ function CodeAuditRD()
 {
 <#
     .SYNOPSIS
-		Function to copy Github repository into a temp directory to find code syntax and validate this on the internet.
+		Function to copy Rubberduck Github release files into a temp directory to find code syntax and validate using search queries.
 	
 	.DESCRIPTION
-		Function to copy the Github respository into Powershell tempdir object, find code syntax relevant to construct queries.
+		Function to copy the Github release files into Powershell tempdir object, find code syntax relevant to construct queries.
 	
-	.PARAMETER SourceLocation
-		SourceLocation does by default always use this location for testing purposes. this comment will be changed later.
-	
-	.PARAMETER Property
-		Specifies the property to copy. Needs detail later.
+	.PARAMETER Tag
+		Tag allows which Github Release file of interest are we to extract and report upon.
 	
 	.EXAMPLE
-		PS C:\> Remove-PSObjectProperty -PSObject $UserInfo -Property Info
+		PS C:\> CodeAuditRD -Tags "v1.4"
 	
 	.NOTES
 		Written by Peter M Taylor for Rubberduck VBA Project
@@ -26,7 +23,7 @@ function CodeAuditRD()
 #>     
 param(
   [parameter(Mandatory=$true)]
-  [string]$SourceLocation)
+  [string]$Tags)
 # Use only Tags which is allows me to select which release number for processing.
 #  [string]$githubRepo,
 #  [parameter(Mandatory=$true)]
@@ -87,5 +84,11 @@ param(
 #		Write-Warning "Installer script is not found."
 #	}
 #}
-return "Hello from $SourceLocation"
+
+if ($Tags) {
+return "Correct tag given as $Tags"
+}
+else {
+return "No release version number supplied! Igoring input and stopping execution."
+}
 }
