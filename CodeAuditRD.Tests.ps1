@@ -119,13 +119,18 @@ Describe $moduleName {
       }
       
       Context "$Function - Returns some output" {
-          It "with a name returns the standard phrase with that name" {
+          It "with a name returns the standard phrase with that name but not accepted." {
               CodeAuditRD "Venus" | Should Be "Hello from Venus"
           }
-          It "with a name returns something that ends with name" {
+          It "with a name returns something that ends with name but not accepted." {
               CodeAuditRD "Mars" | Should Match ".*Mars"
           }
+          
+          It "with a name returns as valid tag response" {
+              CodeAuditRD -verision "1.4" | Should Match ".*Correct tag given"
+          }
       }
+     
 
     Context "$Function - Zip file functionality" {
           It "received zipped file" {
