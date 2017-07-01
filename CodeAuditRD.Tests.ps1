@@ -114,7 +114,7 @@ Describe $moduleName {
 
       Context "$Function - Returns with no input " {
         It "with no input returns Mandatory value expected" {
-           CodeAuditRD | Should Throw
+           {CodeAuditRD} | Should Throw
         }
       }
       
