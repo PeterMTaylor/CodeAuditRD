@@ -118,18 +118,24 @@ Describe $moduleName {
         }
       }
       
-      Context "$Function - Returns some output" {
+      Context "$Function - Returns various outputs" {
           It "with a name returns the standard phrase with that name but not accepted." {
-              CodeAuditRD "Venus" | Should Be "Hello from Venus"
+              CodeAuditRD "Venus" | Should Be "Correct tag given as Venus"
           }
-          It "with a name returns something that ends with name but not accepted." {
+       
+        It "with a name returns as invalid tag response" {
+              CodeAuditRD -verision "1.4" | Should Match ".*Correct tag given"
+          }
+
+       It "with a name returns something that ends with name but not accepted." {
               CodeAuditRD "Mars" | Should Match ".*Mars"
           }
           
           It "with a name returns as valid tag response" {
               CodeAuditRD -verision "1.4" | Should Match ".*Correct tag given"
           }
-      }
+          
+       }
      
 
     Context "$Function - Zip file functionality" {
