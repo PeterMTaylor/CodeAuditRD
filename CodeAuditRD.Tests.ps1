@@ -119,18 +119,17 @@ Describe $moduleName {
       }
       
       Context "$Function - Returns various outputs" {
-          It "with a name given returns as invalid tag response" {
+          It "with correct parameter name given with wrong details returns as invalid tag response" {
               CodeAuditRD -Tags "Venus" | Should Be "No release version number supplied!"
           }
        
-        It "with a different parameter and returns as invalid tag response" {
+        It "with a different parameter name and wrong details returns as invalid tag response" {
               {CodeAuditRD -verision "1.4.1"} | Should Throw
           }
 
-        It "with correct paramter name given returns valid response" {
+        It "with correct paramter name with correct details supplied given returns valid response" {
               CodeAuditRD -Tags "1.4.1" | Should Match "Processing v1.4.1"
-          }
-          
+          }    
        }
      
 
