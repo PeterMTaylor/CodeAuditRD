@@ -87,7 +87,7 @@ if ($Tags) {
 	{
 	  "1.4.1" { return "Processing v1.4.1"; break}
 	  "1.4.2" { return "Processing v1.4.2"; break}
-	  default { return "No release version number supplied! Igoring input and stopping execution."; break}
+	  default { return "No release version number supplied!"; break}
 	 } # switch
 } # if $Tags
 } # function CodeAuditRD 
