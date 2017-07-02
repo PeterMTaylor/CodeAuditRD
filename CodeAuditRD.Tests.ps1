@@ -113,26 +113,22 @@ Describe $moduleName {
       }
 
       Context "$Function - Returns with no input " {
-        It "with no input given throws a Mandatory value expected result" {
+         It "with no input given throws a Mandatory value expected result" {
            {CodeAuditRD} | Should Throw
-        }
+          }
       }
       
       Context "$Function - Returns various outputs" {
-          It "with a name returns the standard phrase with that name but not accepted." {
-              CodeAuditRD "Venus" | Should Be "Correct tag given as Venus"
+          It "with a name given returns as invalid tag response" {
+              CodeAuditRD -Tags "Venus" | Should Be "No release version number supplied!"
           }
        
-        It "with a name returns as invalid tag response" {
-              CodeAuditRD -verision "1.4" | Should Match ".*Correct tag given"
+        It "with a different parameter and returns as invalid tag response" {
+              {CodeAuditRD -verision "1.4.1"} | Should Throw
           }
 
-       It "with a name returns something that ends with name but not accepted." {
-              CodeAuditRD "Mars" | Should Match ".*Mars"
-          }
-          
-          It "with a name returns as valid tag response" {
-              CodeAuditRD -verision "1.4" | Should Match ".*Correct tag given"
+        It "with correct paramter name given returns valid response" {
+              CodeAuditRD -Tags "1.4.1" | Should Match "Processing v1.4.1"
           }
           
        }
