@@ -128,26 +128,28 @@ Describe $moduleName {
           }
 
         It "with correct paramter name with correct details supplied given returns valid response" {
-              CodeAuditRD -Tags "1.4.1" | Should Match "Processing v1.4.1"
+              CodeAuditRD -Tags "1.4.1" | Should Be "Processing v1.4.1"
           }    
        }
      
 
     Context "$Function - Zip file functionality" {
           It "received zipped file" {
+            CodeAuditRD -Tags "1.4.1" | Should Match ".*Coping v1.4.1"
           }
           It "extracted zip file into Testdir successfully" {
+            CodeAuditRD -Tags "1.4.1" | Should Match ".* Extracting v1.4.1"
           }
           It "cleaned up  zip file after use" {
           }
     }
 
-    Context "$Function - Version control detection" {
-          it "how can i find the latest verison" {
+    Context "$Function - Processing received files" {
+          it "How many files I have found in directory" {
           }
-          it "applies tags " {
+          it "How many c# files I am ready to read/process" {
           }
-          it "applies all or some mixed tags that i recognise" {
+          it "I have written an XML hashfile with all information I need" {
           }
     }
 } #End Describe
