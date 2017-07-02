@@ -7,9 +7,9 @@ function CodeAuditRD()
 		Function to copy the Github release files into Powershell tempdir object, find code syntax relevant to construct queries.	
     .PARAMETER Tags
 		Tags allows which Github Release file of interest are we to extract and report upon.	
-		The version number can only be between the range of 1.4 to 2.1 at present.
+		Version number available is displayed if not provided.
     .EXAMPLE
-		PS C:\> CodeAuditRD -Tags "v1.4"
+		PS C:\> CodeAuditRD -Tags "1.4.1"
     .NOTES
 		Written by Peter M Taylor for Rubberduck VBA Project
 		Rubberduck VBA Project https://github.com/rubberduck-vba/Rubberduck
@@ -83,9 +83,10 @@ param(
 #}
 
 if ($Tags) {
-return "Correct tag given as $Tags"
-}
-else {
-return "No release version number supplied! Igoring input and stopping execution."
-}
+	switch($Tags)
+	{
+	  "1.4.1" { return "Processing v1.4.1"; break}
+	  "1.4.2" { return "Processing v1.4.2"; break}
+	  default { return "No release version number supplied! Igoring input and stopping execution."; break}
+	 }
 }
