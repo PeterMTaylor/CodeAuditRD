@@ -21,12 +21,35 @@ function CodeAuditRD()
 param(
   [parameter(Mandatory=$true)]
   [string]$Tags)
-# Use only Tags which is allows me to select which release number for processing.
-#  [string]$githubRepo,
-#  [parameter(Mandatory=$true)]
+if ($Tags) {
+	switch($Tags)
+	{
+	  "1.4.1" { return "Processing v1.4.1"; break}
+	  "1.4.2" { return "Processing v1.4.2"; break}
+	  "1.4.3" { return "Processing v1.4.3"; break}
+	  "2.0a.pre" { return "Processing v2.0a.pre"; break}
+	  "2.0.1a.pre" { return "Processing v2.0.1a.pre"; break}
+	  "2.0b" { return "Processing v2.0b"; break}
+	  "2.0.1b" { return "Processing v2.0.1b"; break}
+	  "2.0.2b" { return "Processing v2.0.2b"; break}
+	  "2.0.3b" { return "Processing v2.0.3b"; break}
+	  "2.0.4-rc" { return "Processing v2.0.4-rc"; break}
+	  "2.0.5-rc" { return "Processing v2.0.5-rc"; break}
+	  "2.0.6-rc" { return "Processing v2.0.6-rc"; break}
+	  "2.0.7-rc" { return "Processing v2.0.7-rc"; break}
+	  "2.0.8-rc" { return "Processing v2.0.8-rc"; break}
+	  "2.0.9RC" { return "Processing v2.0.9RC"; break}
+	  "2.0.10" { return "Processing v2.0.10"; break}
+	  "2.0.11" { return "Processing v2.0.11"; break}
+	  "2.0.12" { return "Processing v2.0.12"; break}
+	  "2.0.13" { return "Processing v2.0.13"; break}
+	  default { return "No release version number supplied!";exit; break}
+	 } # switch
+} # if $Tags
+
+#$SourceLocation="https://github.com/rubberduck-vba/Rubberduck/archive/ v2.0.13.zip"
+#  [string]$githubRepo = 
 #  [string]$destDir
-#$SourceLocation="https://github.com/rubberduck-vba/Rubberduck/archive/v2.0.13.zip"
-#)
 #$githubUriRegex="(?<Scheme>https://)(?<Host>github.com)/(?<User>\w*)/(?<Repo>\w*)(/archive/(?<Branch>master).zip)?"
 #
 #$githubMatch = [regex]::Match($githubRepo,$githubUriRegex)
@@ -71,30 +94,4 @@ param(
 
 #$dst=$sh.NameSpace($destDir)
 #$dst.CopyHere($archiveFilder, 272)
-
-if ($Tags) {
-	switch($Tags)
-	{
-	  "1.4.1" { return "Processing v1.4.1"; break}
-	  "1.4.2" { return "Processing v1.4.2"; break}
-	  "1.4.3" { return "Processing v1.4.3"; break}
-	  "2.0a.pre" { return "Processing v2.0a.pre"; break}
-	  "2.0.1a.pre" { return "Processing v2.0.1a.pre"; break}
-	  "2.0b" { return "Processing v2.0b"; break}
-	  "2.0.1b" { return "Processing v2.0.1b"; break}
-	  "2.0.2b" { return "Processing v2.0.2b"; break}
-	  "2.0.3b" { return "Processing v2.0.3b"; break}
-	  "2.0.4-rc" { return "Processing v2.0.4-rc"; break}
-	  "2.0.5-rc" { return "Processing v2.0.5-rc"; break}
-	  "2.0.6-rc" { return "Processing v2.0.6-rc"; break}
-	  "2.0.7-rc" { return "Processing v2.0.7-rc"; break}
-	  "2.0.8-rc" { return "Processing v2.0.8-rc"; break}
-	  "2.0.9RC" { return "Processing v2.0.9RC"; break}
-	  "2.0.10" { return "Processing v2.0.10"; break}
-	  "2.0.11" { return "Processing v2.0.11"; break}
-	  "2.0.12" { return "Processing v2.0.12"; break}
-	  "2.0.13" { return "Processing v2.0.13"; break}
-	  default { return "No release version number supplied!"; break}
-	 } # switch
-} # if $Tags
 } # function CodeAuditRD 
