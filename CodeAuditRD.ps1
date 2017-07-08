@@ -55,8 +55,7 @@ $githubMatch = [regex]::Match($githubRepo,$githubUriRegex)
 
 function GetGroupValue($match, [string]$group, [string]$default=""){
 	$val=$match.Groups[$group].Value
-#	Write-Debug $val
-	Write-Host $val	
+	Write-Debug $val
 	if($val){
 		return $val
 	}
