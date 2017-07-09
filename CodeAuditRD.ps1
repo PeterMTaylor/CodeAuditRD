@@ -48,9 +48,11 @@ if ($Tags) {
 } # if $Tags
 
 $SourceLocation="https://github.com/rubberduck-vba/Rubberduck/archive/v$Tags.zip"
+echo "uses $SourceLocation"
 [string]$githubRepo = $SourceLocation
 [string]$destDir = "C:\Extract\"
 $githubUriRegex="(?<Scheme>https://)(?<Host>github.com)/(?<User>\w*)/(?<Repo>\w*)(/archive/(?<Branch>master).zip)?"
+echo $githubRepo
 $githubMatch = [regex]::Match($githubRepo,$githubUriRegex)
 
 function GetGroupValue($match, [string]$group, [string]$default=""){
