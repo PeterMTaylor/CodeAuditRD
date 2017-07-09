@@ -8,7 +8,7 @@ install:
 
 environment:
   ModuleName: CodeAudit
-  $env:DebugPreference = "Continue"
+  $env:$DebugPreference = "Continue"
 #---------------------------------# 
 #      build configuration        # 
 #---------------------------------# 
