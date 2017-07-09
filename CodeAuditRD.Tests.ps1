@@ -132,7 +132,7 @@ Describe $moduleName {
           }    
        }
      
-    Conext "$Fuction - Witnessing the contents of variables for Zip processing" {
+    Context "$Fuction - Witnessing the contents of variables for Zip processing" {
           It "correctly seen $SourceLocation info" {
             CodeAuditRD -Tags "1.4.1" | Should Match ".*https://github.com/rubberduck-vba/Rubberduck/archive/v"
           }
