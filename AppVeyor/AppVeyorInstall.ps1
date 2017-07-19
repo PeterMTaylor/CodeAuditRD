@@ -13,7 +13,7 @@ Write-Host "Host name: $($Host.Name)"
 # Install NuGet                   # 
 #---------------------------------# 
 Write-Host 'Installing NuGet PackageProvide'
-choco install NuGet
+choco install nuget.commandline
 #Install-PackageProvider -Name NuGet -Force
 Get-Module -ListAvailable -Name NuGet | Format-List Name,Version,ModuleBase
 
