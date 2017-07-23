@@ -17,7 +17,6 @@ function CodeAuditRD()
 		Author Webpage https://petermtaylor.github.io/
 		Author Twitter @peterlearning24
 		Author Github https://github.com/PeterMTaylor
-<<<<<<< HEAD
 #>     
 param(
   [parameter(Mandatory=$true)]
@@ -48,6 +47,7 @@ if ($Tags) {
 	 } # switch
 } # if $Tags
 Write-Verbose -Message "Starting..."
+Write-Verbose -Message "Received ... $Tags"
 $SourceLocation="https://github.com/rubberduck-vba/Rubberduck/archive/v$Tags.zip"
 Write-Verbose -Message "Received for SourceLocation $SourceLocation"
 [string]$githubRepo = $SourceLocation
@@ -59,22 +59,7 @@ Write-Verbose $githubUriRegex
 $githubMatch = [regex]::Match($githubRepo,$githubUriRegex)
 Write-Verbose "uses $githubMatch"
 Write-Verbose "Pending information is correct, then test again after successful fetch of zipped files, denies function use after fail fetch then switch off check return processing"
-=======
-#>
-     return "Hello from $SourceLocation"
-}
-#param(
-#  [parameter(Mandatory=$true)]
-#  [string]$githubRepo,
-#  [parameter(Mandatory=$true)]
-#  [string]$destDir,
-#  [string]$installScrip=""
-#)
-#$githubUriRegex="(?<Scheme>https://)(?<Host>github.com)/(?<User>\w*)/(?<Repo>\w*)(/archive/(?<Branch>master).zip)?"
-#
-#$githubMatch = [regex]::Match($githubRepo,$githubUriRegex)
-#
->>>>>>> refs/remotes/origin/master
+
 #function GetGroupValue($match, [string]$group, [string]$default=""){
 #	$val=$match.Groups[$group].Value
 #	Write-Debug $val
@@ -83,10 +68,7 @@ Write-Verbose "Pending information is correct, then test again after successful 
 #	}
 #	return $default
 #}
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/master
 #if( ! $(GetGroupValue $githubMatch "Host") ){
 #	throw [System.ArgumentException] "Incorrect 'Host' value. The 'github.com' domain expected"
 #	#Write-Error -Message "Incorrect 'Host' value. The 'github.com' domain expected" -Category InvalidArgument
@@ -98,10 +80,6 @@ Write-Verbose "Pending information is correct, then test again after successful 
 #						$(GetGroupValue $githubMatch "Repo"), 
 #						$(GetGroupValue $githubMatch "Branch" "master")
 
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/master
 #$file = [System.IO.Path]::GetTempFileName() + ".zip"
 
 #New-Object System.Net.WebClient|%{$_.DownloadFile($githubUrl,$file);}
@@ -121,17 +99,5 @@ Write-Verbose "Pending information is correct, then test again after successful 
 
 #$dst=$sh.NameSpace($destDir)
 #$dst.CopyHere($archiveFilder, 272)
-<<<<<<< HEAD
 return "done!"
 } # function CodeAuditRD 
-=======
-
-#if( $installScrip ){
-#	if ( Test-Path -path $destDir\$installScrip){
-#		&  $destDir\$installScrip
-#	}
-#	else{
-#		Write-Warning "Installer script is not found."
-#	}
-#}
->>>>>>> refs/remotes/origin/master
