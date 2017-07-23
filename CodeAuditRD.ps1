@@ -9,7 +9,7 @@ function CodeAuditRD()
 		Tags allows which Github Release file of interest are we to extract and report upon.	
 		Acceptable range of version numbers is supplied in the switch statement in code below.
     .EXAMPLE
-		PS C:\> CodeAuditRD -Tags "1.4.1"
+		PS C:\> CodeAuditRD -Tags "1.4.1" -verbose
     .NOTES
 		Written by Peter M Taylor for Rubberduck VBA Project
 		Rubberduck VBA Project https://github.com/rubberduck-vba/Rubberduck
@@ -46,15 +46,18 @@ if ($Tags) {
 	  default { return "No release version number supplied!";exit; break}
 	 } # switch
 } # if $Tags
-
+Write-Verbose -Message "Starting..."
 $SourceLocation="https://github.com/rubberduck-vba/Rubberduck/archive/v$Tags.zip"
-echo "uses $SourceLocation"
+Write-Verbose -Message "Received for SourceLocation $SourceLocation"
 [string]$githubRepo = $SourceLocation
+Write-Verbose -Message $githubRepo
 [string]$destDir = "C:\Extract\"
+Write-Verbose -Message $destDir
 $githubUriRegex="(?<Scheme>https://)(?<Host>github.com)/(?<User>\w*)/(?<Repo>\w*)(/archive/(?<Branch>master).zip)?"
-echo "uses $githubRepo"
+Write-Verbose $githubUriRegex
 $githubMatch = [regex]::Match($githubRepo,$githubUriRegex)
-Write-Host "uses $githubMatch"
+Write-Verbose "uses $githubMatch"
+Write-Verbose "Pending information is correct, then test again after successful fetch of zipped files, denies function use after fail fetch then switch off check return processing"
 #function GetGroupValue($match, [string]$group, [string]$default=""){
 #	$val=$match.Groups[$group].Value
 #	Write-Debug $val
@@ -63,7 +66,6 @@ Write-Host "uses $githubMatch"
 #	}
 #	return $default
 #}
-
 #if( ! $(GetGroupValue $githubMatch "Host") ){
 #	throw [System.ArgumentException] "Incorrect 'Host' value. The 'github.com' domain expected"
 #	#Write-Error -Message "Incorrect 'Host' value. The 'github.com' domain expected" -Category InvalidArgument
@@ -94,4 +96,5 @@ Write-Host "uses $githubMatch"
 
 #$dst=$sh.NameSpace($destDir)
 #$dst.CopyHere($archiveFilder, 272)
+return "done!"
 } # function CodeAuditRD 
