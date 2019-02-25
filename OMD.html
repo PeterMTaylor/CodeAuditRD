@@ -1,0 +1,2692 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>OMD</title>
+      <style>
+         body { padding: 0; }
+		 ul { list-style:none; padding-left: 20px; margin-right:10px; }
+         .objectBox { border-style:solid; border-width:1px; margin:10px; float:left; border-radius:10px;}
+         .objectBox > .header { font-size:10px; padding:10px; border-radius:10px 10px 0 0;}
+         .objectBox > .header.noMembers { border-radius: 10px; }
+         .objectBox > .header > span { font-size:20px; }
+		 .class {  background: linear-gradient(to right, rgb(211, 220, 239), white);  }
+         .struct { background: linear-gradient(to right, rgb(211, 220, 239), white); }
+         .enum { background: linear-gradient(to right, rgb(221, 214, 239), white); }
+         .interface { background: linear-gradient(to right, rgb(231, 240, 220), white); }
+         .delegate { background: linear-gradient(to right, rgb(237, 218, 220), white); }
+         
+         .members > h4 { font-size:14px; background:rgb(240, 242, 239); display:block; padding:5px; margin:0; font-weight:normal; }
+         .typeExisting { border-color:#ddd; }
+         .typeRemoved { border-color:red; border-style:dashed; border-width:3px; text-decoration: line-through;border-style:dashed; border-width:3px; }
+         .memberRemoved { color: red; text-decoration: line-through; }
+
+         .static { background-image: url(data:image/gif;base64,R0lGODlhDQAKAPcPAOhfF/nXxfbDqOx9Q/GbbvOvi/Klffvh0+6HUe+RYOlpJutzNPjNtvzr4v718AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAA8ALAAAAAANAAoAAAhMAB8IDJBAAYCDBxccEGgAocODAQQ+LBCAQYEBER88RCDAgcCPBB4e5PjxgYABIgEQELjwQYOTDyUOMCAgQEiHElMeLCCw4MMFBCIGBAA7); background-repeat: no-repeat; background-position: left center; margin-left:-35px; padding-left:35px; }
+ 
+         .members li {  background-repeat: no-repeat; padding-left:20px; background-position: left center; }
+         .pubevent { background-image: url(data:image/gif;base64,R0lGODlhCgAMANU3APzksP7y2ebl4u+9kOvj1Pf39vDGkunm4V5HMIyCXOLd1a6XYN7YzpeDU+fQiZVvH+qwf6eUYFhTS8/Bofbv0/jz3vv6+Nva1Ih6SuilfObPienl36CLRsC5pKyXamtPKWpiSN3Mjp94HciyeIxoIumqfuXg1+mggefj3q2CIPXAbsq+n93FguXh2vn048a4kPLMlHlsRu7Cif/kf/rRdufIWeGHgv///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAADcALAAAAAAKAAwAAAZXwNvNFXJoWCPPRFgDzGQZm6Rwq9QCtJINJGACaBAbpnujXFU2zkV4q81msMHJhtjcFo1Ygmb7mNgWL3wkDGw3K3wPLYYEBjYiCoY3HQMpKJI3BBEHmDdBADs=); padding-left:20px; background-position: left center; }
+         .protevent { background-image: url(data:image/gif;base64,R0lGODlhEAAQAOZPAOGHgt28WvjYaOfIWaOALvrRdtO4f+7AL//kf8ipX49uIu3iyubl4vDr3//PMvzksO+9kP7y2a6XYN3Mjufj3umggaaFOJVvH93FgvDo1uTbxu7blvXssnlsRvv6+Pbv0/f39u7CiaCLRu7q3oyCXMiyeMuvdWtPKefQia2CIOjIXdva1OmqfvXrrufXs5eDU/by6V5HMOnl36eUYObPicq+n8a4kFhTS8Cyj+ilfOXh2oh6Ss/Bofn046yXauvj1OXTq4xrH4xoIuLd1eqwf+Xg1/71rPLMlN7Yzp94Hfjz3mpiSPXAbunm4fDGkv///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAE8ALAAAAAAQABAAAAeRgE+Cg4SFhoM9Eyg0GCU+PIdPAw8IITkANyCHSgMRBSwASwyRkwVEADujhx+dTAAiK5GSCAhHEBUAMTKCCwYmCUASLx0kBQAnRbwGHAICFi4eNsZCSIMGLUZBAQ4ENcYXOoQGGwIBAQcETgBJQ4UZCQ4C6DgQKRSHGgECBCM/M02y9KGTNSiACgUNCAqCgVBhIAA7); }
+         .privevent { background-image: url(data:image/gif;base64,R0lGODlhEAAQAOZYAOGHgt/j6ufIWfrRdqy3y0FLWMnQ3crR3sjO2f/kf+Pm6vDy9PzksKCrwrK7zv7y2bjA0r7H1ubl4tLX4v///4h6Suqwf21/lvXAbunm4enl38a4kGpiSJCetN3Mjldqgp94Hfbv0/n044yCXHuJneLd1bvD1IxoIubPifLMlPjz3mR2jd7YzufQide4kpinvMTM2l5widva1HWFnOilfKeUZayXaqCLRumqfsTM2e7CiW+Al4eUpVhTS++9kJeDU+mggbvF1GdRPGR2jrG6zW5SLefj3sC4nuXh2t3Fgq2CIOXg13qKociyeE9jfGN1jb3G1qu3y3lsRs/BobjB0md3kE9ie5VvH////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAFgALAAAAAAQABAAAAehgFiCg4SFhoMiHi0oSU02U4dYAgwJOjQAPRSHKgIPAzgAHBKRkwMWABWjhyGdGAA3MpqHAgkJKT5AAEIaggsHEEQENT9SIwMARUuDBwEEDVBMWBvHJyyDCzkvggQ7R8dXSIQKQR0GBitDLgAgJYUGAfABExFPSkaGJgEF+xMQPBmHCARAUAABAgckIjU4ACMCFQdRrERSMONClRgfnCiIFAgAOw==); }
+
+         .pubmethod { background-image: url(data:image/gif;base64,R0lGODlhEAALANU/AM9p0Ky1rvDV8Pfwq/qY++6l79XVrLtvvPLb8n4ufqhQqZ48nunlq/Lg8/qr+3wtffqZ+9Vv1ZZSl92Y3tNu1Pqb++zS7LW7rY01jpikruTK5OKv4uuR7KlSqnEkcu3Y7e6+7vqf+8zOrPTm9I5Gj5BOkevR64qZrtFt0pU4lvDj8O6d7/Pj86dPqPqu++Xiq6ZQp+jR6Hore+aY55ynrubM5uOs48HErOmQ6n8wgKlQqn4wf3wufHUndc+Iz////yH5BAEAAD8ALAAAAAAQAAsAAAZmwJ9wSET4VMTk0GjzsZREgQ/k4vgaxIEhcPr5Ng4CAecbQX+wQ6FCgMxKvwHDcAtkfi2UOrSS8M4dABEHEyQLCUIDLyIXND8aCigUOwsYD2c/MToACSkyApg/Hwo5PSahQhYeNUJBADs=); }
+         .protmethod { background-image: url(data:image/gif;base64,R0lGODlhEQAQALMPAKdUqPCf8e3lq+rS68+0ePXq8+3l06WvrfXGMIIxg6SBMI5tIfjYaN28Ws+Iz////yH5BAEAAA8ALAAAAAARABAAAARk8MlJ33ClankD3tQ1BF5GCcJxFA7pfiDQugEgoan6yIALJKCdY+j4AR8GgpIwsABkiSgwKWAwFALOU9okoBYNhGIyMDYfXkYjPCYnzkgCgiE2BCWGxtV+l+jFfX4NC3x9BYR9EQA7); }
+         .privmethod { background-image: url(data:image/gif;base64,R0lGODlhEAAQAOZoAP///9/j6s+Iz9LX4kFLWKy3y8jO2bK7zuPm6srR3vDy9PqY+8nQ3ahQqdXVrO6l77tvvPfwq34ufrjA0r7H1qCrwvLb8u6+7uOs43UndalQqqy1rWFyiejR6Onlq+vR67jB0sTM2uTK5JinvLxwvVVnf6pVq+aY5/Lg89Nu1Ky0rq1crt2Y3o5Gj5ZSl2d3kN+w31dqgtVv1fDV8I01jtWY1ebM5pikrn4wf9Fq0oqZrnWFnHwufHEkcumQ6o2brfqu++6d72R2jZ88n/v7/Pqb+5U4lstnzJ+qu3wtffTm9NJr038wgPPj89PY2/DU8OzS7JBOkXore09jfLvD1L3G1l5wie3Y7fqr+/Dj8G1/lmR2jvqZ+5w8neKv4vqf++uR7MHErKpYq5CetNFt0nqInau3y29/lP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAGgALAAAAAAQABAAAAe4gGiCg4QWAlmEiYOGGAJNioRPAhdAYDUohBEOKjoAMF5YCws+AkoAkGIQD0ULXCdRABEeDmEbN2gmZKpfQS48p4orOTIkLC1dEgAKCRMHBU5oIg1LKThDNEkACQEFFQNIgh0aRxJGUjMKAyMAAFU/CoJXDUwZH2gIA2MMDEJbCINQetgQxCCAwQADKJSBhIZKAAIQB0w4w7BAAAMEDBg4wIFhhQQhKIA4YKYEQwQ7tLywEmMKEYaBAAA7); }
+
+         .pubproperty { background-image: url(data:image/gif;base64,R0lGODlhEAAQAOZ9AKKvxP/////9+0ZOVH2d3//rbqykj/b////taE1PVOjw/MHI0cHI0nBhSktPUnBhS/7//y4hAkxPUvnhcjMnFVOsQVlNV/3+/pmPeu3r5+LNeuz5/9+yMsSTFT+XKcjP2d7BYU86MNbl/9DIwtLi+Liso1t4We/0+3N1fImSp0GeMuq7MWBcXfbbaZWEU4BrV87Kwvnjf+Xk38ve/fL2/cDH0WdgUqq62s3Iv6TF/1FmQJm2k4XMheHw/6TTmuyoEffdatLq/zKMGPj7/qOXgIR1XhsQC4BxXClmHNzp/4mcadapLubu++Pt/39tW/PSWLWmgUxQU/bhg5adpNDi//q6IvrrsAoHEPj6/VA9QWVWT+3HS66YWH3BcLfK8dXq//ricvz+/qaiX/z+/45iFEtOUd7p+qytsPn7/3JcQcLJ0/LPVty9VN3Z1EtLTqCWgIyQUO3DQPTXZ7nJ5YtyUcS4ldPZ45OFc+np4uXThsiZHU1RVv/QH////wAAAAAAACH5BAEAAH0ALAAAAAAQABAAAAe+gH2Cg4SFhSV1bVBEbxh3Rzg+XYQjVk4FmGBybHRKPIQZLwhcBRNAa1tVYhUErTcGMS4IIS1PcSs/cCoEOXMGUg8aNghZHHodZDoeBF4GeQ8pDSAWfBRXEVomQgsBeEUyATANS0YsU4I7SNwCAgEBYWdpdk0DhDUB7AEXQzQKCkn1BqkJAAAAhIIIRQQUxACfgDFYTjAxQ4LKwj4NC6JBWHDGxQ8OD4jc0ONLkIso3CRYuSeKAwkOylw0RHNQIAA7); }
+         .protproperty { background-image: url(data:image/gif;base64,R0lGODlhEAAQAPeKAP///6KvxP/9+/jYaN28WqOALn2d39O4f//rbk1PVO7AL6ykj//taPb////PMnBhS/Dr349uIktPUsHI0XBhSsipX8HI0pmPesSTFeXTq87KwpWEU4BxXO3HS/j7/padpDKMGO7q3omSpylmHFt4Wf7//4BrV+Xk3+XThnJcQVFmQKe+pOjIXfz+/ktLTt3Z1FA9QfTXZ/bhg+/0+/fdavn7/8uvdeyoEaq62uHw/4mcaZOFc66YWN7BYWdgUsDH0a2urLnJ5dDIwv71rOzjqE86ME1RVvby6UxQUwoHEPnhcvLPVmVWT/rrsMiZHYxrH+3r5/rics3Iv+fXs1OsQdapLj+XKRsQC/q6Iunp4uLNellNV0xPUn9tW9y9VIR1Xvnjf+z5/zMnFcLJ07fK8fPSWMS4lXN1fPj6/YXMhaOXgPbbacbMxi4hAqCWgO3DQPLqsmBcXevhzerZleDayLWmgcjP2fL2/f3+/qbBrqytsN+yMv/QH45iFItyUaaFONTNuvz+/7iso+bu+6aiX+q7MUGeMpy4mYyQUKTF/////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAIoALAAAAAAQABAAAAjsABUJVCTIzIs6atxc2MFByqE8AxUJadIFgcUoMbz40ZEmIhQTDHggUEJjSQcshKgYWIljAZgNDIqsKfOm0A1EhgwkCrJAxgMtPhjA2OMEQx8VVgyQWYDigQgKPbbwEZOkDRMSICYAyPLlBAANFKpcifNB4IoRWgUIAACghZ4UgA7YqJBB4A8AagHg8XCHzgE4Awb8maJoDIAAAUogDnCAyJAnBBwUUGQBr4BAaGYMOjBnAAECCiZXRlxjMZAKDgaElqPIjuUGsMPkYENgQIEQAs+4SMDbCBIJXCTUDh2x+EACLCJAMG78iPKBAQEAOw==); }
+         .privproperty { background-image: url(data:image/gif;base64,R0lGODlhEAAQAPeYAP///6KvxP/9+9/j6n2d36y3y//rbkFLWMjO2fb//6ykj//taE1PVMnQ3crR3rjA0uPm6r7H1rK7zsHI0nBhS3BhSqCrwtLX4sHI0YBxXPj7/uDl63WFnGR2jW1/lsLJ0+np4sSTFTMnFd3Z1OyoEZOFc9bY2JWEU+/0++3HS6u3y/TXZ66YWO3DQPj6/d7BYXqKoU9ie9y9VIBrV1FmQOjw/IXMhWVWTwoHEPLPVhsQC/nhcvrrsPnjf45iFImcaXN1fGBcXbvF1Liso//QH/bhg6TF/1OsQUtLTqq62vz+/zKMGOq7MZmPerfK8ffdasTM2r3G1vPSWPrick9jfLjB0sTM2fbbaUxQU1VogZinvG+Al11vh9jd5sjP2ZCetN+yMmd3kM3Iv39tW8iZHT+XKbnJ5Vt4WaaiX3JcQU1RVomSp1A9QZadpMS4leXk31dqgn1/goyQUEGeMqCWgGdgUotyUWN1jfz+/qOXgOLm7Pq6Ii4hAtapLk86MPL2/eXThqbBrs7KwuLNeqytsFlNV2R2jvn7//3+/py4me76/+Xr8+bu+8DH0ae+pClmHP7//7G6zYR1Xl5widDIwrvD1O3r57Wmgf///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAJgALAAAAAAQABAAAAj7ADEJxDTEzYhLeeg0KZFBTKJAAzFR4jHGgMUpK2TY+WEjoqUZC1gY2PEkR4o9aI4QWJlEQY8TC/xckdKCCQk5cwgYMaOgCIVBdRawAUMmhA8aZQg4UQCIwpoKLwoREYGDz40zSzAAACHpDQBBFfroCNJGoKNHWgUIAAAAD6E0ehw8iFRAYCMAagEg0vCnhoMBBSxEgYHpA4AAASAhDrDBihYTAApswTQBrwAlLlAwWiTkS4MGHQxRPhzgEOIuDQaoHnAhwh0vlhPIVlRpwIHbFx5wAYKEgW81WOIUGIDgAAIEErJEjGjBAZQIVSSoiLF8IAQOHsJMgkMFQkAAOw==); }
+
+         .pubfield { background-image: url(data:image/gif;base64,R0lGODlhEAAQANUsAAAzmVub2JnN/7LY+1qa15W+5nmw47XE4efx+6HQ/pHD8d7t+oq97oK36sXb8X2y5ShXr77L5Ut0vB5OqdPn+q/W/Hmw5NLm+dLm+I7C87rX8f///8LZ8NXo+4vA9M3j+b/Y7zVjtZ/Q/p3J8pDE9qPR/niv43yz553P/lyb2Hy06ay93v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAACwALAAAAAAQABAAAAZUQJZwSCwaj0gi5oFIDj8mhmHhpFhIgozhguxoPAJBYiRBnhQogWgwASALjUFpAAG4j4WAqhKyAzZHKQEBfgARSCAEhHYHThwEjE5CDgArkpeYmURBADs=); }
+         .protfield { background-image: url(data:image/gif;base64,R0lGODlhEAAQAOZIAAAzmf////jYaN28WqOALlub2JnN/+7AL9O4f7LY+1qa1+fXs/Tu4MipX7XE4Y9uIvDr33mw453J8vDo1ny06fH2/I7C83iv432y5TVjtf71rOXVtB5OqYq97vXrrovA9Pby6eTw+4O04rfP5v/aZClasO7q3oxrH3mw5KPR/uDu/JDE9v/PMvXssp3G7ev0/KHQ/ujIXcuvdcLZ8J/Q/u7blubMgoW04uby/IK36uTx/MXb8ZHD8b7L5ay93ihXr3uy5Z3P/lyb2K/W/OvhzeTbxqaFONLm+f///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAEgALAAAAAAQABAAAAeXgEiCg4RIAYWIgwEhGBWHiYIBKhcdES+PiAE6KCsGFhFHkDhAHwYGMBIlkC48QQY0CRwAkQG1hyI5CSkJPwCzAQwIMg0LATcFFEMZvrPBLQICRgtCBQXMAD1IGx4aJwMsBCMK1r4Oggg1AgMDBwRIMwrlgxMNJALtRII7AD6FRQMCCJiARMjGPXcEBQ2I8QBCQkEgGiYMBAA7); }
+         .privfield { background-image: url(data:image/gif;base64,R0lGODlhEAAQAOZRAAAzmd/j6lub2Ky3y0FLWJnN/+Pm6rLY+8jO2crR3snQ3Vqa177H1rjA0rK7zrXE4fDy9HSq3qCrwtLX4nmw473G1sTM2ZCetGd3kFdqgp3P/m1/lp3J8pDE9tLm+LfP5ny06bjB0q/W/IvA9J/Q/rvF1B5OqXyz59Lm+dXo+77L5cXb8SlasJinvKu3y83j+X2y5aPR/rG6zV5wiZHD8XqKoVyb2IKRpDVjtXiv4yhXr7vD1MTM2tPn+vv7/N7t+nWFnGR2jU9ie2p7kay93sLZ8G+Al47C86HQ/niGm2R2joK36oq97qPJ7E9jfHuy5efx+////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAFEALAAAAAAQABAAAAebgFGCg4SFhoYeMFCHhS85TBQ/jII9TR0FRxQojClPIwUFSBwsjCc0GgUkByYAjBFLBzEHOgCtURAJDTIDEBECICI4tbYJAQMSFTU2AgLDACqCFi2CA0YfC821D4IGJRcKCkFKBkUL2oMKAeoBEww3USsARIQ7AQT3Ew1JjAMBCAQIEDgYwkhCAh4MQjhwIYSRDyAbMMzI4MTAoUAAOw==); }
+
+         .pubdelegate { background-image: url(data:image/gif;base64,R0lGODlhEAAQAPebAP///9tw3PqY+6M+pOfq7dJl07fB0owtjUFVb83T2qu2y6Ctw/T1+E9je7nD05k2murlq9fWrJs4nPr6/LKgy0ped6I+o8HFrJ2pwtht2a24zJqnv1hrg0hbdY2ctsfO3EBSbLjB0qOvxqqzraexx+jq8f39/mx9lNZt0vLz9uPn7cW02jxRa8nP3VRmf5mlruqL65ejreLl7N/j6ubo7+Dj68HJ2M7PrPX2+Pqt+rO6rdvf5/qm+8LI0ZeMs+js8bS90MDI15ekvbG7zktfecmm1uTn7vn6+5ShuurmrF9xiK23zGByipilvp2pu73G1sDI2JOguTtPaThOaNne55OhurO90JWjtdne5jhNZ0RYcpyowK+5zZaStpumtK21rfqx+vHy9tNn1PDy9aayx7yq0ZKfudLY4rvE1f7+/qezyPb3+Zqmru3u8/f4+ubiq/v7/JCesJajvHiJn87U4dG84uuQ7Npu28HJ16GtxMjP3FpthbC7zbG8z+vu877H1tHW4nqKoOXX7mZ3kFVngLbA0urs8aA8oaq1xN3D6Y6dtqlFqrjC09jXrKm0yevt8qWwx5Shs8PGrHKDmtbc5rzF1ejZ8HCAl+Tn69vg6EVZc////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAJsALAAAAAAQABAAAAjuADcJHEjAyhISBAYqJIjIyZVAl3osVPgkzg4ARpoomTjQQCQcAABU4bAQExQ0hfpocARpAYYNcsx4SLDJRkgAaY6kMCQoQCI9QUK42FTp5gQGfiwFyBGgjoMhDTYZAPDmhg42NAKA4SEgwAoFRDYBAWDCzZgSM1DYEcB2EZkOm7gkaSTpywssBQLAEDBgQB4tmxTAYdBGRaYzYu4E6HtoC4JNatZAiHBhRIwiBTIMkHBACIhNIsL8qEGJzoc/ZQpYONAlipRNCx7JoAKoBR5GfCg88IFEUZZNCeZMOjGIyR5CDSpoQsBiiheO0DcFBAA7); }
+         .protdelegate { background-image: url(data:image/gif;base64,R0lGODlhEAAQAPeQAP///9tw3N28WvjYaKM+pKOALvqY+9O4f+fq7dJl0+7AL6Ctw4wtjc3T2v/PMk9je8ipX49uIkFVb5s4nJ2pwtpu2+3kqZqnv5Shs7Kgy2ByirjB0qWwx5qmrqayx6u2y6q1xMHJ2L7H1oxrH/Xsslhrg+3iyuXX7uTn6/7+/ubo75yowEBSbFVngPqt+sLI0ZeMs253gPT1+KGtxJShusHJ13CAl5ajvJ2pu3qKoFpthd3D6aaFOJk2msmm1paStpKfuaGhnUped7vE1Y6dtrG8z0VZc8++k19xiOjZ8PLz9o2ctrbA0sDI18DI2Pr6/KA8oeqL68vMyeTn7khbddne5tvf55ejrTtPabO90Ovu85Ohuvn6+9G84ktfed/PrqlFqpekvcW02vDr3/X2+MnP3bC7zd/j6qm0ybGulb3G1sfO3NZt0pCesKI+o/qx+v71rLjC0zhNZ1Rmf9ht2ers8bG7zsS/sK23zKexx7yq0ebVkc7U4TxRa9LY4ujIXThOaMuvdZWjtZilvsjP3LzF1euQ7ERYcvqm+7nD0/Do1tNn1K24zJOguZumtLfB0v///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAJAALAAAAAAQABAAAAjuACEJHIggC548CAYqJAgCh6AcNl4sVKimjRVIUwYhmTjwEQYykABsKbEQhZMhTIowQsNhAYULN4AsaQApBICbKbgoqXMiwA5CTTbMgVToJoAnMrQkCeAiQJdEdh5AunMgEIQjHVQEeIPIQAAxH7yYOEBiwAAeX86wMWSgLRgPVA5YgDNCgIMCVRIEiGKAAIEZhw7sGSBAgIICfhZVCOAXygoJiiA4GHA4zRUfCegQmMAgDAtIQQQMKCCFzxoRehK4YfCjERZIC0QfLlMjjpkMPWDQICIHUgMBfyLE0KCjxQMhRiT0AeRoYIQxHBUGBAA7); }
+         .privdelegate { background-image: url(data:image/gif;base64,R0lGODlhEAAQAPeWAP///9tw3PqY+6M+pEFLWOHl7OPm6qy3y77H1sjO2efq7dJl09/j6srR3rjA0tLX4owtjbG6zU9je73G1rK7zqCrwkFVb7jB0jhNZ6A8odpu20hbdbfB0qayx6exx9ht2cnQ3dvf56lFquvu8+rs8ZCesEped/Lz9pinvLvD1PT1+KWwx09jfKGtxKq1xLvE1Y6dtnqKoebo76Ctw8TM2am0yVRmf7Kgy8TM2ps4nLnD0/7+/md3kPqm+2+Al9Zt0kRYcr7H05eMs/Dy9EBSbJShupk2mpaStsHJ2Pqx+ktfecDI2E9ie2R2jvr6/Ovr1a24zEVZc6u3y7bA0ldqgrvF1GN1jWR2jTtPad7i6ZShs7C7zZOgudNn1JWjtZCetMjP3NG84uXX7sLI0byq0euQ7HqKoLzF1fqt+s7U3vn6+8DI17O90N3D6eTn61VngF9xiJumtLG8z+Di1cmm1lVogeTn7pOhurjC05yowDxRa9PZ3PX2+K23zFhrg42ctpekvau2y6I+o3WFnJKfuV5wiThOaM3T2rG7zl1vh5ilvujZ8LS9zG1/lsW02uqL65qnv+Pn7ZajvJ2pwnCAl52pu////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAJYALAAAAAAQABAAAAjyAC0JHKiATR8PCgYqJOiikhczlMYsVDihRAgAdhTBmTiQgxY+AADc8bPQzZIXU+RAqbFixiRIkgj9OWQJSUgAO9ScICEmQBsway7YsHTmphMVIxYFQBMgjA5EEixlaeAgwoE9MgIk6SEggKNASiw1YHCgAqMYDH6UEcBWRIcNQ2igeDJngo80CwI8EjBgQAsgBqp8qXqlSZAuGgL0zZDHAohIBSI/QGCFzoIPA3JAAEQkRQECoB84SISAzAJBEI5wwXKAQQICCRJQqINnyw0jQorAwFChAQ4EFyhIYfJGgokoFvQYimNgUCMehaiwMMDRUkAAOw==); }
+
+          .expander {font-size: 18px; background-color: black; color:white; clear:both; cursor: pointer;padding: 10px;border: none;text-align: left;outline: none;margin:0 0 2px 0;transition: 0.4s;}
+          .expander:hover {background-color: #555;}
+          .expander:after {content: '\002B';color: #FFF;font-weight: bold;float: right;margin-left: 5px;}
+          .active:after {content: "\2212";}
+          .collapse {display: none;}
+      </style>
+    </head>
+<body>
+
+Generated with <a href="https://github.com/dotMorten/DotNetOMDGenerator">.NET Object Model Diagram Generator</a><br /><br />
+
+
+<section id='Rubberduck'>
+<h3 class='expander active'>Rubberduck</h3><div>
+<div class='objectBox' id='Rubberduck.App'>
+<div class='header class'>
+<span >App</span>
+<br/>Implements IDisposable</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>App(VBE vbe, AddIn addIn)</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>CreateExtUi()</li>
+<li class='pubmethod'>Dispose()</li>
+<li class='privmethod'>EnableCodeInspections()</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_inspections : IList&lt;<a href='#Rubberduck.Rubberduck.Inspections.IInspection'>IInspection</a>&gt;</li>
+<li class='privfield'>_menu : <a href='#Rubberduck.Rubberduck.UI.RubberduckMenu'>RubberduckMenu</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Extension'>
+<div class='header class'>
+<span >Extension : IDTExtensibility2</span>
+<br/>Implements IDisposable</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>Extension()</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>Dispose()</li>
+<li class='pubmethod'>OnAddInsUpdate(Array custom)</li>
+<li class='pubmethod'>OnBeginShutdown(Array custom)</li>
+<li class='pubmethod'>OnConnection(object Application, ext_ConnectMode ConnectMode, object AddInInst, Array custom)</li>
+<li class='pubmethod'>OnDisconnection(ext_DisconnectMode RemoveMode, Array custom)</li>
+<li class='pubmethod'>OnStartupComplete(Array custom)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_app : <a href='#Rubberduck.App'>App</a></li>
+<li class='pubfield'><span class='static'></span>ClassId : string</li>
+<li class='pubfield'><span class='static'></span>ProgId : string</li>
+</ul></div>
+</div>
+</div></section>
+<section id='Rubberduck.Config'>
+<h3 class='expander active'>Rubberduck.Config</h3><div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Config.Configuration'>
+<div class='header class'>
+<span >Configuration</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>Configuration()</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>UserSettings { get; set; } : <a href='#Rubberduck.Rubberduck.Config.UserSettings'>UserSettings</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Config.ConfigurationLoader'>
+<div class='header class'>
+<span >ConfigurationLoader</span>
+</div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span>GetDefaultConfiguration() : <a href='#Rubberduck.Rubberduck.Config.Configuration'>Configuration</a></li>
+<li class='pubmethod'><span class='static'></span>GetDefaultTodoMarkers() : <a href='#Rubberduck.Rubberduck.Config.ToDoMarker'>ToDoMarker</a>[]</li>
+<li class='pubmethod'><span class='static'></span>LoadConfiguration() : <a href='#Rubberduck.Rubberduck.Config.Configuration'>Configuration</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Config.IToDoListSettings'>
+<div class='header interface'>
+<span >IToDoListSettings</span>
+</div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>ToDoMarkers { get; set; } : <a href='#Rubberduck.Rubberduck.Config.ToDoMarker'>ToDoMarker</a>[]</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Config.IToDoMarker'>
+<div class='header interface'>
+<span >IToDoMarker</span>
+</div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Priority { get; set; } : int</li>
+<li class='pubproperty'>Text { get; set; } : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Config.ToDoListSettings'>
+<div class='header class'>
+<span >ToDoListSettings</span>
+<br/>Implements <a href='#Rubberduck.Rubberduck.Config.IToDoListSettings'>IToDoListSettings</a></div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ToDoListSettings()</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>ToDoMarkers { get; set; } : <a href='#Rubberduck.Rubberduck.Config.ToDoMarker'>ToDoMarker</a>[]</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Config.ToDoMarker'>
+<div class='header class'>
+<span >ToDoMarker</span>
+<br/>Implements <a href='#Rubberduck.Rubberduck.Config.IToDoMarker'>IToDoMarker</a></div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ToDoMarker()</li>
+<li class='pubmethod'>ToDoMarker(string text, int priority)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Priority { get; set; } : int</li>
+<li class='pubproperty'>Text { get; set; } : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Config.UserSettings'>
+<div class='header class'>
+<span >UserSettings</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>UserSettings()</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>ToDoListSettings { get; set; } : <a href='#Rubberduck.Rubberduck.Config.ToDoListSettings'>ToDoListSettings</a></li>
+</ul></div>
+</div>
+</div></section>
+<section id='Rubberduck.Extensions'>
+<h3 class='expander active'>Rubberduck.Extensions</h3><div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Extensions.CodeModuleSelection'>
+<div class='header class'>
+<span >CodeModuleSelection</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>CodeModuleSelection(CodeModule codeModule, <a href='#Rubberduck.Rubberduck.Extensions.Selection'>Selection</a> selection)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>CodeModule { get; } : CodeModule</li>
+<li class='pubproperty'>Selection { get; } : <a href='#Rubberduck.Rubberduck.Extensions.Selection'>Selection</a></li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_codeModule : CodeModule</li>
+<li class='privfield'>_selection : <a href='#Rubberduck.Rubberduck.Extensions.Selection'>Selection</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Extensions.CodePaneExtensions'>
+<div class='header class'>
+<span title="VBE Code Pane extensions.">CodePaneExtensions</span>
+</div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span><span title="A CodePane extension method that forces focus onto the CodePane. This patches a bug in VBE.Interop.">ForceFocus</span>(CodePane codePane)</li>
+<li class='pubmethod'><span class='static'></span><span title="A CodePane extension method that gets the current selection.">GetSelection</span>(CodePane code) : <a href='#Rubberduck.Rubberduck.Extensions.Selection'>Selection</a></li>
+<li class='pubmethod'><span class='static'></span><span title="A CodePane extension method that selected procedure.">SelectedProcedure</span>(CodePane code, <a href='#Rubberduck.Rubberduck.Extensions.Selection'>Selection</a> <span title="The selection.">selection</span>) : <a href='#Rubberduck.Rubberduck.Extensions.Selection'>Selection</a></li>
+<li class='pubmethod'><span class='static'></span><span title="Sets the cursor to the first position of the given line.">SetSelection</span>(CodePane codePane, int lineNumber)</li>
+<li class='pubmethod'><span class='static'></span>SetSelection(CodePane codePane, <a href='#Rubberduck.Rubberduck.Extensions.Selection'>Selection</a> selection)</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Extensions.Selection'>
+<div class='header class'>
+<span >Selection : ValueType</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>Selection()</li>
+<li class='pubmethod'>Selection(int startLine, int startColumn, int endLine, int endColumn)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>EndColumn { get; } : int</li>
+<li class='pubproperty'>EndLine { get; } : int</li>
+<li class='pubproperty'>LineCount { get; } : int</li>
+<li class='pubproperty'>StartColumn { get; } : int</li>
+<li class='pubproperty'>StartLine { get; } : int</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_endColumn : int</li>
+<li class='privfield'>_endLine : int</li>
+<li class='privfield'>_startColumn : int</li>
+<li class='privfield'>_startLine : int</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Extensions.StringExtensions'>
+<div class='header class'>
+<span >StringExtensions</span>
+</div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span>Contains(string source, string toCheck, StringComparison comp) : bool</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Extensions.VbeExtensions'>
+<div class='header class'>
+<span >VbeExtensions</span>
+</div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span><span title="Finds all code modules that match the specified project and component names.">FindCodeModules</span>(VBE vbe, string projectName, string componentName) : IEnumerable&lt;CodeModule&gt;</li>
+<li class='pubmethod'><span class='static'></span>FindInstruction(VBE vbe, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction) : <a href='#Rubberduck.Rubberduck.Extensions.CodeModuleSelection'>CodeModuleSelection</a></li>
+</ul></div>
+</div>
+</div></section>
+<section id='Rubberduck.Inspections'>
+<h3 class='expander active'>Rubberduck.Inspections</h3><div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Inspections.CodeInspection'>
+<div class='header class'>
+<span >CodeInspection</span>
+<br/>Implements <a href='#Rubberduck.Rubberduck.Inspections.IInspection'>IInspection</a></div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='protmethod'>CodeInspection(string name, string message, <a href='#Rubberduck.Rubberduck.Inspections.CodeInspectionType'>CodeInspectionType</a> type, <a href='#Rubberduck.Rubberduck.Inspections.CodeInspectionSeverity'>CodeInspectionSeverity</a> severity)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>InspectionType { get; } : <a href='#Rubberduck.Rubberduck.Inspections.CodeInspectionType'>CodeInspectionType</a></li>
+<li class='pubproperty'>IsEnabled { get; set; } : bool</li>
+<li class='pubproperty'>Name { get; } : string</li>
+<li class='pubproperty'>QuickFixMessage { get; } : string</li>
+<li class='pubproperty'>Severity { get; set; } : <a href='#Rubberduck.Rubberduck.Inspections.CodeInspectionSeverity'>CodeInspectionSeverity</a></li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span title="Inspects specified tree node, searching for code issues.">Inspect</span>(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a> node) : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.Inspections.CodeInspectionResultBase'>CodeInspectionResultBase</a>&gt;</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_inspectionType : <a href='#Rubberduck.Rubberduck.Inspections.CodeInspectionType'>CodeInspectionType</a></li>
+<li class='privfield'>_message : string</li>
+<li class='privfield'>_name : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Inspections.CodeInspectionResultBase'>
+<div class='header class'>
+<span >CodeInspectionResultBase</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>CodeInspectionResultBase(string inspection, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, <a href='#Rubberduck.Rubberduck.Inspections.CodeInspectionSeverity'>CodeInspectionSeverity</a> type, string message)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'><span title="Gets the Instruction containing a code issue.">Instruction</span> { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a></li>
+<li class='pubproperty'><span title="Gets a short message that describes how the code issue can be fixed.">Message</span> { get; } : string</li>
+<li class='pubproperty'><span title="Gets a string containing the name of the code inspection.">Name</span> { get; } : string</li>
+<li class='pubproperty'><span title="Gets the severity of the code issue.">Severity</span> { get; } : <a href='#Rubberduck.Rubberduck.Inspections.CodeInspectionSeverity'>CodeInspectionSeverity</a></li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span title="Addresses the issue by making changes to the code.">QuickFix</span>(VBE vbe)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_instruction : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a></li>
+<li class='privfield'>_message : string</li>
+<li class='privfield'>_name : string</li>
+<li class='privfield'>_type : <a href='#Rubberduck.Rubberduck.Inspections.CodeInspectionSeverity'>CodeInspectionSeverity</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Inspections.CodeInspectionSeverity'>
+<div class='header enum'>
+<span >CodeInspectionSeverity : int</span>
+</div>
+<ul class='members'>
+<li class='pubfield'>DoNotShow = 0</li>
+<li class='pubfield'>Hint = 1</li>
+<li class='pubfield'>Suggestion = 2</li>
+<li class='pubfield'>Warning = 3</li>
+<li class='pubfield'>Error = 4</li>
+</ul>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Inspections.CodeInspectionType'>
+<div class='header enum'>
+<span >CodeInspectionType : int</span>
+</div>
+<ul class='members'>
+<li class='pubfield'>MaintainabilityAndReadabilityIssues = 0</li>
+<li class='pubfield'>CodeQualityIssues = 1</li>
+</ul>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Inspections.IInspection'>
+<div class='header interface'>
+<span title="An interface that abstracts a code inspection.">IInspection</span>
+</div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'><span title="Gets a value indicating the type of the code inspection.">InspectionType</span> { get; } : <a href='#Rubberduck.Rubberduck.Inspections.CodeInspectionType'>CodeInspectionType</a></li>
+<li class='pubproperty'><span title="Gets/sets a valud indicating whether the inspection is enabled or not.">IsEnabled</span> { get; set; } : bool</li>
+<li class='pubproperty'><span title="Gets a short description for the code inspection.">Name</span> { get; } : string</li>
+<li class='pubproperty'><span title="Gets a short message that describes how a code issue can be fixed.">QuickFixMessage</span> { get; } : string</li>
+<li class='pubproperty'><span title="Gets a value indicating the severity level of the code inspection.">Severity</span> { get; } : <a href='#Rubberduck.Rubberduck.Inspections.CodeInspectionSeverity'>CodeInspectionSeverity</a></li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span title="Runs code inspection on specified tree node (and child nodes).">Inspect</span>(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a> <span title="The SyntaxTreeNode to analyze.">node</span>) : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.Inspections.CodeInspectionResultBase'>CodeInspectionResultBase</a>&gt;</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Inspections.ObsoleteCommentSyntaxInspection'>
+<div class='header class'>
+<span >ObsoleteCommentSyntaxInspection : <a href='#Rubberduck.Rubberduck.Inspections.CodeInspection'>CodeInspection</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'><span title="Parameterless constructor required for discovery of implemented code inspections.">ObsoleteCommentSyntaxInspection</span>()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Inspections.ObsoleteCommentSyntaxInspectionResult'>
+<div class='header class'>
+<span >ObsoleteCommentSyntaxInspectionResult : <a href='#Rubberduck.Rubberduck.Inspections.CodeInspectionResultBase'>CodeInspectionResultBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ObsoleteCommentSyntaxInspectionResult(string inspection, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, <a href='#Rubberduck.Rubberduck.Inspections.CodeInspectionSeverity'>CodeInspectionSeverity</a> type, string message)</li>
+</ul></div>
+</div>
+</div></section>
+<section id='Rubberduck.Properties'>
+<h3 class='expander active'>Rubberduck.Properties</h3><div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Properties.Resources'>
+<div class='header class'>
+<span title="A strongly-typed resource class, for looking up localized strings, etc.">Resources</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='method'>Resources()</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">AddClass_5561_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">AddModule_368_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">AddModule_368_321</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">AllLoadedTests_8644_24</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">Critical</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Overrides the current thread&#39;s CurrentUICulture property for all
+      resource lookups using this strongly typed resource class.">Culture</span> { get; set; } : CultureInfo</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">GoLtrHS</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">GroupBy_284_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">ListsofTests_8643_24</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">OK</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">Play</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">Refresh</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Returns the cached ResourceManager instance used by this class.">ResourceManager</span> { get; } : ResourceManager</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">rubberduck_adsize</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">Serious</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">Step_RunTest_8814_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">TestManager_8590_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">TestMethod</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">VSObject_Module</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">Warning</span> { get; } : Bitmap</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'><span class='static'></span>resourceCulture : CultureInfo</li>
+<li class='privfield'><span class='static'></span>resourceMan : ResourceManager</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Properties.Settings'>
+<div class='header class'>
+<span >Settings</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>Settings()</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'>SettingChangingEventHandler(object sender, SettingChangingEventArgs e)</li>
+<li class='privmethod'>SettingsSavingEventHandler(object sender, CancelEventArgs e)</li>
+</ul></div>
+</div>
+</div></section>
+<section id='Rubberduck.Refactoring'>
+<h3 class='expander active'>Rubberduck.Refactoring</h3><div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Refactoring.ExtractMethodRefactoring'>
+<div class='header class'>
+<span >ExtractMethodRefactoring</span>
+<br/>Implements <a href='#Rubberduck.Rubberduck.Refactoring.IRefactoring'>IRefactoring</a></div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ExtractMethodRefactoring()</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'>IsValidSelection(CodeModule module, <a href='#Rubberduck.Rubberduck.Extensions.Selection'>Selection</a> selection) : bool</li>
+<li class='pubmethod'>Refactor(CodeModule module)</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Refactoring.IRefactoring'>
+<div class='header interface'>
+<span >IRefactoring</span>
+</div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>Refactor(CodeModule module)</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Refactoring.MenuIcons'>
+<div class='header class'>
+<span title="A strongly-typed resource class, for looking up localized strings, etc.">MenuIcons</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='method'>MenuIcons()</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">AddClass_5561_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">AddMethod_5562_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">AddModule_368_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">AddProperty_5538_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">AddVariable_5541_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Overrides the current thread&#39;s CurrentUICulture property for all
+      resource lookups using this strongly typed resource class.">Culture</span> { get; set; } : CultureInfo</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">ExtractInterface_6778_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">ExtractMethod_6786_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">GenerateMethod_476_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">ImplementInterface_5540_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">NewConstant_6861_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">PromoteLocal_6784_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">RemoveParameters_6781_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized resource of type System.Drawing.Bitmap.">ReorderParameters_6780_32</span> { get; } : Bitmap</li>
+<li class='property'><span class='static'></span><span title="Returns the cached ResourceManager instance used by this class.">ResourceManager</span> { get; } : ResourceManager</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'><span class='static'></span>resourceCulture : CultureInfo</li>
+<li class='privfield'><span class='static'></span>resourceMan : ResourceManager</li>
+</ul></div>
+</div>
+</div></section>
+<section id='Rubberduck.Reflection'>
+<h3 class='expander active'>Rubberduck.Reflection</h3><div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Reflection.Member'>
+<div class='header class'>
+<span >Member</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='privmethod'><span class='static'></span>.cctor()</li>
+<li class='pubmethod'>Member(<a href='#Rubberduck.Rubberduck.Reflection.MemberVisibility'>MemberVisibility</a> visibility, <a href='#Rubberduck.Rubberduck.Reflection.MemberType'>MemberType</a> memberType, string projectName, string moduleName, string name, string signature, String[] body, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.Reflection.MemberAttribute'>MemberAttribute</a>&gt; attributes)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Body { get; } : String[]</li>
+<li class='pubproperty'>MemberType { get; } : <a href='#Rubberduck.Rubberduck.Reflection.MemberType'>MemberType</a></li>
+<li class='pubproperty'>MemberVisibility { get; } : <a href='#Rubberduck.Rubberduck.Reflection.MemberVisibility'>MemberVisibility</a></li>
+<li class='pubproperty'>Name { get; } : string</li>
+<li class='pubproperty'>QualifiedName { get; } : string</li>
+<li class='pubproperty'>Signature { get; } : string</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>GetAttribute&lt;TAttribute&gt;() : <a href='#Rubberduck.Rubberduck.Reflection.MemberAttribute'>MemberAttribute</a></li>
+<li class='pubmethod'>GetAttribute(string name) : <a href='#Rubberduck.Rubberduck.Reflection.MemberAttribute'>MemberAttribute</a></li>
+<li class='privmethod'><span class='static'></span>GetMemberType(string signature, string withoutKeyword) : <a href='#Rubberduck.Rubberduck.Reflection.MemberType'>MemberType</a></li>
+<li class='privmethod'><span class='static'></span>GetMemberVisibility(string signature) : <a href='#Rubberduck.Rubberduck.Reflection.MemberVisibility'>MemberVisibility</a></li>
+<li class='pubmethod'>HasAttribute&lt;TAttribute&gt;() : bool</li>
+<li class='pubmethod'>HasAttribute(string name) : bool</li>
+<li class='pubmethod'><span class='static'></span>TryParse(String[] body, string projectName, string moduleName, <a href='#Rubberduck.Rubberduck.Reflection.Member'>Member</a> result) : bool</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_attributes : IDictionary&lt;String, <a href='#Rubberduck.Rubberduck.Reflection.MemberAttribute'>MemberAttribute</a>&gt;</li>
+<li class='privfield'>_body : String[]</li>
+<li class='privfield'><span class='static'></span>_keywords : String[]</li>
+<li class='privfield'>_memberType : <a href='#Rubberduck.Rubberduck.Reflection.MemberType'>MemberType</a></li>
+<li class='privfield'>_memberVisibility : <a href='#Rubberduck.Rubberduck.Reflection.MemberVisibility'>MemberVisibility</a></li>
+<li class='privfield'>_moduleName : string</li>
+<li class='privfield'>_name : string</li>
+<li class='privfield'>_projectName : string</li>
+<li class='privfield'>_signature : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Reflection.MemberAttribute'>
+<div class='header class'>
+<span >MemberAttribute</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>MemberAttribute(string name, IEnumerable&lt;String&gt; parameters)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Name { get; } : string</li>
+<li class='pubproperty'>Parameters { get; } : IEnumerable&lt;String&gt;</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span>GetAttributes(IEnumerable&lt;String&gt; codeLines) : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.Reflection.MemberAttribute'>MemberAttribute</a>&gt;</li>
+<li class='pubmethod'><span class='static'></span>TryParse(string codeLine, <a href='#Rubberduck.Rubberduck.Reflection.MemberAttribute'>MemberAttribute</a> result) : bool</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_name : string</li>
+<li class='privfield'>_parameters : IEnumerable&lt;String&gt;</li>
+<li class='privfield'><span class='static'></span>AttributeSyntax : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Reflection.MemberAttributeBase'>
+<div class='header class'>
+<span title="A base class for all member attributes.">MemberAttributeBase</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='protmethod'>MemberAttributeBase()</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Name { get; } : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Reflection.MemberType'>
+<div class='header enum'>
+<span >MemberType : int</span>
+</div>
+<ul class='members'>
+<li class='pubfield'>Field = 0</li>
+<li class='pubfield'>Sub = 1</li>
+<li class='pubfield'>Function = 2</li>
+<li class='pubfield'>PropertyLet = 3</li>
+<li class='pubfield'>PropertyGet = 4</li>
+<li class='pubfield'>PropertySet = 5</li>
+</ul>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Reflection.MemberVisibility'>
+<div class='header enum'>
+<span >MemberVisibility : int</span>
+</div>
+<ul class='members'>
+<li class='pubfield'>Public = 0</li>
+<li class='pubfield'>Private = 1</li>
+<li class='pubfield'>Friend = 2</li>
+</ul>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Reflection.ProjectComponent'>
+<div class='header class'>
+<span >ProjectComponent</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ProjectComponent(CodeModule module)</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>GetMembers() : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.Reflection.Member'>Member</a>&gt;</li>
+<li class='pubmethod'>HasAttribute(string name) : bool</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_attributes : IDictionary&lt;String, <a href='#Rubberduck.Rubberduck.Reflection.MemberAttribute'>MemberAttribute</a>&gt;</li>
+<li class='privfield'>_module : CodeModule</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Reflection.ProjectExtensions'>
+<div class='header class'>
+<span >ProjectExtensions</span>
+</div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span>ComponentNames(VBProject project) : IEnumerable&lt;String&gt;</li>
+<li class='pubmethod'><span class='static'></span>EnsureReferenceToAddInLibrary(VBProject project)</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Reflection.TestCleanupAttribute'>
+<div class='header class'>
+<span title="An attribute that marks a public procedure as a method to execute after each test is executed.">TestCleanupAttribute : <a href='#Rubberduck.Rubberduck.Reflection.MemberAttributeBase'>MemberAttributeBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>TestCleanupAttribute()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Reflection.TestInitializeAttribute'>
+<div class='header class'>
+<span title="An attribute that marks a public procedure as a method to execute before each test is executed.">TestInitializeAttribute : <a href='#Rubberduck.Rubberduck.Reflection.MemberAttributeBase'>MemberAttributeBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>TestInitializeAttribute()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Reflection.TestMethodAttribute'>
+<div class='header class'>
+<span title="An attribute that marks a public procedure as a test method.">TestMethodAttribute : <a href='#Rubberduck.Rubberduck.Reflection.MemberAttributeBase'>MemberAttributeBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>TestMethodAttribute()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Reflection.TestModuleAttribute'>
+<div class='header class'>
+<span title="An attribute that marks a code module as a test module.">TestModuleAttribute : <a href='#Rubberduck.Rubberduck.Reflection.MemberAttributeBase'>MemberAttributeBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>TestModuleAttribute()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.Reflection.VBComponentExtensions'>
+<div class='header class'>
+<span >VBComponentExtensions</span>
+</div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span>GetMembers(VBComponent component, vbext_ProcKind? procedureKind = null) : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.Reflection.Member'>Member</a>&gt;</li>
+<li class='pubmethod'><span class='static'></span>GetMembers(CodeModule module, vbext_ProcKind? procedureKind = null) : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.Reflection.Member'>Member</a>&gt;</li>
+<li class='pubmethod'><span class='static'></span>HasAttribute&lt;TAttribute&gt;(CodeModule code) : bool</li>
+<li class='pubmethod'><span class='static'></span>HasAttribute(CodeModule code, string name) : bool</li>
+</ul></div>
+</div>
+</div></section>
+<section id='Rubberduck.ToDoItems'>
+<h3 class='expander active'>Rubberduck.ToDoItems</h3><div>
+<div class='objectBox' id='Rubberduck.Rubberduck.ToDoItems.TaskPriority'>
+<div class='header enum'>
+<span >TaskPriority : int</span>
+</div>
+<ul class='members'>
+<li class='pubfield'>Low = 0</li>
+<li class='pubfield'>Medium = 1</li>
+<li class='pubfield'>High = 2</li>
+</ul>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.ToDoItems.ToDoItem'>
+<div class='header class'>
+<span >ToDoItem : ValueType</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ToDoItem()</li>
+<li class='pubmethod'>ToDoItem(<a href='#Rubberduck.Rubberduck.ToDoItems.TaskPriority'>TaskPriority</a> priority, string description, string projectName, string moduleName, int lineNumber)</li>
+<li class='pubmethod'>ToDoItem(<a href='#Rubberduck.Rubberduck.ToDoItems.TaskPriority'>TaskPriority</a> priority, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Description { get; } : string</li>
+<li class='pubproperty'>LineNumber { get; } : int</li>
+<li class='pubproperty'>ModuleName { get; } : string</li>
+<li class='pubproperty'>Priority { get; } : <a href='#Rubberduck.Rubberduck.ToDoItems.TaskPriority'>TaskPriority</a></li>
+<li class='pubproperty'>ProjectName { get; } : string</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_description : string</li>
+<li class='privfield'>_lineNumber : int</li>
+<li class='privfield'>_moduleName : string</li>
+<li class='privfield'>_priority : <a href='#Rubberduck.Rubberduck.ToDoItems.TaskPriority'>TaskPriority</a></li>
+<li class='privfield'>_projectName : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.ToDoItems.ToDoItemsMenu'>
+<div class='header class'>
+<span >ToDoItemsMenu : Menu</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ToDoItemsMenu(VBE vbe, AddIn addInInstance)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>ShowTaskListButton { get; } : CommandBarButton</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>Initialize(CommandBarControls menuControls)</li>
+<li class='privmethod'>OnShowTaskListButtonClick(CommandBarButton ctrl, bool CancelDefault)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>showTaskListButton : CommandBarButton</li>
+<li class='privfield'>toolWindow : Window</li>
+</ul></div>
+</div>
+</div></section>
+<section id='Rubberduck.UI'>
+<h3 class='expander active'>Rubberduck.UI</h3><div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.AboutWindow'>
+<div class='header class'>
+<span >AboutWindow : Form</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>AboutWindow()</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'>ckuhn203LinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)</li>
+<li class='privmethod'>CloseButton_Click(object sender, EventArgs e)</li>
+<li class='privmethod'>codereviewLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)</li>
+<li class='privmethod'><span title="Required method for Designer support - do not modify
+    the contents of this method with the code editor.">InitializeComponent</span>()</li>
+<li class='privmethod'>mztoolsLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)</li>
+<li class='privmethod'>repositoryLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)</li>
+<li class='privmethod'>retailcoderLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)</li>
+<li class='privmethod'>VisitLink(string url)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>ckuhn203LinkLabel : LinkLabel</li>
+<li class='privfield'>CloseButton : Button</li>
+<li class='privfield'>codereviewLinkLabel : LinkLabel</li>
+<li class='privfield'><span title="Required designer variable.">components</span> : IContainer</li>
+<li class='privfield'>contributorsLabel : Label</li>
+<li class='privfield'>flowLayoutPanel1 : FlowLayoutPanel</li>
+<li class='privfield'>label1 : Label</li>
+<li class='privfield'>mztoolsLinkLabel : LinkLabel</li>
+<li class='privfield'>pictureBox1 : PictureBox</li>
+<li class='privfield'>repositoryLinkLabel : LinkLabel</li>
+<li class='privfield'>retailcoderLinkLabel : LinkLabel</li>
+<li class='privfield'>tableLayoutPanel1 : TableLayoutPanel</li>
+<li class='privfield'>titleLabel : Label</li>
+<li class='privfield'>versionLabel : Label</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.DockablePresenterBase'>
+<div class='header class'>
+<span >DockablePresenterBase</span>
+<br/>Implements IDisposable</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='protmethod'>DockablePresenterBase(VBE vbe, AddIn addin, <a href='#Rubberduck.Rubberduck.UI.IDockableUserControl'>IDockableUserControl</a> control)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='protproperty'>VBE { get; } : VBE</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>Close()</li>
+<li class='privmethod'>CreateToolWindow(<a href='#Rubberduck.Rubberduck.UI.IDockableUserControl'>IDockableUserControl</a> control) : Window</li>
+<li class='pubmethod'>Dispose()</li>
+<li class='pubmethod'>Show()</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_addin : AddIn</li>
+<li class='privfield'>_vbe : VBE</li>
+<li class='privfield'>_window : Window</li>
+<li class='protfield'>UserControl : UserControl</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.DockableWindowHost'>
+<div class='header class'>
+<span >DockableWindowHost : UserControl</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>DockableWindowHost()</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'><span class='static'></span>RegisteredClassId { get; } : string</li>
+<li class='pubproperty'><span class='static'></span>RegisteredProgId { get; } : string</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='method'>AddUserControl(UserControl control)</li>
+<li class='privmethod'>AdjustSize()</li>
+<li class='privmethod'><span class='static'></span>GetClientRect(IntPtr hWnd, Rect lpRect) : int</li>
+<li class='privmethod'><span class='static'></span>GetParent(IntPtr hWnd) : IntPtr</li>
+<li class='privmethod'><span title="Required method for Designer support - do not modify 
+    the contents of this method with the code editor.">InitializeComponent</span>()</li>
+<li class='privmethod'>OnCallBackEvent(object sender, <a href='#Rubberduck.Rubberduck.UI.SubClassingWindowEventArgs'>SubClassingWindowEventArgs</a> e)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_parentHandle : IntPtr</li>
+<li class='privfield'>_subClassingWindow : SubClassingWindow</li>
+<li class='privfield'><span class='static'></span>ClassId : string</li>
+<li class='privfield'><span title="Required designer variable.">components</span> : IContainer</li>
+<li class='privfield'><span class='static'></span>ProgId : string</li>
+</ul></div>
+<div class='members'><h4>Nested Types</h4></div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rect'>
+<div class='header class'>
+<span >Rect : ValueType</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>Rect()</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Bottom { get; set; } : int</li>
+<li class='pubproperty'>Left { get; set; } : int</li>
+<li class='pubproperty'>Right { get; set; } : int</li>
+<li class='pubproperty'>Top { get; set; } : int</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.SubClassingWindow'>
+<div class='header class'>
+<span >SubClassingWindow : NativeWindow</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>SubClassingWindow(IntPtr handle)</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='protmethod'>Finalize()</li>
+<li class='privmethod'>OnCallBackEvent(<a href='#Rubberduck.Rubberduck.UI.SubClassingWindowEventArgs'>SubClassingWindowEventArgs</a> e)</li>
+</ul></div>
+<div class='members'><h4>Events</h4><ul>
+<li class='pubevent'>CallBackEvent : SubClassingWindowEventHandler</li>
+</ul></div>
+<div class='members'><h4>Nested Types</h4></div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.SubClassingWindowEventHandler'>
+<div class='header delegate'>
+<span >SubClassingWindowEventHandler : MulticastDelegate</span>
+</div>
+<div class='members'>
+<ul>
+<li class='pubmethod'>SubClassingWindowEventHandler(object object, IntPtr method)</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.IDockableUserControl'>
+<div class='header interface'>
+<span >IDockableUserControl</span>
+</div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'><span title="Gets a string containing the caption of the toolwindow.">Caption</span> { get; } : string</li>
+<li class='pubproperty'><span title="Gets a string containing the GUID with which the class is registered.">ClassId</span> { get; } : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Menu'>
+<div class='header class'>
+<span >Menu</span>
+<br/>Implements IDisposable</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>Menu(VBE vbe, AddIn addInInstance)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='protproperty'>IDE { get; } : VBE</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='protmethod'>AddMenuButton(CommandBarPopup menu, string caption, Bitmap image) : CommandBarButton</li>
+<li class='protmethod'><span title="Attaches a user control to a native window through a new DockableWindowHost.">CreateToolWindow</span>(string <span title="Text to display as the window title.">toolWindowCaption</span>, UserControl <span title="User control to attach to the window.">toolWindowUserControl</span>) : Window</li>
+<li class='pubmethod'>Dispose()</li>
+<li class='protmethod'><span title="Finds the index for insertion in a given CommandBarControls collection.
+    Returns the last position if the given beforeControl caption is not found.">FindMenuInsertionIndex</span>(CommandBarControls <span title="The collection to insert into.">controls</span>, string <span title="Caption of the control to insert before.">beforeControl</span>) : int</li>
+<li class='privmethod'><span class='static'></span>SetButtonImage(CommandBarButton result, Bitmap image)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='protfield'>addInInstance : AddIn</li>
+<li class='privfield'>vbe : VBE</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.NativeWindowMethods'>
+<div class='header class'>
+<span >NativeWindowMethods</span>
+</div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span><span title="Activates the window by simulating a click.">ActivateWindow</span>(IntPtr <span title="Handle of the window to be activated.">windowHandle</span>, IntPtr <span title="Handle of the parent window.">parentWindowHandle</span>)</li>
+<li class='method'><span class='static'></span>EnumChildWindows(IntPtr parentWindowHandle, <span title="EnumChildWindows delegate.">EnumChildWindowsDelegate</span> callBackEnumWindows)</li>
+<li class='pubmethod'><span class='static'></span><span title="WinAPI method to Enumerate Child Windows">EnumChildWindows</span>(IntPtr <span title="Handle of the parent window.">parentWindowHandle</span>, <span title="EnumChildWindows delegate.">EnumChildWindowsDelegate</span> <span title="The enum delegate function.">lpEnumFunction</span>, IntPtr <span title="The parameter.">lParam</span>) : int</li>
+<li class='pubmethod'><span class='static'></span><span title="Gets the parent window of this item.">GetParent</span>(IntPtr <span title="The window handle.">hWnd</span>) : IntPtr</li>
+<li class='pubmethod'><span class='static'></span><span title="Gets window text.">GetWindowText</span>(IntPtr <span title="The window handle.">hWnd</span>, StringBuilder <span title="The return string.">lpString</span>, int <span title="Number of maximums.">nMaxCount</span>) : int</li>
+<li class='pubmethod'><span class='static'></span><span title="Gets window caption text by handle.">GetWindowTextByHwnd</span>(IntPtr <span title="Handle of the window to be activated.">windowHandle</span>) : string</li>
+<li class='pubmethod'><span class='static'></span><span title="Sends a message to the OS.">SendMessage</span>(IntPtr <span title="The window handle.">hWnd</span>, int <span title="The message.">wMsg</span>, IntPtr <span title="The parameter.">wParam</span>, IntPtr <span title="The parameter.">lParam</span>) : IntPtr</li>
+</ul></div>
+<div class='members'><h4>Nested Types</h4></div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.ChildWindowFinder'>
+<div class='header class'>
+<span >ChildWindowFinder</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='method'>ChildWindowFinder(string caption)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>ResultHandle { get; } : IntPtr</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>EnumWindowsProcToChildWindowByCaption(IntPtr windowHandle, IntPtr param) : int</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_caption : string</li>
+<li class='privfield'>_resultHandle : IntPtr</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.EnumChildWindowsDelegate'>
+<div class='header delegate'>
+<span title="EnumChildWindows delegate.">EnumChildWindowsDelegate : MulticastDelegate</span>
+</div>
+<div class='members'>
+<ul>
+<li class='pubmethod'>EnumChildWindowsDelegate(object object, IntPtr method)</li>
+</ul></div>
+</div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.RefactorMenu'>
+<div class='header class'>
+<span >RefactorMenu</span>
+<br/>Implements IDisposable</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>RefactorMenu(VBE vbe, AddIn addin, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a> parser)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>ParseModuleButton { get; } : CommandBarButton</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'>AddMenuButton(CommandBarPopup menu) : CommandBarButton</li>
+<li class='pubmethod'>Dispose()</li>
+<li class='pubmethod'>Initialize(CommandBarControls menuControls)</li>
+<li class='privmethod'>OnParseModuleButtonClick(CommandBarButton Ctrl, bool CancelDefault)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_addin : AddIn</li>
+<li class='privfield'>_parseModuleButton : CommandBarButton</li>
+<li class='privfield'>_parser : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a></li>
+<li class='privfield'>_vbe : VBE</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.RubberduckMenu'>
+<div class='header class'>
+<span >RubberduckMenu</span>
+<br/>Implements IDisposable</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>RubberduckMenu(VBE vbe, AddIn addIn, <a href='#Rubberduck.Rubberduck.Config.Configuration'>Configuration</a> config, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a> parser, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.Inspections.IInspection'>IInspection</a>&gt; inspections)</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>Dispose()</li>
+<li class='privmethod'>FindMenuInsertionIndex(CommandBarControls controls) : int</li>
+<li class='pubmethod'>Initialize()</li>
+<li class='privmethod'>OnAboutClick(CommandBarButton Ctrl, bool CancelDefault)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_about : CommandBarButton</li>
+<li class='privfield'>_codeExplorerMenu : <a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.CodeExplorer.CodeExplorerMenu'>CodeExplorerMenu</a></li>
+<li class='privfield'>_testMenu : <a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.TestMenu'>TestMenu</a></li>
+<li class='privfield'>_todoItemsMenu : <a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.ToDoItems.ToDoItemsMenu'>ToDoItemsMenu</a></li>
+<li class='privfield'>_vbe : VBE</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.SubClassingWindowEventArgs'>
+<div class='header class'>
+<span >SubClassingWindowEventArgs : EventArgs</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>SubClassingWindowEventArgs(Message msg)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Message { get; } : Message</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_msg : Message</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.WindowExtensions'>
+<div class='header class'>
+<span >WindowExtensions</span>
+</div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span>Handle(Window window) : IntPtr</li>
+</ul></div>
+</div>
+</div></section>
+<section id='Rubberduck.UI.CodeExplorer'>
+<h3 class='expander active'>Rubberduck.UI.CodeExplorer</h3><div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.CodeExplorer.CodeExplorerDockablePresenter'>
+<div class='header class'>
+<span >CodeExplorerDockablePresenter : <a href='#Rubberduck.Rubberduck.UI.DockablePresenterBase'>DockablePresenterBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>CodeExplorerDockablePresenter(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a> parser, VBE vbe, AddIn addIn)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='privproperty'>Control { get; } : <a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.CodeExplorer.CodeExplorerWindow'>CodeExplorerWindow</a></li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'>AddProjectNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a> node)</li>
+<li class='privmethod'>GetImageKeyForNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a> node) : string</li>
+<li class='privmethod'>GetNodeText(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a> node) : string</li>
+<li class='privmethod'>NavigateExplorerTreeNode(object sender, <a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.CodeExplorer.SyntaxTreeNodeClickEventArgs'>SyntaxTreeNodeClickEventArgs</a> e)</li>
+<li class='privmethod'>RefreshExplorerTreeView()</li>
+<li class='privmethod'>RefreshExplorerTreeView(object sender, EventArgs e)</li>
+<li class='privmethod'>RegisterControlEvents()</li>
+<li class='privmethod'>TreeViewAfterCollapseNode(object sender, TreeViewEventArgs e)</li>
+<li class='privmethod'>TreeViewAfterExpandNode(object sender, TreeViewEventArgs e)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_parser : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.CodeExplorer.CodeExplorerMenu'>
+<div class='header class'>
+<span >CodeExplorerMenu</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>CodeExplorerMenu(VBE vbe, AddIn addin, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a> parser)</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>Initialize(CommandBarControls menuControls)</li>
+<li class='privmethod'>OnCodeExplorerButtonClick(CommandBarButton button, bool cancelDefault)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_addin : AddIn</li>
+<li class='privfield'>_codeExplorerButton : CommandBarButton</li>
+<li class='privfield'>_parser : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a></li>
+<li class='privfield'>_vbe : VBE</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.CodeExplorer.CodeExplorerWindow'>
+<div class='header class'>
+<span >CodeExplorerWindow : UserControl</span>
+<br/>Implements <a href='#Rubberduck.Rubberduck.UI.IDockableUserControl'>IDockableUserControl</a></div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>CodeExplorerWindow()</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'><span title="Required method for Designer support - do not modify 
+    the contents of this method with the code editor.">InitializeComponent</span>()</li>
+<li class='privmethod'>RefreshButtonClicked(object sender, EventArgs e)</li>
+<li class='privmethod'>SolutionTreeNodeMouseDoubleClicked(object sender, TreeNodeMouseClickEventArgs e)</li>
+</ul></div>
+<div class='members'><h4>Events</h4><ul>
+<li class='pubevent'>NavigateTreeNode : EventHandler&lt;<a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.CodeExplorer.SyntaxTreeNodeClickEventArgs'>SyntaxTreeNodeClickEventArgs</a>&gt;</li>
+<li class='pubevent'>RefreshTreeView : EventHandler</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'><span class='static'></span>ClassId : string</li>
+<li class='privfield'>CodeExplorerToolbar : ToolStrip</li>
+<li class='privfield'><span title="Required designer variable.">components</span> : IContainer</li>
+<li class='privfield'>panel1 : Panel</li>
+<li class='privfield'>RefreshButton : ToolStripButton</li>
+<li class='pubfield'>SolutionTree : TreeView</li>
+<li class='privfield'>toolStripSeparator1 : ToolStripSeparator</li>
+<li class='privfield'>TreeNodeIcons : ImageList</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.CodeExplorer.SyntaxTreeNodeClickEventArgs'>
+<div class='header class'>
+<span >SyntaxTreeNodeClickEventArgs : EventArgs</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>SyntaxTreeNodeClickEventArgs(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Instruction { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a></li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_instruction : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a></li>
+</ul></div>
+</div>
+</div></section>
+<section id='Rubberduck.UI.CodeInspections'>
+<h3 class='expander active'>Rubberduck.UI.CodeInspections</h3><div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.CodeInspections.CodeInspectionsDockablePresenter'>
+<div class='header class'>
+<span >CodeInspectionsDockablePresenter : <a href='#Rubberduck.Rubberduck.UI.DockablePresenterBase'>DockablePresenterBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>CodeInspectionsDockablePresenter(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a> parser, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.Inspections.IInspection'>IInspection</a>&gt; inspections, VBE vbe, AddIn addin)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='privproperty'>Control { get; } : <a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.CodeInspections.CodeInspectionsWindow'>CodeInspectionsWindow</a></li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'>DrawResultTree(IEnumerable&lt;<a href='#Rubberduck.Rubberduck.Inspections.CodeInspectionResultBase'>CodeInspectionResultBase</a>&gt; results)</li>
+<li class='privmethod'>OnRefreshCodeInspections(object sender, EventArgs e)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_inspections : IList&lt;<a href='#Rubberduck.Rubberduck.Inspections.IInspection'>IInspection</a>&gt;</li>
+<li class='privfield'>_parser : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.CodeInspections.CodeInspectionsMenu'>
+<div class='header class'>
+<span >CodeInspectionsMenu</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>CodeInspectionsMenu(VBE vbe, AddIn addin, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a> parser, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.Inspections.IInspection'>IInspection</a>&gt; inspections)</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>Initialize(CommandBarControls menuControls)</li>
+<li class='privmethod'>OnCodeInspectionsButtonClick(CommandBarButton ctrl, bool canceldefault)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_addin : AddIn</li>
+<li class='privfield'>_codeInspectionsButton : CommandBarButton</li>
+<li class='privfield'>_inspections : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.Inspections.IInspection'>IInspection</a>&gt;</li>
+<li class='privfield'>_parser : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a></li>
+<li class='privfield'>_vbe : VBE</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.CodeInspections.CodeInspectionsWindow'>
+<div class='header class'>
+<span >CodeInspectionsWindow : UserControl</span>
+<br/>Implements <a href='#Rubberduck.Rubberduck.UI.IDockableUserControl'>IDockableUserControl</a></div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>CodeInspectionsWindow()</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'><span title="Required method for Designer support - do not modify 
+    the contents of this method with the code editor.">InitializeComponent</span>()</li>
+<li class='privmethod'>RefreshButtonClicked(object sender, EventArgs e)</li>
+<li class='privmethod'>TreeNodeMouseDoubleClicked(object sender, TreeNodeMouseClickEventArgs e)</li>
+</ul></div>
+<div class='members'><h4>Events</h4><ul>
+<li class='pubevent'>NavigateCodeIssue : EventHandler</li>
+<li class='pubevent'>RefreshCodeInspections : EventHandler</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'><span class='static'></span>ClassId : string</li>
+<li class='pubfield'>CodeInspectionResultsTree : TreeView</li>
+<li class='privfield'><span title="Required designer variable.">components</span> : IContainer</li>
+<li class='privfield'>panel1 : Panel</li>
+<li class='privfield'>RefreshButton : ToolStripButton</li>
+<li class='privfield'>toolStrip1 : ToolStrip</li>
+<li class='privfield'>toolStripSeparator1 : ToolStripSeparator</li>
+</ul></div>
+</div>
+</div></section>
+<section id='Rubberduck.UI.ToDoItems'>
+<h3 class='expander active'>Rubberduck.UI.ToDoItems</h3><div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.ToDoItems.ToDoExplorerDockablePresenter'>
+<div class='header class'>
+<span title="(Not COM visible) Presenter for the Todo Explorer.">ToDoExplorerDockablePresenter : <a href='#Rubberduck.Rubberduck.UI.DockablePresenterBase'>DockablePresenterBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ToDoExplorerDockablePresenter(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a> parser, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.Config.ToDoMarker'>ToDoMarker</a>&gt; markers, VBE vbe, AddIn addin)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='privproperty'>Control { get; } : <a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.ToDoItems.ToDoExplorerWindow'>ToDoExplorerWindow</a></li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'>GetToDoMarkers(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction) : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.ToDoItems.ToDoItem'>ToDoItem</a>&gt;</li>
+<li class='privmethod'>NavigateToDoItem(object sender, <a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.ToDoItems.ToDoItemClickEventArgs'>ToDoItemClickEventArgs</a> e)</li>
+<li class='privmethod'>RefreshToDoList(object sender, EventArgs e)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_markers : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.Config.ToDoMarker'>ToDoMarker</a>&gt;</li>
+<li class='privfield'>_parser : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.ToDoItems.ToDoExplorerWindow'>
+<div class='header class'>
+<span >ToDoExplorerWindow : UserControl</span>
+<br/>Implements <a href='#Rubberduck.Rubberduck.UI.IDockableUserControl'>IDockableUserControl</a></div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ToDoExplorerWindow()</li>
+<li class='pubmethod'>ToDoExplorerWindow(IEnumerable&lt;<a href='#Rubberduck.Rubberduck.ToDoItems.ToDoItem'>ToDoItem</a>&gt; items)</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'><span title="Required method for Designer support - do not modify 
+    the contents of this method with the code editor.">InitializeComponent</span>()</li>
+<li class='privmethod'>InitializeGrid()</li>
+<li class='privmethod'>RefreshButtonClicked(object sender, EventArgs e)</li>
+<li class='pubmethod'>SetItems(IEnumerable&lt;<a href='#Rubberduck.Rubberduck.ToDoItems.ToDoItem'>ToDoItem</a>&gt; items)</li>
+<li class='privmethod'>ToDoGridViewCellDoubleClicked(object sender, DataGridViewCellEventArgs e)</li>
+</ul></div>
+<div class='members'><h4>Events</h4><ul>
+<li class='pubevent'>NavigateToDoItem : EventHandler&lt;<a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.ToDoItems.ToDoItemClickEventArgs'>ToDoItemClickEventArgs</a>&gt;</li>
+<li class='pubevent'>RefreshToDoItems : EventHandler</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_todoItems : BindingList&lt;<a href='#Rubberduck.Rubberduck.ToDoItems.ToDoItem'>ToDoItem</a>&gt;</li>
+<li class='privfield'><span class='static'></span>ClassId : string</li>
+<li class='privfield'><span title="Required designer variable.">components</span> : IContainer</li>
+<li class='privfield'>panel1 : Panel</li>
+<li class='privfield'>refreshButton : ToolStripButton</li>
+<li class='privfield'>todoItemsGridView : DataGridView</li>
+<li class='privfield'>toolStrip1 : ToolStrip</li>
+<li class='privfield'>toolStripSeparator1 : ToolStripSeparator</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.ToDoItems.ToDoItemClickEventArgs'>
+<div class='header class'>
+<span >ToDoItemClickEventArgs : EventArgs</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ToDoItemClickEventArgs(<a href='#Rubberduck.Rubberduck.ToDoItems.ToDoItem'>ToDoItem</a> selection)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Selection { get; } : <a href='#Rubberduck.Rubberduck.ToDoItems.ToDoItem'>ToDoItem</a></li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_selection : <a href='#Rubberduck.Rubberduck.ToDoItems.ToDoItem'>ToDoItem</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.ToDoItems.ToDoItemsMenu'>
+<div class='header class'>
+<span >ToDoItemsMenu</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ToDoItemsMenu(VBE vbe, AddIn addInInstance, <a href='#Rubberduck.Rubberduck.Config.ToDoListSettings'>ToDoListSettings</a> settings, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a> parser)</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>Initialize(CommandBarControls menuControls)</li>
+<li class='privmethod'>OnShowTaskListButtonClick(CommandBarButton ctrl, bool CancelDefault)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_addIn : AddIn</li>
+<li class='privfield'>_parser : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a></li>
+<li class='privfield'>_settings : <a href='#Rubberduck.Rubberduck.Config.ToDoListSettings'>ToDoListSettings</a></li>
+<li class='privfield'>_todoItemsButton : CommandBarButton</li>
+<li class='privfield'>_vbe : VBE</li>
+</ul></div>
+</div>
+</div></section>
+<section id='Rubberduck.UI.UnitTesting'>
+<h3 class='expander active'>Rubberduck.UI.UnitTesting</h3><div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.SelectedTestEventArgs'>
+<div class='header class'>
+<span >SelectedTestEventArgs : EventArgs</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>SelectedTestEventArgs(<a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.TestExplorerItem'>TestExplorerItem</a> item)</li>
+<li class='pubmethod'>SelectedTestEventArgs(IEnumerable&lt;<a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.TestExplorerItem'>TestExplorerItem</a>&gt; items)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Selection { get; } : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>&gt;</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_selection : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>&gt;</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.TestExplorerDockablePresenter'>
+<div class='header class'>
+<span >TestExplorerDockablePresenter : <a href='#Rubberduck.Rubberduck.UI.DockablePresenterBase'>DockablePresenterBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>TestExplorerDockablePresenter(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a> parser, VBE vbe, AddIn addin, <a href='#Rubberduck.Rubberduck.UI.IDockableUserControl'>IDockableUserControl</a> control)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='privproperty'>Control { get; } : <a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.TestExplorerWindow'>TestExplorerWindow</a></li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'>OnExplorerAddExpectedErrorTestMethodButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerAddTestMethodButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerAddTestModuleButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerGoToSelectedTest(object sender, <a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.SelectedTestEventArgs'>SelectedTestEventArgs</a> e)</li>
+<li class='privmethod'>OnExplorerRefreshListButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerRunAllTestsButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerRunFailedTestsButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerRunLastRunTestsButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerRunNotRunTestsButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerRunPassedTestsButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerRunSelectedTestButtonClick(object sender, <a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.SelectedTestEventArgs'>SelectedTestEventArgs</a> e)</li>
+<li class='privmethod'>RegisterTestExplorerEvents()</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_parser : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>Parser</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.TestExplorerItem'>
+<div class='header class'>
+<span >TestExplorerItem</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>TestExplorerItem(<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a> test, <a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a> result)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Duration { get; } : string</li>
+<li class='pubproperty'>Message { get; } : string</li>
+<li class='pubproperty'>MethodName { get; } : string</li>
+<li class='pubproperty'>ModuleName { get; } : string</li>
+<li class='pubproperty'>Outcome { get; } : string</li>
+<li class='pubproperty'>ProjectName { get; } : string</li>
+<li class='pubproperty'>Result { get; } : Image</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>GetTestMethod() : <a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a></li>
+<li class='pubmethod'>SetResult(<a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a> result)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_result : <a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a></li>
+<li class='privfield'>_test : <a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.TestExplorerWindow'>
+<div class='header class'>
+<span >TestExplorerWindow : UserControl</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>TestExplorerWindow()</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'>AddExpectedErrorTestMethodButtonClicked(object sender, EventArgs e)</li>
+<li class='privmethod'>AddTestMethodButtonClicked(object sender, EventArgs e)</li>
+<li class='privmethod'>AddTestModuleButtonClicked(object sender, EventArgs e)</li>
+<li class='pubmethod'>ClearProgress()</li>
+<li class='pubmethod'>ClearResults()</li>
+<li class='privmethod'>FindItem(IEnumerable&lt;<a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.TestExplorerItem'>TestExplorerItem</a>&gt; items, <a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a> test) : <a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.TestExplorerItem'>TestExplorerItem</a></li>
+<li class='privmethod'>GotoSelectionButtonClicked(object sender, EventArgs e)</li>
+<li class='privmethod'>GridCellDoubleClicked(object sender, DataGridViewCellEventArgs e)</li>
+<li class='privmethod'>GridSelectionChanged(object sender, EventArgs e)</li>
+<li class='privmethod'><span title="Required method for Designer support - do not modify
+    the contents of this method with the code editor.">InitializeComponent</span>()</li>
+<li class='privmethod'>InitializeGrid()</li>
+<li class='privmethod'>OnButtonClick(EventHandler clickEvent)</li>
+<li class='pubmethod'>Refresh(IDictionary&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>, <a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a>&gt; tests)</li>
+<li class='privmethod'>RefreshTestsButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>RegisterUIEvents()</li>
+<li class='privmethod'>RunAllTestsMenuItemClicked(object sender, EventArgs e)</li>
+<li class='privmethod'>RunFailedTestsMenuItemClicked(object sender, EventArgs e)</li>
+<li class='privmethod'>RunLastRunMenuItemClicked(object sender, EventArgs e)</li>
+<li class='privmethod'>RunNotRunTestsMenuItemClicked(object sender, EventArgs e)</li>
+<li class='privmethod'>RunPassedTestsMenuItemClicked(object sender, EventArgs e)</li>
+<li class='privmethod'>RunSelectedTestMenuItemClicked(object sender, EventArgs e)</li>
+<li class='pubmethod'>SetPlayList(IEnumerable&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>&gt; tests)</li>
+<li class='pubmethod'>SetPlayList(IDictionary&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>, <a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a>&gt; tests)</li>
+<li class='privmethod'>TestExplorerWindowFormClosing(object sender, FormClosingEventArgs e)</li>
+<li class='privmethod'>UpdateCompletedTestsLabels()</li>
+<li class='privmethod'>UpdateProgress()</li>
+<li class='pubmethod'>WriteResult(<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a> test, <a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a> result)</li>
+</ul></div>
+<div class='members'><h4>Events</h4><ul>
+<li class='pubevent'>OnAddExpectedErrorTestMethodButtonClick : EventHandler</li>
+<li class='pubevent'>OnAddTestMethodButtonClick : EventHandler</li>
+<li class='pubevent'>OnAddTestModuleButtonClick : EventHandler</li>
+<li class='pubevent'>OnGoToSelectedTest : EventHandler&lt;<a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.SelectedTestEventArgs'>SelectedTestEventArgs</a>&gt;</li>
+<li class='pubevent'>OnRefreshListButtonClick : EventHandler</li>
+<li class='pubevent'>OnRunAllTestsButtonClick : EventHandler</li>
+<li class='pubevent'>OnRunFailedTestsButtonClick : EventHandler</li>
+<li class='pubevent'>OnRunLastRunTestsButtonClick : EventHandler</li>
+<li class='pubevent'>OnRunNotRunTestsButtonClick : EventHandler</li>
+<li class='pubevent'>OnRunPassedTestsButtonClick : EventHandler</li>
+<li class='pubevent'>OnRunSelectedTestButtonClick : EventHandler&lt;<a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.SelectedTestEventArgs'>SelectedTestEventArgs</a>&gt;</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_allTests : BindingList&lt;<a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.TestExplorerItem'>TestExplorerItem</a>&gt;</li>
+<li class='privfield'>_completedCount : int</li>
+<li class='privfield'>_playList : IList&lt;<a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.TestExplorerItem'>TestExplorerItem</a>&gt;</li>
+<li class='privfield'>addButton : ToolStripDropDownButton</li>
+<li class='privfield'>addExpectedErrorTestMethodButton : ToolStripMenuItem</li>
+<li class='privfield'>addTestMethodButton : ToolStripMenuItem</li>
+<li class='privfield'>addTestModuleButton : ToolStripMenuItem</li>
+<li class='privfield'><span title="Required designer variable.">components</span> : IContainer</li>
+<li class='privfield'>failedTestsLabel : ToolStripLabel</li>
+<li class='privfield'>gotoSelectionButton : ToolStripButton</li>
+<li class='privfield'>inconclusiveTestsLabel : ToolStripLabel</li>
+<li class='privfield'>panel1 : Panel</li>
+<li class='privfield'>passedTestsLabel : ToolStripLabel</li>
+<li class='privfield'>refreshTestsButton : ToolStripButton</li>
+<li class='privfield'>runAllTestsMenuItem : ToolStripMenuItem</li>
+<li class='privfield'>RunButton : ToolStripDropDownButton</li>
+<li class='privfield'>runFailedTestsMenuItem : ToolStripMenuItem</li>
+<li class='privfield'>runLastRunMenuItem : ToolStripMenuItem</li>
+<li class='privfield'>runNotRunTestsMenuItem : ToolStripMenuItem</li>
+<li class='privfield'>runPassedTestsMenuItem : ToolStripMenuItem</li>
+<li class='privfield'>runSelectedTestMenuItem : ToolStripMenuItem</li>
+<li class='privfield'>testOutputGridView : DataGridView</li>
+<li class='privfield'>testProgressBar : ToolStripProgressBar</li>
+<li class='privfield'>toolStrip1 : ToolStrip</li>
+<li class='privfield'>toolStripSeparator1 : ToolStripSeparator</li>
+<li class='privfield'>toolStripSeparator2 : ToolStripSeparator</li>
+<li class='privfield'>toolStripSeparator3 : ToolStripSeparator</li>
+<li class='privfield'>toolStripSeparator4 : ToolStripSeparator</li>
+<li class='privfield'>toolStripSeparator5 : ToolStripSeparator</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.TestMenu'>
+<div class='header class'>
+<span >TestMenu : <a href='#Rubberduck.Rubberduck.UI.Menu'>Menu</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>TestMenu(VBE vbe, AddIn addInInstance)</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>Dispose()</li>
+<li class='pubmethod'>Initialize(CommandBarControls menuControls)</li>
+<li class='privmethod'>OnRunAllTestsButtonClick(CommandBarButton Ctrl, bool CancelDefault)</li>
+<li class='privmethod'>OnTestExplorerButtonClick(CommandBarButton Ctrl, bool CancelDefault)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_engine : <a href='#Rubberduck.Rubberduck.UnitTesting.TestEngine'>TestEngine</a></li>
+<li class='privfield'>_runAllTestsButton : CommandBarButton</li>
+<li class='privfield'>_windowsTestExplorerButton : CommandBarButton</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.TestResultExtensions'>
+<div class='header class'>
+<span >TestResultExtensions</span>
+</div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span>Icon(<a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a> result) : Image</li>
+</ul></div>
+</div>
+</div></section>
+<section id='Rubberduck.UnitTesting'>
+<h3 class='expander active'>Rubberduck.UnitTesting</h3><div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UnitTesting.AssertClass'>
+<div class='header class'>
+<span >AssertClass</span>
+<br/>Implements <a href='#Rubberduck.Rubberduck.UnitTesting.IAssert'>IAssert</a></div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>AssertClass()</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span title="Verifies that two specified objects are equal. The assertion fails if the objects are not equal.">AreEqual</span>(object <span title="The expected value.">expected</span>, object <span title="The actual value.">actual</span>, string <span title="An optional message to display if the assertion fails.">message</span> = null)</li>
+<li class='pubmethod'><span title="Verifies that two specified objects are not equal. The assertion fails if the objects are equal.">AreNotEqual</span>(object <span title="The expected value.">expected</span>, object <span title="The actual value.">actual</span>, string <span title="An optional message to display if the assertion fails.">message</span> = null)</li>
+<li class='pubmethod'><span title="Verifies that two specified object variables refer to different objects. The assertion fails if they refer to the same object.">AreNotSame</span>(object <span title="The expected reference.">expected</span>, object <span title="The actual reference.">actual</span>, string <span title="An optional message to display if the assertion fails.">message</span> = null)</li>
+<li class='pubmethod'><span title="Verifies that two specified object variables refer to the same object. The assertion fails if they refer to different objects.">AreSame</span>(object <span title="The expected reference.">expected</span>, object <span title="The actual reference.">actual</span>, string <span title="An optional message to display if the assertion fails.">message</span> = null)</li>
+<li class='pubmethod'><span title="Fails the assertion without checking any conditions.">Fail</span>(string <span title="An optional message to display.">message</span> = null)</li>
+<li class='pubmethod'><span title="Indicates that the assertion cannot be verified.">Inconclusive</span>(string <span title="An optional message to display.">message</span> = null)</li>
+<li class='pubmethod'><span title="Verifies that the specified condition is false. The assertion fails if the condition is true.">IsFalse</span>(bool <span title="Any Boolean value or expression.">condition</span>, string <span title="An optional message to display if the assertion fails.">message</span> = null)</li>
+<li class='pubmethod'><span title="Verifies that the specified object is Nothing. The assertion fails if it is not Nothing.">IsNothing</span>(object <span title="The object to verify.">value</span>, string <span title="An optional message to display if the assertion fails.">message</span> = null)</li>
+<li class='pubmethod'><span title="Verifies that the specified object is not Nothing. The assertion fails if it is Nothing.">IsNotNothing</span>(object <span title="The object to verify.">value</span>, string <span title="An optional message to display if the assertion fails.">message</span> = null)</li>
+<li class='pubmethod'><span title="Verifies that the specified condition is true. The assertion fails if the condition is false.">IsTrue</span>(bool <span title="Any Boolean value or expression.">condition</span>, string <span title="An optional message to display if the assertion fails.">message</span> = null)</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UnitTesting.AssertCompletedEventArgs'>
+<div class='header class'>
+<span >AssertCompletedEventArgs : EventArgs</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>AssertCompletedEventArgs(<a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a> result)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Result { get; } : <a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a></li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_result : <a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UnitTesting.AssertHandler'>
+<div class='header class'>
+<span >AssertHandler</span>
+</div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span>OnAssertFailed(string methodName, string message)</li>
+<li class='pubmethod'><span class='static'></span>OnAssertInconclusive(string message)</li>
+<li class='pubmethod'><span class='static'></span>OnAssertSucceeded()</li>
+</ul></div>
+<div class='members'><h4>Events</h4><ul>
+<li class='event'><span class='static'></span>OnAssertCompleted : EventHandler&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.AssertCompletedEventArgs'>AssertCompletedEventArgs</a>&gt;</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UnitTesting.ExcelApplicationExtensions'>
+<div class='header class'>
+<span >ExcelApplicationExtensions</span>
+</div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span>TimedMethodCall(Application application, string projectName, string moduleName, string methodName) : long</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UnitTesting.IAssert'>
+<div class='header interface'>
+<span >IAssert</span>
+</div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span title="Verifies that two specified objects are equal. The assertion fails if the objects are not equal.">AreEqual</span>(object <span title="The expected value.">expected</span>, object <span title="The actual value.">actual</span>, string <span title="An optional message to display if the assertion fails.">message</span> = null)</li>
+<li class='pubmethod'><span title="Verifies that two specified objects are not equal. The assertion fails if the objects are equal.">AreNotEqual</span>(object <span title="The expected value.">expected</span>, object <span title="The actual value.">actual</span>, string <span title="An optional message to display if the assertion fails.">message</span> = null)</li>
+<li class='pubmethod'><span title="Verifies that two specified object variables refer to different objects. The assertion fails if they refer to the same object.">AreNotSame</span>(object <span title="The expected reference.">expected</span>, object <span title="The actual reference.">actual</span>, string <span title="An optional message to display if the assertion fails.">message</span> = null)</li>
+<li class='pubmethod'><span title="Verifies that two specified object variables refer to the same object. The assertion fails if they refer to different objects.">AreSame</span>(object <span title="The expected reference.">expected</span>, object <span title="The actual reference.">actual</span>, string <span title="An optional message to display if the assertion fails.">message</span> = null)</li>
+<li class='pubmethod'><span title="Fails the assertion without checking any conditions.">Fail</span>(string <span title="An optional message to display.">message</span> = null)</li>
+<li class='pubmethod'><span title="Indicates that the assertion cannot be verified.">Inconclusive</span>(string <span title="An optional message to display.">message</span> = null)</li>
+<li class='pubmethod'><span title="Verifies that the specified condition is false. The assertion fails if the condition is true.">IsFalse</span>(bool <span title="Any Boolean value or expression.">condition</span>, string <span title="An optional message to display if the assertion fails.">message</span> = null)</li>
+<li class='pubmethod'><span title="Verifies that the specified object is Nothing. The assertion fails if it is not Nothing.">IsNothing</span>(object <span title="The object to verify.">value</span>, string <span title="An optional message to display if the assertion fails.">message</span> = null)</li>
+<li class='pubmethod'><span title="Verifies that the specified object is not Nothing. The assertion fails if it is Nothing.">IsNotNothing</span>(object <span title="The object to verify.">value</span>, string <span title="An optional message to display if the assertion fails.">message</span> = null)</li>
+<li class='pubmethod'><span title="Verifies that the specified condition is true. The assertion fails if the condition is false.">IsTrue</span>(bool <span title="Any Boolean value or expression.">condition</span>, string <span title="An optional message to display if the assertion fails.">message</span> = null)</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UnitTesting.NewTestMethodCommand'>
+<div class='header class'>
+<span >NewTestMethodCommand</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='privmethod'><span class='static'></span>.cctor()</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'><span class='static'></span>GetNextTestMethodName(VBComponent component) : string</li>
+<li class='pubmethod'><span class='static'></span>NewExpectedErrorTestMethod(VBE vbe)</li>
+<li class='pubmethod'><span class='static'></span>NewTestMethod(VBE vbe)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'><span class='static'></span>NamePlaceholder : string</li>
+<li class='privfield'><span class='static'></span>TestMethodBaseName : string</li>
+<li class='privfield'><span class='static'></span>TestMethodExpectedErrorTemplate : string</li>
+<li class='privfield'><span class='static'></span>TestMethodTemplate : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UnitTesting.NewUnitTestModuleCommand'>
+<div class='header class'>
+<span >NewUnitTestModuleCommand</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='privmethod'><span class='static'></span>.cctor()</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'><span class='static'></span>GetNextTestModuleName(VBProject project) : string</li>
+<li class='pubmethod'><span class='static'></span>NewUnitTestModule(VBE vbe)</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'><span class='static'></span>TestModuleBaseName : string</li>
+<li class='privfield'><span class='static'></span>TestModuleEmptyTemplate : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UnitTesting.ProjectTestExtensions'>
+<div class='header class'>
+<span >ProjectTestExtensions</span>
+</div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'><span class='static'></span>IsTestMethod(<a href='#Rubberduck.Rubberduck.Reflection.Member'>Member</a> member) : bool</li>
+<li class='privmethod'><span class='static'></span>IsTestModule(CodeModule module) : bool</li>
+<li class='pubmethod'><span class='static'></span>TestMethods(VBComponent component) : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>&gt;</li>
+<li class='pubmethod'><span class='static'></span>TestMethods(VBProject project) : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>&gt;</li>
+<li class='pubmethod'><span class='static'></span>TestModules(VBProject project) : IEnumerable&lt;VBComponent&gt;</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UnitTesting.TestEngine'>
+<div class='header class'>
+<span >TestEngine</span>
+<br/>Implements IDisposable</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>TestEngine(VBE vbe, <a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.TestExplorerWindow'>TestExplorerWindow</a> explorer, Window hostWindow)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>AllTests { get; } : IDictionary&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>, <a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a>&gt;</li>
+<li class='pubproperty'>FailedTests { get; } : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>&gt;</li>
+<li class='pubproperty'>NotRunTests { get; } : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>&gt;</li>
+<li class='pubproperty'>PassedTests { get; } : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>&gt;</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'>AssignResults(IEnumerable&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>&gt; testMethods)</li>
+<li class='pubmethod'>Dispose()</li>
+<li class='pubmethod'><span title="Gets the tests from the previous run.">LastRunTests</span>(<a href='#Rubberduck.Rubberduck.UnitTesting.TestOutcome'>TestOutcome</a>? outcome = null) : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>&gt;</li>
+<li class='privmethod'>OnExplorerAddExpectedErrorTestMethodButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerAddTestMethodButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerAddTestModuleButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerGoToSelectedTest(object sender, <a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.SelectedTestEventArgs'>SelectedTestEventArgs</a> e)</li>
+<li class='privmethod'>OnExplorerRefreshListButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerRunAllTestsButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerRunFailedTestsButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerRunLastRunTestsButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerRunNotRunTestsButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerRunPassedTestsButtonClick(object sender, EventArgs e)</li>
+<li class='privmethod'>OnExplorerRunSelectedTestButtonClick(object sender, <a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.SelectedTestEventArgs'>SelectedTestEventArgs</a> e)</li>
+<li class='privmethod'>RegisterTestExplorerEvents()</li>
+<li class='pubmethod'>ReRun()</li>
+<li class='pubmethod'>Run()</li>
+<li class='pubmethod'>Run(<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a> test)</li>
+<li class='pubmethod'>Run(IEnumerable&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>&gt; tests)</li>
+<li class='pubmethod'>RunFailedTests()</li>
+<li class='pubmethod'>RunNotRunTests()</li>
+<li class='pubmethod'>RunPassedTests()</li>
+<li class='pubmethod'>ShowExplorer()</li>
+<li class='privmethod'>ShowExplorerWindow()</li>
+<li class='pubmethod'><span title="Finds all tests in all opened projects.">SynchronizeTests</span>()</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_allTests : IDictionary&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>, <a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a>&gt;</li>
+<li class='privfield'>_explorer : <a href='#Rubberduck.Rubberduck.UI.Rubberduck.UI.UnitTesting.TestExplorerWindow'>TestExplorerWindow</a></li>
+<li class='privfield'>_hostWindow : Window</li>
+<li class='privfield'>_lastRun : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>&gt;</li>
+<li class='privfield'>_vbe : VBE</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UnitTesting.TestMethod'>
+<div class='header class'>
+<span >TestMethod</span>
+<br/>Implements IEquatable&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a>&gt;</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>TestMethod(string projectName, string moduleName, string methodName)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>MethodName { get; } : string</li>
+<li class='pubproperty'>ModuleName { get; } : string</li>
+<li class='pubproperty'>ProjectName { get; } : string</li>
+<li class='pubproperty'>QualifiedName { get; } : string</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>Equals(<a href='#Rubberduck.Rubberduck.UnitTesting.TestMethod'>TestMethod</a> other) : bool</li>
+<li class='privmethod'>EvaluateResults() : <a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a></li>
+<li class='privmethod'>HandleAssertCompleted(object sender, <a href='#Rubberduck.Rubberduck.UnitTesting.AssertCompletedEventArgs'>AssertCompletedEventArgs</a> e)</li>
+<li class='pubmethod'>Run() : <a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a></li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_assertResults : ICollection&lt;<a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a>&gt;</li>
+<li class='privfield'>_methodName : string</li>
+<li class='privfield'>_moduleName : string</li>
+<li class='privfield'>_projectName : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UnitTesting.TestOutcome'>
+<div class='header enum'>
+<span >TestOutcome : int</span>
+</div>
+<ul class='members'>
+<li class='pubfield'>Unknown = 0</li>
+<li class='pubfield'>Inconclusive = 1</li>
+<li class='pubfield'>Failed = 2</li>
+<li class='pubfield'>Succeeded = 3</li>
+</ul>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.UnitTesting.TestResult'>
+<div class='header class'>
+<span >TestResult</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>TestResult(<a href='#Rubberduck.Rubberduck.UnitTesting.TestOutcome'>TestOutcome</a> outcome, string output = null)</li>
+<li class='pubmethod'>TestResult(<a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a> result, long elapsedMilliseconds)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Duration { get; } : long</li>
+<li class='pubproperty'>Outcome { get; } : <a href='#Rubberduck.Rubberduck.UnitTesting.TestOutcome'>TestOutcome</a></li>
+<li class='pubproperty'>Output { get; } : string</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span>Inconclusive(string message = null) : <a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a></li>
+<li class='pubmethod'><span class='static'></span>Success() : <a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a></li>
+<li class='pubmethod'><span class='static'></span>Unknown() : <a href='#Rubberduck.Rubberduck.UnitTesting.TestResult'>TestResult</a></li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_elapsedMilliseconds : long</li>
+<li class='privfield'>_outcome : <a href='#Rubberduck.Rubberduck.UnitTesting.TestOutcome'>TestOutcome</a></li>
+<li class='privfield'>_output : string</li>
+</ul></div>
+</div>
+</div></section>
+<section id='Rubberduck.VBA.Parser'>
+<h3 class='expander active'>Rubberduck.VBA.Parser</h3><div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.CodeBlockNode'>
+<div class='header class'>
+<span >CodeBlockNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>CodeBlockNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match, String[] endingMarkers, Type childSyntaxType, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a>&gt; nodes)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>ChildSyntaxType { get; } : Type</li>
+<li class='pubproperty'>EndOfBlockMarkers { get; } : IEnumerable&lt;String&gt;</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_childSyntaxType : Type</li>
+<li class='privfield'>_endingMarkers : String[]</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.ConstDeclarationNode'>
+<div class='header class'>
+<span >ConstDeclarationNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.DeclarationNode'>DeclarationNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ConstDeclarationNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.IdentifierNode'>IdentifierNode</a>&gt; chilNodes)</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span><span title="Gets the declared identifiers.">ParseChildNodes</span>(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match) : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.IdentifierNode'>IdentifierNode</a>&gt;</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.DeclarationNode'>
+<div class='header class'>
+<span title="Base class for a declaration node.">DeclarationNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='protmethod'>DeclarationNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a>&gt; childNodes)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Accessibility { get; } : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.DoLoopNode'>
+<div class='header class'>
+<span >DoLoopNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.CodeBlockNode'>CodeBlockNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>DoLoopNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a>&gt; nodes)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'><span title="Gets a BooleanExpression.">Condition</span> { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Expression'>Expression</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.EnumMemberNode'>
+<div class='header class'>
+<span >EnumMemberNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>EnumMemberNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Identifier { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Identifier'>Identifier</a></li>
+<li class='pubproperty'>Value { get; } : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.EnumNode'>
+<div class='header class'>
+<span >EnumNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.CodeBlockNode'>CodeBlockNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>EnumNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Accessibility { get; } : string</li>
+<li class='pubproperty'>Identifier { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Identifier'>Identifier</a></li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'>GetAccessibility() : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Expression'>
+<div class='header class'>
+<span >Expression : ValueType</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>Expression()</li>
+<li class='pubmethod'>Expression(string value)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Value { get; } : string</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_value : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.ExpressionNode'>
+<div class='header class'>
+<span >ExpressionNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ExpressionNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope)</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.ForEachLoopNode'>
+<div class='header class'>
+<span >ForEachLoopNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.CodeBlockNode'>CodeBlockNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ForEachLoopNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a>&gt; nodes)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'><span title="Gets an Expression that returns the object being iterated.">Expression</span> { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Expression'>Expression</a></li>
+<li class='pubproperty'>Identifier { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Identifier'>Identifier</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.ForLoopNode'>
+<div class='header class'>
+<span >ForLoopNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.CodeBlockNode'>CodeBlockNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ForLoopNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a>&gt; nodes)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'><span title="Gets an Expression that returns the initial value of the loop counter.">Lower</span> { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Expression'>Expression</a></li>
+<li class='pubproperty'><span title="Gets an optional Expression that returns the Step argument of the For loop.
+    Returns null if the argument is not specified.">Step</span> { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Expression'>Expression</a></li>
+<li class='pubproperty'><span title="Gets an Expression that returns the final iteratable value of the loop counter.">Upper</span> { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Expression'>Expression</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Identifier'>
+<div class='header class'>
+<span >Identifier</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>Identifier(string scope, string name, string typeName)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Name { get; } : string</li>
+<li class='pubproperty'>Scope { get; } : string</li>
+<li class='pubproperty'>TypeName { get; } : string</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_name : string</li>
+<li class='privfield'>_scope : string</li>
+<li class='privfield'>_typeName : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.IdentifierNode'>
+<div class='header class'>
+<span >IdentifierNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='privmethod'><span class='static'></span>.cctor()</li>
+<li class='pubmethod'>IdentifierNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'><span title="Gets the number of dimensions in an array declaration.
+    Returns 0 if declaration is not an array, or if array is dynamically sized.">ArrayDimensionsCount</span> { get; } : int</li>
+<li class='pubproperty'><span title="Gets a value indicating whether declaration is an array.">IsArray</span> { get; } : bool</li>
+<li class='pubproperty'><span title="Gets a value indicating whether declaration is a dynamically sized array.
+    Returns false if declaration is not an array.">IsDynamicArray</span> { get; } : bool</li>
+<li class='pubproperty'><span title="Gets a value indicating whether declaration is initializing variable with a New instance of a class.">IsInitialized</span> { get; } : bool</li>
+<li class='pubproperty'><span title="Gets a value indicating whether the type was specified in the declaration.">IsTypeSpecified</span> { get; } : bool</li>
+<li class='pubproperty'><span title="If declaration specifies it, gets the library the type is qualified with.">Library</span> { get; } : string</li>
+<li class='pubproperty'>Name { get; } : string</li>
+<li class='pubproperty'><span title="Gets the qualified type name the identifier is declared with.">Reference</span> { get; } : string</li>
+<li class='pubproperty'><span title="Gets the type name of the identifier, regardless of how it is declared.">TypeName</span> { get; } : string</li>
+<li class='pubproperty'><span title="Gets the type specifier character, if the declaration included one.">TypeSpecifier</span> { get; } : string</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'><span class='static'></span>TypeSpecifiers : IDictionary&lt;String, String&gt;</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.IfBlockNode'>
+<div class='header class'>
+<span >IfBlockNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.CodeBlockNode'>CodeBlockNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>IfBlockNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a>&gt; nodes)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'><span title="Gets a BooleanExpression.">Condition</span> { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Expression'>Expression</a></li>
+<li class='pubproperty'><span title="Gets an Expression">Expression</span> { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Expression'>Expression</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>
+<div class='header class'>
+<span title="An immutable value type representing a single instruction. Abstracts instruction separators.">Instruction : ValueType</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>Instruction()</li>
+<li class='pubmethod'>Instruction(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.LogicalCodeLine'>LogicalCodeLine</a> line, int startColumn, int endColumn, string content)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'><span title="The trailing comment, if any.">Comment</span> { get; } : string</li>
+<li class='pubproperty'><span title="The entire instruction, including any trailing comment.">Content</span> { get; } : string</li>
+<li class='pubproperty'><span title="The code pane column where this instruction ends.">EndColumn</span> { get; } : int</li>
+<li class='pubproperty'><span title="The LogicalCodeLine that contains this instruction.">Line</span> { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.LogicalCodeLine'>LogicalCodeLine</a></li>
+<li class='pubproperty'>Selection { get; } : <a href='#Rubberduck.Rubberduck.Extensions.Selection'>Selection</a></li>
+<li class='pubproperty'><span title="The code pane column where this instruction begins.">StartColumn</span> { get; } : int</li>
+<li class='pubproperty'><span title="The instruction string, without any trailing comment.">Value</span> { get; } : string</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span>Empty(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.LogicalCodeLine'>LogicalCodeLine</a> line) : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a></li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_comment : string</li>
+<li class='privfield'>_content : string</li>
+<li class='privfield'>_endColumn : int</li>
+<li class='privfield'>_instruction : string</li>
+<li class='privfield'>_line : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.LogicalCodeLine'>LogicalCodeLine</a></li>
+<li class='privfield'>_startColumn : int</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.LabelNode'>
+<div class='header class'>
+<span >LabelNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>LabelNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Label { get; } : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.LogicalCodeLine'>
+<div class='header class'>
+<span title="An immutable value type representing a line of code. Abstracts line continuations.">LogicalCodeLine : ValueType</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>LogicalCodeLine()</li>
+<li class='pubmethod'>LogicalCodeLine(string projectName, string componentName, int startLineNumber, int endLineNumber, string content)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'><span title="The name of the project component this logical code line belongs to.">ComponentName</span> { get; } : string</li>
+<li class='pubproperty'><span title="The integral content of the logical code line, including line continuations.">Content</span> { get; } : string</li>
+<li class='pubproperty'><span title="The code pane line number where this logical code line ends.">EndLineNumber</span> { get; } : int</li>
+<li class='pubproperty'><span title="Gets a value indicating whether logical code line spans multiple lines in a code file.">IsMultiline</span> { get; } : bool</li>
+<li class='pubproperty'><span title="The name of the project this logical code line belongs to.">ProjectName</span> { get; } : string</li>
+<li class='pubproperty'><span title="The code pane line number where this logical code line begins.">StartLineNumber</span> { get; } : int</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span title="Splits a logical code line into a number of Instruction instances.">SplitInstructions</span>() : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a>&gt;</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_componentName : string</li>
+<li class='privfield'>_content : string</li>
+<li class='privfield'>_endLineNumber : int</li>
+<li class='privfield'>_projectName : string</li>
+<li class='privfield'>_startLineNumber : int</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.ModuleNode'>
+<div class='header class'>
+<span >ModuleNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ModuleNode(string projectName, string componentName, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a>&gt; nodes, bool isClassModule)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Identifier { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Identifier'>Identifier</a></li>
+<li class='pubproperty'>IsClassModule { get; } : bool</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_componentName : string</li>
+<li class='privfield'>_isClassModule : bool</li>
+<li class='privfield'>_projectName : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Operation'>
+<div class='header class'>
+<span >Operation : ValueType</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>Operation()</li>
+<li class='pubmethod'>Operation(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Expression'>Expression</a> left, string operator, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Expression'>Expression</a> right, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.OperatorType'>OperatorType</a> type)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'><span title="Gets the left operand of the operation.">LeftOperand</span> { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Expression'>Expression</a></li>
+<li class='pubproperty'><span title="Gets">Operator</span> { get; } : string</li>
+<li class='pubproperty'><span title="Gets the type of operator used in the operation.">OperatorType</span> { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.OperatorType'>OperatorType</a></li>
+<li class='pubproperty'><span title="Gets the left operand of the operation.">RightOperand</span> { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Expression'>Expression</a></li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_left : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Expression'>Expression</a></li>
+<li class='privfield'>_operator : string</li>
+<li class='privfield'>_right : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Expression'>Expression</a></li>
+<li class='privfield'>_type : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.OperatorType'>OperatorType</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Operator'>
+<div class='header class'>
+<span >Operator : ValueType</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>Operator()</li>
+<li class='pubmethod'>Operator(string token, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.OperatorType'>OperatorType</a> type)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Token { get; } : string</li>
+<li class='pubproperty'>Type { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.OperatorType'>OperatorType</a></li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_token : string</li>
+<li class='privfield'>_type : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.OperatorType'>OperatorType</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.OperatorType'>
+<div class='header enum'>
+<span >OperatorType : int</span>
+</div>
+<ul class='members'>
+<li class='pubfield'>Assignment = 0</li>
+<li class='pubfield'>Comparison = 1</li>
+<li class='pubfield'>Logical = 2</li>
+<li class='pubfield'>Arithmetic = 3</li>
+<li class='pubfield'>Concatenation = 4</li>
+</ul>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.OptionNode'>
+<div class='header class'>
+<span >OptionNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>OptionNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Option { get; } : string</li>
+<li class='pubproperty'>Value { get; } : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.ParameterNode'>
+<div class='header class'>
+<span >ParameterNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ParameterNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Identifier { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.IdentifierNode'>IdentifierNode</a></li>
+<li class='pubproperty'>IsImplicitByRef { get; } : bool</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_isImplicitByRef : bool</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Parser'>
+<div class='header class'>
+<span >Parser</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>Parser(IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.ISyntax'>ISyntax</a>&gt; grammar)</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>Parse(VBProject project) : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></li>
+<li class='pubmethod'><span title="Converts VBA code into a SyntaxTreeNode.">Parse</span>(string <span title="The name of the VBA Project, used for scoping public nodes.">projectName</span>, string <span title="The name of the module, used for scoping private nodes.">componentName</span>, string <span title="The code to parse.">code</span>, bool isClassModule) : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></li>
+<li class='privmethod'>ParseCodeBlock(string publicScope, string localScope, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.CodeBlockNode'>CodeBlockNode</a> codeBlockNode, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.LogicalCodeLine'>LogicalCodeLine</a>&gt; logicalLines, int index) : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></li>
+<li class='privmethod'>ParseModuleMembers(string publicScope, string localScope, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.LogicalCodeLine'>LogicalCodeLine</a>&gt; logicalCodeLines) : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a>&gt;</li>
+<li class='privmethod'>ParseProcedure(string publicScope, string localScope, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.ProcedureNode'>ProcedureNode</a> procedureNode, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.LogicalCodeLine'>LogicalCodeLine</a>&gt; logicalLines, int index) : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></li>
+<li class='privmethod'>SplitLogicalCodeLines(string projectName, string componentName, string content) : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.LogicalCodeLine'>LogicalCodeLine</a>&gt;</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_grammar : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.ISyntax'>ISyntax</a>&gt;</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.ProcedureKind'>
+<div class='header enum'>
+<span >ProcedureKind : int</span>
+</div>
+<ul class='members'>
+<li class='pubfield'>Sub = 0</li>
+<li class='pubfield'>Function = 1</li>
+<li class='pubfield'>PropertyGet = 2</li>
+<li class='pubfield'>PropertyLet = 3</li>
+<li class='pubfield'>PropertySet = 4</li>
+</ul>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.ProcedureNode'>
+<div class='header class'>
+<span >ProcedureNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.CodeBlockNode'>CodeBlockNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ProcedureNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match, string keyword, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a>&gt; nodes)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Accessibility { get; } : string</li>
+<li class='pubproperty'>Identifier { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Identifier'>Identifier</a></li>
+<li class='pubproperty'>Kind { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.ProcedureKind'>ProcedureKind</a></li>
+<li class='pubproperty'>Parameters { get; } : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.ParameterNode'>ParameterNode</a>&gt;</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'>CreateIdentifier(string scope, Match match) : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Identifier'>Identifier</a></li>
+<li class='privmethod'>CreateParameters(string scope, Match match) : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.ParameterNode'>ParameterNode</a>&gt;</li>
+<li class='privmethod'>GetAccessibility() : string</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_identifier : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Identifier'>Identifier</a></li>
+<li class='privfield'>_parameters : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.ParameterNode'>ParameterNode</a>&gt;</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.ProjectNode'>
+<div class='header class'>
+<span >ProjectNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ProjectNode(VBProject project, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a>&gt; nodes)</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>
+<div class='header class'>
+<span >SyntaxTreeNode</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='protmethod'>SyntaxTreeNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match = null, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a>&gt; childNodes = null)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>ChildNodes { get; } : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a>&gt;</li>
+<li class='pubproperty'>HasChildNodes { get; } : bool</li>
+<li class='pubproperty'>Instruction { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a></li>
+<li class='protproperty'>RegexMatch { get; } : Match</li>
+<li class='pubproperty'>Scope { get; } : string</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='method'>AddNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a> node)</li>
+<li class='pubmethod'>FindAllComments() : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a>&gt;</li>
+<li class='pubmethod'><span class='static'></span><span title="Gets all Instruction objects in the specified node, that contain a comment.">FindAllComments</span>(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a> node) : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a>&gt;</li>
+<li class='pubmethod'><span class='static'></span>FindAllProcedures(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a> node, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.ProcedureKind'>ProcedureKind</a> kind) : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.ProcedureNode'>ProcedureNode</a>&gt;</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_childNodes : IList&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a>&gt;</li>
+<li class='privfield'>_instruction : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a></li>
+<li class='privfield'>_match : Match</li>
+<li class='privfield'>_scope : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.TypeConversionNode'>
+<div class='header class'>
+<span >TypeConversionNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='privmethod'><span class='static'></span>.cctor()</li>
+<li class='pubmethod'>TypeConversionNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match = null, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a>&gt; childNodes = null)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Expression { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Expression'>Expression</a></li>
+<li class='pubproperty'>ResultType { get; } : string</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'><span class='static'></span>Types : IDictionary&lt;String, String&gt;</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.UserDefinedTypeMemberNode'>
+<div class='header class'>
+<span >UserDefinedTypeMemberNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>UserDefinedTypeMemberNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Identifier { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Identifier'>Identifier</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.UserDefinedTypeNode'>
+<div class='header class'>
+<span >UserDefinedTypeNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.CodeBlockNode'>CodeBlockNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>UserDefinedTypeNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>Accessibility { get; } : string</li>
+<li class='pubproperty'>Identifier { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Identifier'>Identifier</a></li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='privmethod'>GetAccessibility() : string</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.VariableDeclarationNode'>
+<div class='header class'>
+<span >VariableDeclarationNode : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.DeclarationNode'>DeclarationNode</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>VariableDeclarationNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match, IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.IdentifierNode'>IdentifierNode</a>&gt; childNodes)</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span><span title="Gets the declared identifiers.">ParseChildNodes</span>(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match) : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.IdentifierNode'>IdentifierNode</a>&gt;</li>
+</ul></div>
+</div>
+</div></section>
+<section id='Rubberduck.VBA.Parser.Grammar'>
+<h3 class='expander active'>Rubberduck.VBA.Parser.Grammar</h3><div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.DeclarationSyntax'>
+<div class='header class'>
+<span >DeclarationSyntax : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxBase'>SyntaxBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>DeclarationSyntax()</li>
+<li class='privmethod'><span class='static'></span>.cctor()</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'><span class='static'></span>Factory : IDictionary&lt;String, Func&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a>, String, Match, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a>&gt;&gt;</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.DoLoopSyntax'>
+<div class='header class'>
+<span >DoLoopSyntax : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxBase'>SyntaxBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>DoLoopSyntax()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.EnumMemberSyntax'>
+<div class='header class'>
+<span >EnumMemberSyntax : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxBase'>SyntaxBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>EnumMemberSyntax()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.EnumSyntax'>
+<div class='header class'>
+<span >EnumSyntax : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxBase'>SyntaxBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>EnumSyntax()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.ForEachLoopSyntax'>
+<div class='header class'>
+<span >ForEachLoopSyntax : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxBase'>SyntaxBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ForEachLoopSyntax()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.ForLoopSyntax'>
+<div class='header class'>
+<span >ForLoopSyntax : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxBase'>SyntaxBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ForLoopSyntax()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.IfBlockSyntax'>
+<div class='header class'>
+<span >IfBlockSyntax : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxBase'>SyntaxBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>IfBlockSyntax()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.ISyntax'>
+<div class='header interface'>
+<span >ISyntax</span>
+</div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'><span title="Gets a value indicating whether syntax is specific to a particular parent node.">IsChildNodeSyntax</span> { get; } : bool</li>
+<li class='pubproperty'>Type { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxType'>SyntaxType</a></li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'>IsMatch(string publicScope, string localScope, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a> node) : bool</li>
+<li class='pubmethod'><span title="Parses an instruction into a syntax node, if possible.">Parse</span>(string <span title="The fully-qualified scope of the specified instruction, when the instruction is publicly scoped.">publicScope</span>, string <span title="The fully-qualified scope of the specified instruction, when the instruction is locally scoped.">localScope</span>, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> <span title="An instruction.">instruction</span>) : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.LabelSyntax'>
+<div class='header class'>
+<span >LabelSyntax : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxBase'>SyntaxBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>LabelSyntax()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.OptionSyntax'>
+<div class='header class'>
+<span >OptionSyntax : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxBase'>SyntaxBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>OptionSyntax()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.ProcedureSyntax'>
+<div class='header class'>
+<span >ProcedureSyntax : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxBase'>SyntaxBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>ProcedureSyntax()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.ReservedKeywords'>
+<div class='header class'>
+<span title="A strongly-typed resource class, for looking up localized strings, etc.">ReservedKeywords</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='method'>ReservedKeywords()</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Abs.">Abs</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to AddressOf.">AddressOf</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to And.">And</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to As.">As</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Asc.">Asc</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Attribute.">Attribute</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Base.">Base</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Beep.">Beep</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Binary.">Binary</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Boolean.">Boolean</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to ByRef.">ByRef</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Byte.">Byte</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to ByVal.">ByVal</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Call.">Call</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Case.">Case</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to CBool.">CBool</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to CByte.">CByte</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to CCur.">CCur</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to CDate.">CDate</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to CDbl.">CDbl</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to CDec.">CDec</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to ChDir.">ChDir</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to ChDrive.">ChDrive</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Chr.">Chr</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to CInt.">CInt</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to CLng.">CLng</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to CLngLng.">CLngLng</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to CLngPtr.">CLngPtr</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Close.">Close</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Compare.">Compare</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Const.">Const</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Cos.">Cos</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to CSng.">CSng</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to CStr.">CStr</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Overrides the current thread&#39;s CurrentUICulture property for all
+      resource lookups using this strongly typed resource class.">Culture</span> { get; set; } : CultureInfo</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to CurDir.">CurDir</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Currency.">Currency</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to CVar.">CVar</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to CVErr.">CVErr</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Data.">Data</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Date.">Date</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to DateValue.">DateValue</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Day.">Day</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Debug.">Debug</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Decimal.">Decimal</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Declare.">Declare</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Dim.">Dim</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Dir.">Dir</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Do.">Do</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to DoEvents.">DoEvents</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Double.">Double</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Each.">Each</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Else.">Else</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to ElseIf.">ElseIf</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to End.">End</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Enum.">Enum</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to EOF.">EOF</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Err.">Err</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Error.">Error</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Exit.">Exit</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Exp.">Exp</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Explicit.">Explicit</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to False.">False</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Fix.">Fix</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to For.">For</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Format.">Format</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to FreeFile.">FreeFile</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Friend.">Friend</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Function.">Function</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Get.">Get</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Global.">Global</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to GoSub.">GoSub</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to GoTo.">GoTo</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Hex.">Hex</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Hour.">Hour</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to If.">If</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Implements.">Implements</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to In.">In</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Input.">Input</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to InputBox.">InputBox</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to InStr.">InStr</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Int.">Int</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Integer.">Integer</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Is.">Is</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to IsDate.">IsDate</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to IsEmpty.">IsEmpty</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to IsNull.">IsNull</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to IsNumeric.">IsNumeric</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Join.">Join</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Kill.">Kill</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to LBound.">LBound</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to LCase.">LCase</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Left.">Left</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Len.">Len</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to LenB.">LenB</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Let.">Let</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Like.">Like</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Line.">Line</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to LOF.">LOF</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Long.">Long</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to LongLong.">LongLong</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Loop.">Loop</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to LTrim.">LTrim</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Me.">Me</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Mid.">Mid</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Minute.">Minute</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to MkDir.">MkDir</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Mod.">Mod</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Month.">Month</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to MsgBox.">MsgBox</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to New.">New</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Next.">Next</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Not.">Not</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Nothing.">Nothing</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Now.">Now</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Null.">Null</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Oct.">Oct</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to On.">On</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Open.">Open</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Option.">Option</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Optional.">Optional</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Or.">Or</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Output.">Output</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to ParamArray.">ParamArray</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Preserve.">Preserve</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Print.">Print</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Private.">Private</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Property.">Property</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Public.">Public</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Put.">Put</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Random.">Random</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Randomize.">Randomize</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Read.">Read</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to ReDim.">ReDim</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Rem.">Rem</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Returns the cached ResourceManager instance used by this class.">ResourceManager</span> { get; } : ResourceManager</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Resume.">Resume</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Return.">Return</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Right.">Right</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to RmDir.">RmDir</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Rnd.">Rnd</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to RTrim.">RTrim</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Second.">Second</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Select.">Select</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Set.">Set</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Shell.">Shell</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Sin.">Sin</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Single.">Single</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Sng.">Sng</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Space.">Space</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Spc.">Spc</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Split.">Split</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Sqr.">Sqr</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Static.">Static</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Step.">Step</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Stop.">Stop</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Str.">Str</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to String.">String</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to StrPtr.">StrPtr</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Sub.">Sub</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Then.">Then</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Time.">Time</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to To.">To</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Trim.">Trim</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to True.">True</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Type.">Type</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to TypeName.">TypeName</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to TypeOf.">TypeOf</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to UBound.">UBound</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to UCase.">UCase</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Until.">Until</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Val.">Val</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Variant.">Variant</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to vbCrLf.">vbCrLf</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to vbNewLine.">vbNewLine</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to vbNullString.">vbNullString</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to WeekDay.">WeekDay</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Wend.">Wend</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to While.">While</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to With.">With</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Write.">Write</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Xor.">XOr</span> { get; } : string</li>
+<li class='property'><span class='static'></span><span title="Looks up a localized string similar to Year.">Year</span> { get; } : string</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'><span class='static'></span>resourceCulture : CultureInfo</li>
+<li class='privfield'><span class='static'></span>resourceMan : ResourceManager</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.StringExtensions'>
+<div class='header class'>
+<span >StringExtensions</span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='privmethod'><span class='static'></span>.cctor()</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span><span title="Returns a value indicating whether line of code is/contains a comment.">HasComment</span>(string line, int <span title="Returns the start index of the comment string, including the comment marker.">index</span>) : bool</li>
+<li class='pubmethod'><span class='static'></span><span title="Strips all string literals from a line of code or instruction.
+    Replaces string literals with whitespace characters, to maintain original length.">StripStringLiterals</span>(string line) : string</li>
+<li class='pubmethod'><span class='static'></span><span title="Strips any trailing comment from specified line of code.">StripTrailingComment</span>(string line) : string</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='pubfield'><span class='static'></span>CommentMarker : char</li>
+<li class='pubfield'><span class='static'></span>StringDelimiter : char</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxBase'>
+<div class='header class'>
+<span >SyntaxBase</span>
+<br/>Implements <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.ISyntax'>ISyntax</a></div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='protmethod'>SyntaxBase(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxType'>SyntaxType</a> syntaxType = 0)</li>
+</ul></div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'>IsChildNodeSyntax { get; } : bool</li>
+<li class='pubproperty'>Type { get; } : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxType'>SyntaxType</a></li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='protmethod'>CreateNode(<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, string scope, Match match) : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></li>
+<li class='pubmethod'>IsMatch(string publicScope, string localScope, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a> node) : bool</li>
+<li class='protmethod'>MatchesSyntax(string instruction, Match match) : bool</li>
+<li class='pubmethod'>Parse(string publicScope, string localScope, <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Instruction'>Instruction</a> instruction) : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.SyntaxTreeNode'>SyntaxTreeNode</a></li>
+<li class='protmethod'>Scope(string publicScope, string localScope, Match match) : string</li>
+</ul></div>
+<div class='members'><h4>Fields</h4><ul>
+<li class='privfield'>_syntaxType : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxType'>SyntaxType</a></li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxType'>
+<div class='header enum'>
+<span >SyntaxType : int</span>
+</div>
+<ul class='members'>
+<li class='pubfield'>Syntax = 0</li>
+<li class='pubfield'><span title="Indicates that this syntax produces child nodes.">HasChildNodes</span> = 1</li>
+<li class='pubfield'><span title="Indicates that this syntax isn&#39;t part of the language&#39;s general grammar, 
+    e.g.">IsChildNodeSyntax</span> = 2</li>
+</ul>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.TypeConversionSyntax'>
+<div class='header class'>
+<span >TypeConversionSyntax : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxBase'>SyntaxBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>TypeConversionSyntax()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.UserDefinedTypeMemberSyntax'>
+<div class='header class'>
+<span >UserDefinedTypeMemberSyntax : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxBase'>SyntaxBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>UserDefinedTypeMemberSyntax()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.UserDefinedTypeSyntax'>
+<div class='header class'>
+<span >UserDefinedTypeSyntax : <a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.SyntaxBase'>SyntaxBase</a></span>
+</div>
+<div class='members'>
+<h4>Constructors</h4>
+<ul>
+<li class='pubmethod'>UserDefinedTypeSyntax()</li>
+</ul></div>
+</div>
+<div class='objectBox' id='Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.VBAGrammar'>
+<div class='header class'>
+<span >VBAGrammar</span>
+</div>
+<div class='members'><h4>Properties</h4><ul>
+<li class='pubproperty'><span class='static'></span>DeclarationKeywordsSyntax { get; } : string</li>
+<li class='pubproperty'><span class='static'></span>DoLoopSyntax { get; } : string</li>
+<li class='pubproperty'><span class='static'></span>EnumMemberSyntax { get; } : string</li>
+<li class='pubproperty'><span class='static'></span>EnumSyntax { get; } : string</li>
+<li class='pubproperty'><span class='static'></span>ForEachLoopSyntax { get; } : string</li>
+<li class='pubproperty'><span class='static'></span>ForLoopSyntax { get; } : string</li>
+<li class='pubproperty'><span class='static'></span>GeneralDeclarationSyntax { get; } : string</li>
+<li class='pubproperty'><span class='static'></span>IdentifierDeclarationSyntax { get; } : string</li>
+<li class='privproperty'><span class='static'></span>IdentifierSyntax { get; } : string</li>
+<li class='pubproperty'><span class='static'></span>IfBlockSyntax { get; } : string</li>
+<li class='pubproperty'><span class='static'></span>LabelSyntax { get; } : string</li>
+<li class='pubproperty'><span class='static'></span>OptionSyntax { get; } : string</li>
+<li class='pubproperty'><span class='static'></span>ParameterSyntax { get; } : string</li>
+<li class='pubproperty'><span class='static'></span>ProcedureSyntax { get; } : string</li>
+<li class='privproperty'><span class='static'></span>ReferenceSyntax { get; } : string</li>
+<li class='pubproperty'><span class='static'></span>TypeConversionSyntax { get; } : string</li>
+<li class='pubproperty'><span class='static'></span>UserDefinedTypeSyntax { get; } : string</li>
+</ul></div>
+<div class='members'><h4>Methods</h4><ul>
+<li class='pubmethod'><span class='static'></span><span title="Finds all implementations of SyntaxBase in the Rubberduck assembly.">GetGrammarSyntax</span>() : IEnumerable&lt;<a href='#Rubberduck.Rubberduck.VBA.Rubberduck.VBA.Parser.Rubberduck.VBA.Parser.Grammar.ISyntax'>ISyntax</a>&gt;</li>
+</ul></div>
+</div>
+</div></section>
+﻿<br /><br /><hr style="clear:both;" />
+Generated with <a href="https://github.com/dotMorten/DotNetOMDGenerator">.NET Object Model Diagram Generator</a><br /><br />
+<script>var acc = document.getElementsByClassName("expander"); var i; for (i = 0; i < acc.length; i++) { acc[i].addEventListener("click", function () { var active = this.classList.toggle("active"); var panel = this.nextElementSibling; panel.classList.toggle("collapse"); }); }</script>
+</body>
+</html>
